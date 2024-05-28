@@ -5,9 +5,19 @@
     
     
     
-    <div class="Container">
+    <div class="container">
 
-        <h1>pagina principal </h1>
+
+
+      <div class="left-section"> 
+          <div class="links">
+          <a href="#">ALTA CLIENTES</a>
+          <a href="#">ALTA ORDEN DE TRABAJO</a>
+          <a href="#">ALTA EMPLEADOS</a>
+          </div>
+      </div>
+      <div class="right-section">
+      </div>
 
 
     </div>
