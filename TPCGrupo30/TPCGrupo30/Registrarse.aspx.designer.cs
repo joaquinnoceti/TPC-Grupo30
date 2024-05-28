@@ -11,7 +11,7 @@ namespace TPCGrupo30
 {
 
 
-    public partial class Default
+    public partial class Registrarse
     {
     }
 }

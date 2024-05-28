@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="TPCGrupo30.Default" %>
+﻿<%@ Page Title="Crear cuenta" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Registrarse.aspx.cs" Inherits="TPCGrupo30.Registrarse" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -15,7 +15,7 @@
                             <div class="mb-md-5 mt-md-4 pb-5">
 
                                 <h2 class="fw-bold mb-2">Bienvenido</h2>
-                                <p class="text-white-50 mb-5">Porfavor, ingresar credenciales</p>
+                                <p class="text-white-50 mb-5">Para crear una cuenta, complete el formulario</p>
 
                                 <div  class="form-outline form-white mb-4">
                                     <input type="email" id="typeEmailX" class="form-control form-control-lg" />
@@ -24,10 +24,12 @@
 
                                 <div  class="form-outline form-white mb-4">
                                     <input type="password" id="typePasswordX" class="form-control form-control-lg" />
-                                    <label class="form-label" for="typePasswordX">Password</label>
+                                    <label class="form-label" for="typePasswordX">Contraseña</label>
+                                    <input type="password" id="typePasswordX" class="form-control form-control-lg" />
+                                    <label class="form-label" for="typePasswordX">Repetir contraseña</label>
                                 </div>
-                                <p class="text-white-50 mb-5">Para crear una cuenta <a href="Registrarse.aspx">click aquí</a></p>
-                                <a href="Principal.aspx"  class="btn btn-outline-light btn-lg px-5" >Ingresar</a>
+
+                                <a href="Principal.aspx"  class="btn btn-outline-light btn-lg px-5" >Crear cuenta</a>
 
                             </div>
 
