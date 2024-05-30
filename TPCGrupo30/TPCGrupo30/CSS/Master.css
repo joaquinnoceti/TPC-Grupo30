@@ -17,7 +17,7 @@ body {
     padding: 0;
     background-color: #ADA4CB;
 }
-.container {
+.container1 {
     display: flex;
     flex-wrap: wrap;
 }
