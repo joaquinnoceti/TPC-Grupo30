@@ -16,10 +16,54 @@
 
                                 <h2 class="fw-bold mb-2">Bienvenido</h2>
                                 <p class="text-white-50 mb-5">Para crear una cuenta, complete el formulario</p>
-
-                                <div  class="form-outline form-white mb-4">
-                                    <input type="email" id="typeEmailX" class="form-control form-control-lg" />
-                                    <label class="form-label" for="typeEmailX">Usuario</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Nombre</span>
+                                    <div class="form-floating">
+                                        <input type="text" id="txtNombre" class="form-control" placeholder="Nombre" />
+                                        <label for="txtNombre">Nombre</label>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Apellido</span>
+                                    <div class="form-floating">
+                                        <input type="text" id="txtApellido" class="form-control" placeholder="Apellido" />
+                                        <label for="txtApellido">Apellido</label>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">DNI</span>
+                                    <div class="form-floating">
+                                        <input type="text" id="txtDni" class="form-control" placeholder="DNI" />
+                                        <label for="txtDni">DNI</label>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Email</span>
+                                    <div class="form-floating">
+                                        <input type="email" id="txtEmail" class="form-control" placeholder="Email" />
+                                        <label for="txtEmail">Email</label>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Dirección</span>
+                                    <div class="form-floating">
+                                        <input type="text" id="txtDireccion" class="form-control" placeholder="Dirección" />
+                                        <label for="txtDireccion">Dirección</label>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Telefono</span>
+                                    <div class="form-floating">
+                                        <input type="text" id="txtTelefono" class="form-control" placeholder="Telefono" />
+                                        <label for="txtTelefono">Telefono</label>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Usuario</span>
+                                    <div class="form-floating">
+                                        <input type="text" id="txtUsuario" class="form-control" placeholder="Usuario" />
+                                        <label for="txtUsuario">Usuario</label>
+                                    </div>
                                 </div>
 
                                 <div  class="form-outline form-white mb-4">
