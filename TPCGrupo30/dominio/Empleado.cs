@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace dominio
 {
-    internal class Empleado : Persona
+    public class Empleado : Persona
     {
         public int legajo { get; set; }
         public DateTime fechaRegistro { get; set; }
