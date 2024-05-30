@@ -11,5 +11,7 @@ namespace dominio
         public int legajo { get; set; }
         public DateTime fechaRegistro { get; set; }
         public string nombreUsuario { get; set; }
+        public string especialidad { get; set; }
+        public string categoria { get; set; }
     }
 }
