@@ -11,7 +11,7 @@
 
       <div class="left-section"> 
           <div class="links">
-          <a href="#">ALTA CLIENTES</a>
+          <a href="AltaCliente.aspx">ALTA CLIENTES</a>
           <a href="NuevaOrden.aspx">ALTA ORDEN DE TRABAJO</a>
           <a href="#">ALTA EMPLEADOS</a>
           </div>
