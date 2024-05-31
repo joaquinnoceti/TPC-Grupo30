@@ -1,0 +1,107 @@
+create database TPC_Taller
+USE  TPC_Taller
+GO
+CREATE TABLE Clientes
+(
+    ID int IDENTITY (1,1) NOT NULL,
+    Nombre varchar(30),
+    Apellido varchar(30),
+    Email varchar(50),
+    DNI int,
+    Telefono varchar(20),
+    FechaNac datetime,
+    Direccion varchar(50)
+);
+
+
+
+CREATE TABLE Usuarios
+(
+    ID int IDENTITY (1,1) NOT NULL,
+    Nombre varchar(50),
+    Apellido varchar(50),
+    DNI int,
+    FechaNac datetime,
+    Email varchar(50),
+    Telefono varchar(20),
+    Direccion varchar(50),
+    FechaRegistro datetime,
+    Especialidad varchar(50),
+    Categoria varchar(50),
+    Contrasenia varchar(20),
+    IdRol int,
+    Estado bit
+)
+
+CREATE TABLE Roles
+(
+    ID int IDENTITY (1,1) NOT NULL,
+    NombreRol varchar(50)
+);
+
+
+CREATE TABLE Especialidad
+(
+ID int IDENTITY (1,1) NOT NULL,
+NombreEspecialidad varchar(20)
+);
+
+
+CREATE TABLE Vehiculos
+(
+ID int IDENTITY (1,1) NOT NULL,
+Marca varchar(20),
+Modelo varchar(20),
+Anio int,
+Patente varchar(10),
+TipoVehiculo varchar(15),
+CodigoCliente int
+);
+
+GO
+
+CREATE TABLE OrdenDeTrabajo (
+    ID INT IDENTITY(1,1),
+    FechaCreacion DATETIME,
+    IdCliente INT,
+    IdVehiculo INT,
+    HorasTeoricas INT, 
+    HorasReales INT, 
+    FechaFinalizacion DATETIME,
+    Observaciones VARCHAR(200),
+    Total DECIMAL,
+    Cobrado BIT,
+    MecanicoId INT,
+    Estado INT,
+    CreadoPor INT,
+);
+
+CREATE TABLE Servicio (
+    ID INT IDENTITY(1,1),
+    Nombre VARCHAR(100),
+    Descripción VARCHAR(200),
+    Precio DECIMAL
+);
+
+CREATE TABLE OrdenServicio (
+    IdOrden INT,
+    IdServicio INT,
+);
+
+CREATE TABLE EstadoOrden (
+    ID INT PRIMARY KEY IDENTITY(1,1),
+    Nombre VARCHAR(100)
+);
+GO
+
+CREATE procedure [dbo].[spAltaCliente]
+@Nombre varchar(50),
+@Apellido varchar(50),
+@Email varchar(50),
+@DNI int,
+@Telefono varchar(20),
+@FechaNac datetime,
+@Direccion varchar(50)
+as
+insert into CLIENTES VALUES (@Nombre,@Apellido,@Email,@DNI,@Telefono,@FechaNac,@Direccion)
+

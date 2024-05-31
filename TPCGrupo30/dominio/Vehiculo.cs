@@ -8,11 +8,12 @@ namespace dominio
 {
     public class Vehiculo
     {
-        public string marca { get; set; }
-        public string modelo { get; set; }
-        public int anio { get; set; }
-        public string patente { get; set; }
-        public string tipoVehiculo { get; set; }
-        Cliente cliente { get; set; }
+        public int ID { get; set; }
+        public string Marca { get; set; }
+        public string Modelo { get; set; }
+        public int Anio { get; set; }
+        public string Patente { get; set; }
+        public string TipoVehiculo { get; set; }
+        Cliente Cliente { get; set; }
     }
 }
