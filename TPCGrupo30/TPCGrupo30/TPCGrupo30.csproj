@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ABMClientes.aspx" />
     <Content Include="AltaCliente.aspx" />
     <Content Include="CSS\Master.css" />
     <Content Include="Login.aspx" />
@@ -77,6 +78,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABMClientes.aspx.cs">
+      <DependentUpon>ABMClientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMClientes.aspx.designer.cs">
+      <DependentUpon>ABMClientes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AltaCliente.aspx.cs">
       <DependentUpon>AltaCliente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

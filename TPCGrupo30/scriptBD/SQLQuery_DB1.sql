@@ -110,3 +110,4 @@ GO
 Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion) Values ('Maria','Perez','maria@gmail.com',24156896,'4444-5555',28/01/1979,'Gral Paz 1500')
 Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion) Values ('Luis','Marquez','luis@gmail.com',25748963,'5555-8888',27037,'San Martin 180')
 Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion) Values ('Marcelo','Mas','marcelo@gmail.com',27859365,'7777-1141',27614,'Talcahuano 852')
+

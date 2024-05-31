@@ -23,7 +23,7 @@ namespace dominio
         public string Observaciones { get; set; }
         public decimal Total { get; set; }
         public bool Cobrado { get; set; }
-        public Empleado Mecanico { get; set; }
+        public Usuario Mecanico { get; set; }
         public EstadoOrden Estado { get; set; }
         public string CreadoPor { get; set; }
 

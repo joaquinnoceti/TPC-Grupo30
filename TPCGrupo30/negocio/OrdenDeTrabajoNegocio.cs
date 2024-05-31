@@ -8,6 +8,7 @@ namespace negocio
 {
     public class OrdenDeTrabajoNegocio
     {
+
         public void GuardarOrden(OrdenDeTrabajoNegocio orden)
         {
             AccesoDatos datos = new AccesoDatos();

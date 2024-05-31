@@ -9,6 +9,46 @@ namespace negocio
 {
     public class ClienteNegocio
     {
+        public List<Cliente> Listar()
+        {
+            List<Cliente> lista = new List<Cliente>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT ID,Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion FROM Clientes ");
+                datos.ejecutarConsulta();
+
+                while (datos.Lector.Read())
+                {
+
+                    Cliente aux = new Cliente();
+
+                    aux.ID = (int)datos.Lector["ID"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Email = (string)datos.Lector["Email"];
+                    aux.DNI = (int)datos.Lector["DNI"];
+                    aux.Telefono = (string)datos.Lector["Telefono"];
+                    aux.FechaNac = (DateTime)datos.Lector["FechaNac"];
+                    aux.Direccion = (string)datos.Lector["Direccion"];
+
+                    lista.Add(aux);
+
+
+                }
+                    return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public void altaCliente(Cliente nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
