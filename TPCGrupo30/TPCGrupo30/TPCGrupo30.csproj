@@ -72,7 +72,7 @@
     <Content Include="CSS\Master.css" />
     <Content Include="Login.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="NuevaOrden.aspx" />
+    <Content Include="AltaOrden.aspx" />
     <Content Include="Principal.aspx" />
     <Content Include="Registrarse.aspx" />
     <Content Include="Web.config" />
@@ -109,12 +109,12 @@
     <Compile Include="Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
     </Compile>
-    <Compile Include="NuevaOrden.aspx.cs">
-      <DependentUpon>NuevaOrden.aspx</DependentUpon>
+    <Compile Include="AltaOrden.aspx.cs">
+      <DependentUpon>AltaOrden.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="NuevaOrden.aspx.designer.cs">
-      <DependentUpon>NuevaOrden.aspx</DependentUpon>
+    <Compile Include="AltaOrden.aspx.designer.cs">
+      <DependentUpon>AltaOrden.aspx</DependentUpon>
     </Compile>
     <Compile Include="Principal.aspx.cs">
       <DependentUpon>Principal.aspx</DependentUpon>
