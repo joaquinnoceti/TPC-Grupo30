@@ -27,12 +27,12 @@ body {
 }
 
 .left-section {
-    flex-basis: 40%;
+    flex-basis: 50%;
     background-color: #A391E1;
 }
 
 .right-section {
-    flex-basis: 60%;
+    flex-basis: 50%;
     background-color: #9A89D3;
 }
 
