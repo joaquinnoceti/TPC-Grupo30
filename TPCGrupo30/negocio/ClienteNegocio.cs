@@ -16,7 +16,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("SELECT ID,Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion FROM Clientes ");
+                datos.setearConsulta("SELECT Codigo,Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion FROM Clientes ");
                 datos.ejecutarConsulta();
 
                 while (datos.Lector.Read())
@@ -24,7 +24,7 @@ namespace negocio
 
                     Cliente aux = new Cliente();
 
-                    aux.ID = (int)datos.Lector["ID"];
+                    aux.ID = (int)datos.Lector["Codigo"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Apellido = (string)datos.Lector["Apellido"];
                     aux.Email = (string)datos.Lector["Email"];

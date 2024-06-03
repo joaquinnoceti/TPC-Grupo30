@@ -34,7 +34,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
-                    <div class="collapse navbar-collapse"  id="navbarSupportedContent">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <h1>Taller Mecanico</h1>
                     </div>
                 </div>
@@ -51,6 +51,7 @@
 </body>
 </html>
 
-<footer class="bg-dark text-white text-center" >
-    <p>Fecha de hoy: <%: DateTime.Today.ToString("dd/MM/yyyy") %> - Equipo 30 - TP Cuatrimestral</p>
-</footer>
+
+    <footer class="bg-dark text-white text-center">
+        <p>Fecha de hoy: <%: DateTime.Today.ToString("dd/MM/yyyy") %> - Equipo 30 - TP Cuatrimestral</p>
+    </footer>
