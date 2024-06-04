@@ -14,7 +14,7 @@
         </div>
         <div class="right-section">
             <div class="links">
-                <a href="#">ADMINISTRACION GASTOS</a>
+                <a href="ABMCostos.aspx">ADMINISTRACION COSTOS</a>
                 <a href="#">REPORTERIA</a>
             </div>
         </div>

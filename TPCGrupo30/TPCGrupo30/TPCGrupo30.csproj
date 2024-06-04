@@ -69,9 +69,11 @@
   <ItemGroup>
     <Content Include="ABMClientes.aspx" />
     <Content Include="ABMEmpleados.aspx" />
+    <Content Include="ABMCostos.aspx" />
     <Content Include="ABMOrdenes.aspx" />
     <Content Include="AltaCliente.aspx" />
     <Content Include="AltaEmpleado.aspx" />
+    <Content Include="AltaCosto.aspx" />
     <Content Include="CSS\Master.css" />
     <Content Include="Login.aspx" />
     <Content Include="Global.asax" />
@@ -95,6 +97,13 @@
     <Compile Include="ABMEmpleados.aspx.designer.cs">
       <DependentUpon>ABMEmpleados.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ABMCostos.aspx.cs">
+      <DependentUpon>ABMCostos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMCostos.aspx.designer.cs">
+      <DependentUpon>ABMCostos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ABMOrdenes.aspx.cs">
       <DependentUpon>ABMOrdenes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -115,6 +124,13 @@
     </Compile>
     <Compile Include="AltaEmpleado.aspx.designer.cs">
       <DependentUpon>AltaEmpleado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AltaCosto.aspx.cs">
+      <DependentUpon>AltaCosto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltaCosto.aspx.designer.cs">
+      <DependentUpon>AltaCosto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
