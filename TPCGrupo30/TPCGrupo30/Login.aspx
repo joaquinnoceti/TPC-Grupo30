@@ -26,7 +26,7 @@
                                     <input type="password" id="typePasswordX" class="form-control form-control-lg" />
                                     <label class="form-label" for="typePasswordX">Password</label>
                                 </div>
-                                <p class="text-white-50 mb-5">Para crear una cuenta <a href="Registrarse.aspx">click aquí</a></p>
+                                <p class="text-white-50 mb-5">No tenes cuenta? <a href="Registrarse.aspx">Registrate</a></p>
                                 <a href="Principal.aspx"  class="btn btn-outline-light btn-lg px-5" >Ingresar</a>
 
                             </div>

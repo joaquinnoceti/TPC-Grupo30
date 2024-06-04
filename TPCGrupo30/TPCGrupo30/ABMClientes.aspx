@@ -19,10 +19,14 @@
             <div class="col-md-4">
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary" />
             </div>
+
         </div>
+        <hr />
         <asp:GridView ID="dgvClientes" CssClass="table table-dark" runat="server">
             <Columns>
-                <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Acción" />
+                <asp:CommandField ShowSelectButton="true" SelectText="❌" HeaderText="" />
+                <asp:CommandField ShowSelectButton="true" SelectText="Asignar Vehiculo" HeaderText="" />
+
             </Columns>
         </asp:GridView>
     </div>
