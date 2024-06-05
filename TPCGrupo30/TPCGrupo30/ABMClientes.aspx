@@ -22,7 +22,7 @@
 
         </div>
         <hr />
-        <asp:GridView ID="dgvClientes" CssClass="table table-dark" runat="server">
+        <asp:GridView ID="dgvClientes" CssClass="table table-dark" runat="server" OnSelectedIndexChanged="dgvClientes_SelectedIndexChanged" DataKeyNames="ID">
             <Columns>
                 <asp:CommandField ShowSelectButton="true" SelectText="❌" HeaderText="" />
                 <asp:CommandField ShowSelectButton="true" SelectText="Asignar Vehiculo" HeaderText="" />

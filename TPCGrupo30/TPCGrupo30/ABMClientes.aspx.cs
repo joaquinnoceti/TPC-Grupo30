@@ -17,5 +17,27 @@ namespace TPCGrupo30
             dgvClientes.DataSource = negocio.Listar();
             dgvClientes.DataBind();
         }
+
+        protected void dgvClientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvClientes.SelectedDataKey != null)
+                {
+                    ClienteNegocio negocio = new ClienteNegocio();
+                    int id = (int)dgvClientes.SelectedDataKey.Value;
+                    negocio.bajaCliente(id);
+                    dgvClientes.DataSource = negocio.Listar();
+                    dgvClientes.DataBind();
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ex.ToString();
+            }
+
+        }
     }
 }

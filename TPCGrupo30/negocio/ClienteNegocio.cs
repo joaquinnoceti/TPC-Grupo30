@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using dominio;
 
 namespace negocio
@@ -75,5 +76,35 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void bajaCliente(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                DialogResult rta = MessageBox.Show("Eliminar Cliente?", "Cliente Eliminado.", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (rta == DialogResult.Yes)
+                {
+                    datos.setearConsulta("DELETE FROM CLIENTES WHERE CODIGO = @ID");
+                    datos.setearParametro("@ID", id);
+                    datos.ejecutarConsulta();
+                }
+                else
+                {
+                    return;
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }
