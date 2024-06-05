@@ -31,6 +31,6 @@
             <a href="Principal.aspx" class="btn btn-outline-danger">Atras</a>
         </div>
     </div>
-
+    <br />
 
 </asp:Content>

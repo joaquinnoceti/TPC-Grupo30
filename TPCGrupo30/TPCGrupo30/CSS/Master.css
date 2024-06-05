@@ -10,8 +10,6 @@
     font-weight: 500;
     font-style: normal;
 }
-
-
 body {
     margin: 0;
     padding: 0;
@@ -53,7 +51,11 @@ body {
     text-align:center;
 }
 
-
+.navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
 
 
 

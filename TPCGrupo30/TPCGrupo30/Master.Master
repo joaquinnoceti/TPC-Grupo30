@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.master.cs" Inherits="TPCGrupo30.Master" %>
+﻿        <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.master.cs" Inherits="TPCGrupo30.Master" %>
 
 <!DOCTYPE html>
 
@@ -19,6 +19,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
 </head>
 <body>
@@ -36,6 +37,32 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <h1>Taller Mecanico</h1>
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav navbar-nav navbar-center" "  >
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="Principal.aspx">
+                                    <div class="icon"><i class="fa-solid fa-house"></i></div>
+                                    <div class="name" data-text="HOME">HOME</div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active"  aria-current="page" href="AltaCliente.aspx">
+                                    <div class="icon"><i class="fa-solid fa-user-check"></i></div>
+                                    <div class="name" data-text="ALTA CLIENTE">ALTA CLIENTE</div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="AltaOrden.aspx">
+                                    <div class="icon"><i class="fa-solid fa-car"></i></div>
+                                    <div class="name" data-text="ALTA ORDEN DE TRABAJO">ALTA OT</div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="AltaEmpleado.aspx">
+                                    <div class="icon"><i class="fa-solid fa-people-group"></i></div>
+                                    <div class="name" data-text="ALTA EMPLEADO">ALTA EMPLEADO</div>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </nav>
@@ -47,11 +74,11 @@
 
         </div>
     </form>
-
+    <script src="https://kit.fontawesome.com/3ca869069a.js" crossorigin="anonymous"></script>
 </body>
 </html>
 
 
-    <footer class="bg-dark text-white text-center">
-        <p>Fecha de hoy: <%: DateTime.Today.ToString("dd/MM/yyyy") %> - Equipo 30 - TP Cuatrimestral</p>
-    </footer>
+<footer class="bg-dark text-white text-center">
+    <p>Fecha de hoy: <%: DateTime.Today.ToString("dd/MM/yyyy") %> - Equipo 30 - TP Cuatrimestral</p>
+</footer>
