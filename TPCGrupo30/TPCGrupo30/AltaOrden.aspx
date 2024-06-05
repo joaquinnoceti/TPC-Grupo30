@@ -15,9 +15,12 @@
                         </div>
                         <div class="form-group mb-3">
                             <label>Cliente:</label>
-                            <asp:DropDownList ID="ddlCliente" CssClass="form-select" runat="server">
-                                <asp:ListItem Text="Cliente ejemplo 1"></asp:ListItem>
-                                <asp:ListItem Text="Cliente ejemplo 2"></asp:ListItem>
+                            <asp:DropDownList ID="ddlCliente" CssClass="form-select" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCliente_SelectedIndexChanged">
+                            </asp:DropDownList>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Vehiculo</label>
+                            <asp:DropDownList ID="ddlVehiculo" CssClass="form-select" runat="server">
                             </asp:DropDownList>
                         </div>
                         <div class="form-group mb-3">
@@ -29,7 +32,6 @@
                             <asp:ListBox ID="ListBox1" runat="server">
                                 <asp:ListItem Text="Ejemplo 1"></asp:ListItem>
                                 <asp:ListItem Text="Ejemplo 2"></asp:ListItem>
-
                             </asp:ListBox>
                         </div>
                         <div class="form-group mb-3">
@@ -45,13 +47,6 @@
                         <div class="form-group mb-3">
                             <label>Fecha Fin</label>
                             <asp:TextBox ID="txtFechaFin" CssClass="form-control" placeholder="Fecha Fin..." runat="server"></asp:TextBox>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label>Vehiculo</label>
-                            <asp:DropDownList ID="ddlVehiculo" CssClass="form-select" runat="server">
-                                <asp:ListItem Text="Vehiculo ejemplo 1"></asp:ListItem>
-                                <asp:ListItem Text="Vehiculo ejemplo 2"></asp:ListItem>
-                            </asp:DropDownList>
                         </div>
                         <div class="form-group mb-3">
                             <label>Total</label>
@@ -84,7 +79,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary btn-lg" />
+                    <asp:Button ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" Text="Guardar" CssClass="btn btn-primary btn-lg" />
                     <div class="ml-auto">
                         <a href="ABMOrdenes.aspx" class="btn btn-outline-danger">Atras</a>
                     </div>

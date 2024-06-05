@@ -1,0 +1,85 @@
+Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion) Values ('Maria','Perez','maria@gmail.com',24156896,'4444-5555',28/01/1979,'Gral Paz 1500',1)
+Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion) Values ('Luis','Marquez','luis@gmail.com',25748963,'5555-8888',27037,'San Martin 180',2)
+Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion) Values ('Marcelo','Mas','marcelo@gmail.com',27859365,'7777-1141',27614,'Talcahuano 852',3)
+
+go 
+Insert into Marcas(NombreMarca) values ('Toyota')
+Insert into Marcas(NombreMarca) values ('Ford')
+Insert into Marcas(NombreMarca) values ('Honda')
+Insert into Marcas(NombreMarca) values ('Chevrolet')
+Insert into Marcas(NombreMarca) values ('Nissan')
+Insert into Marcas(NombreMarca) values ('BMW')
+Insert into Marcas(NombreMarca) values ('Mercedes-Benz')
+Insert into Marcas(NombreMarca) values ('Volkswagen')
+Insert into Marcas(NombreMarca) values ('Audi')
+Insert into Marcas(NombreMarca) values ('Hyundai')
+Insert into Marcas(NombreMarca) values ('Kia')
+Insert into Marcas(NombreMarca) values ('Subaru')
+Insert into Marcas(NombreMarca) values ('Mazda')
+Insert into Marcas(NombreMarca) values ('Jeep')
+Insert into Marcas(NombreMarca) values ('Lexus')
+Insert into Marcas(NombreMarca) values ('Dodge')
+Insert into Marcas(NombreMarca) values ('Tesla')
+Insert into Marcas(NombreMarca) values ('Volvo')
+Insert into Marcas(NombreMarca) values ('Land Rover')
+Insert into Marcas(NombreMarca) values ('Porsche')
+
+go
+
+Insert into Modelos(IDMarca,NombreModelo) VALUES (1,'Corolla')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (1,'Camry')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (1,'Prius')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (1,'RAV4')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (1,'Highlander')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (1,'Tacoma')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (1,'Tundra')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (1,'Sienna')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (1,'Yaris')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (1,'Avalon')
+
+
+Insert into Modelos(IDMarca,NombreModelo) VALUES (2,'F-150')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (2,'Mustang')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (2,'Explorer')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (2,'Escape')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (2,'Focus')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (2,'Fusion')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (2,'Edge')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (2,'Ranger')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (2,'Expedition')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (2,'Fiesta')
+
+
+Insert into Modelos(IDMarca,NombreModelo) VALUES (3,'Accord')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (3,'Civic')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (3,'CR-V')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (3,'Pilot')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (3,'Odyssey')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (3,'Fit')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (3,'Ridgeline')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (3,'HR-V')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (3,'Passport')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (3,'Insight')
+
+
+Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Silverado')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Equinox')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Malibu')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Traverse')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Colorado')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Agile')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Suburban')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Blazer')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Camaro')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Classic')
+GO
+Insert into Vehiculos(IDMarca,IDModelo,Anio,Patente,TipoVehiculo,IdCliente) Values (1,1,2020,'AG7859','con baul',1)
+
+Insert into Vehiculos(IDMarca,IDModelo,Anio,Patente,TipoVehiculo,IdCliente) Values (2,15,2019,'AF1489','con baul',2)
+
+Insert into Vehiculos(IDMarca,IDModelo,Anio,Patente,TipoVehiculo,IdCliente) Values (3,26,2019,'AF2356','con baul',3)
+
+
+
+
+
