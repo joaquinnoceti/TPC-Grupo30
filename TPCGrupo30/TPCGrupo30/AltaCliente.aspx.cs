@@ -33,7 +33,7 @@ namespace TPCGrupo30
 
                 negocio.altaCliente(nuevo);
 
-                Response.Redirect("Principal.ASPX");
+                Response.Redirect("ABMClientes.ASPX");
 
             }
             catch (Exception ex)
