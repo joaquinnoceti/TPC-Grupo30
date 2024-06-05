@@ -8,12 +8,12 @@
     <div class="container mt-3">
         <div class="row mb-3">
             <div class="col-md-4">
-                <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" Placeholder="Filtrar..." />
+                <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" Placeholder="Filtrar..." AutoPostBack="true" OnTextChanged="txtBuscar_TextChanged"/>
             </div>
             <div class="col-md-4">
                 <asp:DropDownList ID="ddlFiltrar" runat="server" CssClass="form-control">
-                    <asp:ListItem Text="Opción 1" Value="1" />
-                    <asp:ListItem Text="Opción 2" Value="2" />
+                    <asp:ListItem Text="Nombre" Value="1" />
+                    <asp:ListItem Text="Apellido" Value="2" />
                 </asp:DropDownList>
             </div>
             <div class="col-md-4">
