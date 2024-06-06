@@ -125,7 +125,6 @@ CREATE procedure [dbo].[spAltaCliente]
 as
 insert into CLIENTES VALUES (@Nombre,@Apellido,@Email,@DNI,@Telefono,@FechaNac,@Direccion)
 
-
 GO
 
 Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion) Values ('Maria','Perez','maria@gmail.com',24156896,'4444-5555',28/01/1979,'Gral Paz 1500')

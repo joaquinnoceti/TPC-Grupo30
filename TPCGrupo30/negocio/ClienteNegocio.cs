@@ -17,7 +17,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("SELECT c.ID,c.Nombre,c.Apellido,c.Email,c.DNI,c.Telefono,c.FechaNac,c.Direccion,v.ID as IDVehiculo,v.Patente FROM Clientes c, Vehiculos v WHERE v.IdCliente = c.ID");
+                datos.setearConsulta("SELECT c.ID,c.Nombre,c.Apellido,c.Email,c.DNI,c.Telefono,c.FechaNac,c.Direccion /*,v.ID as IDVehiculo,v.Patente*/ FROM Clientes c/*, Vehiculos v WHERE v.IdCliente = c.ID*/");
                 datos.ejecutarConsulta();
 
                 while (datos.Lector.Read())
@@ -34,9 +34,9 @@ namespace negocio
                     aux.FechaNac = (DateTime)datos.Lector["FechaNac"];
                     aux.Direccion = (string)datos.Lector["Direccion"];
 
-                    aux.Vehiculo = new Vehiculo();
-                    aux.Vehiculo.ID = (int)datos.Lector["IDVehiculo"];
-                    aux.Vehiculo.Patente = (string)datos.Lector["Patente"];
+                    //aux.Vehiculo = new Vehiculo();
+                    //aux.Vehiculo.ID = (int)datos.Lector["IDVehiculo"];
+                    //aux.Vehiculo.Patente = (string)datos.Lector["Patente"];
 
 
                     lista.Add(aux);
