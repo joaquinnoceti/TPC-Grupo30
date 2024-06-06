@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    
 
     <div class="container register-form">
         <div class="form">
@@ -13,16 +14,18 @@
                             <label>Fecha Emision:</label>
                             <asp:TextBox ID="txtFechaEmision" CssClass="form-control" placeholder="Fecha de emision..." runat="server"></asp:TextBox>
                         </div>
-                        <div class="form-group mb-3">
-                            <label>Cliente:</label>
-                            <asp:DropDownList ID="ddlCliente" CssClass="form-select" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCliente_SelectedIndexChanged">
-                            </asp:DropDownList>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label>Vehiculo</label>
-                            <asp:DropDownList ID="ddlVehiculo" CssClass="form-select" runat="server">
-                            </asp:DropDownList>
-                        </div>
+                        
+                                <div class="form-group mb-3">
+                                    <label>Cliente:</label>
+                                    <asp:DropDownList ID="ddlCliente" CssClass="form-select" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCliente_SelectedIndexChanged">
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label>Vehiculo</label>
+                                    <asp:DropDownList ID="ddlVehiculo" CssClass="form-select" runat="server">
+                                    </asp:DropDownList>
+                                </div>
+                            
                         <div class="form-group mb-3">
                             <label>Horas Reales</label>
                             <asp:TextBox ID="txtReales" CssClass="form-control" placeholder="Horas reales..." runat="server"></asp:TextBox>

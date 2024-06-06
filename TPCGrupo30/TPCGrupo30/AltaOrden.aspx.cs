@@ -11,29 +11,29 @@ namespace TPCGrupo30
 {
     public partial class NuevaOrden : System.Web.UI.Page
     {
+        VehiculoNegocio negocio1 = new VehiculoNegocio();
+        ClienteNegocio negocio = new ClienteNegocio();
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
                 if (!IsPostBack)
                 {
-                    ClienteNegocio negocio = new ClienteNegocio();
                     List<Cliente> listaCliente = negocio.Listar();
 
                     ddlCliente.DataSource = listaCliente;
                     ddlCliente.DataValueField = "ID";
-                    ddlCliente.DataTextField = "Nombre";
+                    ddlCliente.DataTextField = "Apellido";
                     ddlCliente.DataBind();
 
+
+                    List<Vehiculo> listaVehiculos = negocio1.Listar();
+                    Session["listaVehiculos"] = listaVehiculos;
                 }
-
-
-
             }
             catch (Exception ex)
             {
-
-                Session.Add("error",ex);
+                Session.Add("error", ex);
             }
         }
 
@@ -44,12 +44,29 @@ namespace TPCGrupo30
 
         protected void ddlCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int Id = int.Parse(ddlCliente.SelectedItem.Value);
-            ddlVehiculo.DataSource = ((List<Cliente>)Session["listaCliente"]).FindAll(x => x.Vehiculo.ID == Id);
-            ddlVehiculo.DataBind();
-
-                
-                
+            try
+            {
+                if (ddlCliente.SelectedItem != null)
+                {
+                    int Id = int.Parse(ddlCliente.SelectedItem.Value);
+                    List<Vehiculo> listaVehiculos = (List<Vehiculo>)Session["listaVehiculos"];
+                    if (listaVehiculos != null)
+                    {
+                        var vehiculosCliente = listaVehiculos.FindAll(x => x.IdCliente.ID == Id);
+                        ddlVehiculo.DataSource = vehiculosCliente;
+                        ddlVehiculo.DataValueField = "ID"; // Set this to the appropriate field
+                        ddlVehiculo.DataTextField = "NombreVehiculo"; // Set this to the appropriate field
+                        ddlVehiculo.DataBind();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                // Optionally display error to the user
+                // lblError.Text = "An error occurred while selecting a client.";
+            }
         }
+    
     }
 }

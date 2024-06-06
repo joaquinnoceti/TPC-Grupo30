@@ -1,6 +1,6 @@
-Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion) Values ('Maria','Perez','maria@gmail.com',24156896,'4444-5555',28/01/1979,'Gral Paz 1500',1)
-Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion) Values ('Luis','Marquez','luis@gmail.com',25748963,'5555-8888',27037,'San Martin 180',2)
-Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion) Values ('Marcelo','Mas','marcelo@gmail.com',27859365,'7777-1141',27614,'Talcahuano 852',3)
+Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion,IDVehiculo) Values ('Maria','Perez','maria@gmail.com',24156896,'4444-5555',28/01/1979,'Gral Paz 1500',1)
+Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion,IDVehiculo) Values ('Luis','Marquez','luis@gmail.com',25748963,'5555-8888',27037,'San Martin 180',2)
+Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion,IDVehiculo) Values ('Marcelo','Mas','marcelo@gmail.com',27859365,'7777-1141',27614,'Talcahuano 852',3)
 
 go 
 Insert into Marcas(NombreMarca) values ('Toyota')
@@ -73,12 +73,12 @@ Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Blazer')
 Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Camaro')
 Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Classic')
 GO
-Insert into Vehiculos(IDMarca,IDModelo,Anio,Patente,TipoVehiculo,IdCliente) Values (1,1,2020,'AG7859','con baul',1)
 
-Insert into Vehiculos(IDMarca,IDModelo,Anio,Patente,TipoVehiculo,IdCliente) Values (2,15,2019,'AF1489','con baul',2)
+Insert into Vehiculos(NombreVehiculo,IDMarca,IDModelo,Anio,Patente,TipoVehiculo,IdCliente) Values ('Corolla AG7859',1,1,2020,'AG7859','con baul',1)
 
-Insert into Vehiculos(IDMarca,IDModelo,Anio,Patente,TipoVehiculo,IdCliente) Values (3,26,2019,'AF2356','con baul',3)
+Insert into Vehiculos(NombreVehiculo,IDMarca,IDModelo,Anio,Patente,TipoVehiculo,IdCliente) Values ('Focus AF1489',2,15,2019,'AF1489','con baul',2)
 
+Insert into Vehiculos(NombreVehiculo,IDMarca,IDModelo,Anio,Patente,TipoVehiculo,IdCliente) Values ('Fit AF2356',3,26,2019,'AF2356','con baul',3)
 
 
 

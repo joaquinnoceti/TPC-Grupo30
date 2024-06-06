@@ -52,6 +52,7 @@ CREATE TABLE Especialidades
 CREATE TABLE Vehiculos
 (
     ID int IDENTITY (1,1) NOT NULL,
+	NombreVehiculo varchar(100),
     IDMarca int,
     IDModelo int,
     Anio int,
