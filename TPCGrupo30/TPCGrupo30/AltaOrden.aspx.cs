@@ -54,8 +54,8 @@ namespace TPCGrupo30
                     {
                         var vehiculosCliente = listaVehiculos.FindAll(x => x.IdCliente.ID == Id);
                         ddlVehiculo.DataSource = vehiculosCliente;
-                        ddlVehiculo.DataValueField = "ID"; // Set this to the appropriate field
-                        ddlVehiculo.DataTextField = "NombreVehiculo"; // Set this to the appropriate field
+                        ddlVehiculo.DataValueField = "ID"; 
+                        ddlVehiculo.DataTextField = "NombreVehiculo";
                         ddlVehiculo.DataBind();
                     }
                 }
@@ -63,8 +63,7 @@ namespace TPCGrupo30
             catch (Exception ex)
             {
                 Session.Add("error", ex);
-                // Optionally display error to the user
-                // lblError.Text = "An error occurred while selecting a client.";
+
             }
         }
     
