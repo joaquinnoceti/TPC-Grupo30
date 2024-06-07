@@ -8,12 +8,13 @@
     <div class="container mt-3">
         <div class="row mb-3">
             <div class="col-md-4">
-                <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" Placeholder="Filtrar..." AutoPostBack="true" OnTextChanged="txtBuscar_TextChanged"/>
+                <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" Placeholder="Filtrar..." AutoPostBack="true" OnTextChanged="txtBuscar_TextChanged" />
             </div>
             <div class="col-md-4">
                 <asp:DropDownList ID="ddlFiltrar" runat="server" CssClass="form-control">
                     <asp:ListItem Text="Nombre" Value="1" />
                     <asp:ListItem Text="Apellido" Value="2" />
+                    <asp:ListItem Text="Inactivos" Value="3" />
                 </asp:DropDownList>
             </div>
             <div class="col-md-4">
@@ -22,12 +23,11 @@
 
         </div>
         <hr />
-        <asp:GridView ID="dgvClientes" CssClass="table table-dark" runat="server" OnSelectedIndexChanged="dgvClientes_SelectedIndexChanged" DataKeyNames="ID">
+        <asp:GridView ID="dgvClientes" CssClass="table table-dark" runat="server" OnRowCommand="dgvClientes_RowCommand" DataKeyNames="ID">
             <Columns>
-                <asp:CommandField ShowSelectButton="true" SelectText="❌" HeaderText="" />
-                <asp:CommandField ShowSelectButton="true" SelectText="Asignar Vehiculo" HeaderText="" />
-
-            </Columns>
+                <asp:ButtonField ButtonType="Link" Text="❌" CommandName="BajaCliente" />
+                <asp:ButtonField ButtonType="Link" Text="🚗" CommandName="AsignarVehiculo" />
+        </Columns>
         </asp:GridView>
     </div>
     <div class="d-flex justify-content-between align-items-center mb-4">

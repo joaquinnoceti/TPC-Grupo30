@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using dominio;
+using System.Windows.Forms;
 
 namespace TPCGrupo30
 {
@@ -20,27 +21,27 @@ namespace TPCGrupo30
             dgvClientes.DataBind();
         }
 
-        protected void dgvClientes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (dgvClientes.SelectedDataKey != null)
-                {
-                    ClienteNegocio negocio = new ClienteNegocio();
-                    int id = (int)dgvClientes.SelectedDataKey.Value;
-                    negocio.bajaCliente(id);
-                    dgvClientes.DataSource = negocio.Listar();
-                    dgvClientes.DataBind();
+        //protected void dgvClientes_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (dgvClientes.SelectedDataKey != null)
+        //        {
+        //            ClienteNegocio negocio = new ClienteNegocio();
+        //            int id = (int)dgvClientes.SelectedDataKey.Value;
+        //            negocio.bajaCliente(id);
+        //            dgvClientes.DataSource = negocio.Listar();
+        //            dgvClientes.DataBind();
 
-                }
-            }
-            catch (Exception ex)
-            {
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                ex.ToString();
-            }
+        //        ex.ToString();
+        //    }
 
-        }
+        //}
 
         protected void txtBuscar_TextChanged(object sender, EventArgs e)
         {
@@ -49,7 +50,7 @@ namespace TPCGrupo30
             if (ddlFiltrar.SelectedItem.Text == "Nombre")
             {
                 filtrada = lista.FindAll(x => x.Nombre.ToLower().Contains(txtBuscar.Text.ToLower()));
-                dgvClientes.DataSource=filtrada;
+                dgvClientes.DataSource = filtrada;
                 dgvClientes.DataBind();
             }
             else
@@ -61,6 +62,39 @@ namespace TPCGrupo30
             }
 
 
+        }
+
+        protected void dgvClientes_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int rowIndex = Convert.ToInt32(e.CommandArgument);
+            int id = Convert.ToInt32(dgvClientes.DataKeys[rowIndex].Value);
+            if (e.CommandName == "BajaCliente")
+            {
+                try
+                {
+
+                    ClienteNegocio negocio = new ClienteNegocio();
+                    //int id = (int)dgvClientes.SelectedDataKey.Value;
+                    negocio.bajaCliente(id);
+                    dgvClientes.DataSource = negocio.Listar();
+                    dgvClientes.DataBind();
+
+
+                }
+                catch (Exception ex)
+                {
+
+                    Session.Add("error", ex.ToString());
+                }
+            }
+            else
+            {
+                //int id = (int)dgvClientes.SelectedDataKey.Value;
+
+                Response.Redirect("AltaVehiculo.aspx?id=" + id);
+
+
+            }
         }
     }
 }

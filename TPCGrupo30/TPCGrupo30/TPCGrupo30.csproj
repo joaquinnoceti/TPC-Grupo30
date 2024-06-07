@@ -53,6 +53,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -71,6 +72,7 @@
     <Content Include="ABMEmpleados.aspx" />
     <Content Include="ABMCostos.aspx" />
     <Content Include="ABMOrdenes.aspx" />
+    <Content Include="AltaVehiculo.aspx" />
     <Content Include="AltaCliente.aspx" />
     <Content Include="AltaEmpleado.aspx" />
     <Content Include="AltaCosto.aspx" />
@@ -110,6 +112,13 @@
     </Compile>
     <Compile Include="ABMOrdenes.aspx.designer.cs">
       <DependentUpon>ABMOrdenes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AltaVehiculo.aspx.cs">
+      <DependentUpon>AltaVehiculo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltaVehiculo.aspx.designer.cs">
+      <DependentUpon>AltaVehiculo.aspx</DependentUpon>
     </Compile>
     <Compile Include="AltaCliente.aspx.cs">
       <DependentUpon>AltaCliente.aspx</DependentUpon>
