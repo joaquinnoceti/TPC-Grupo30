@@ -17,7 +17,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("SELECT c.ID,c.Nombre,c.Apellido,c.Email,c.DNI,c.Telefono,c.FechaNac,c.Direccion /*,v.ID as IDVehiculo,v.Patente*/ FROM Clientes c/*, Vehiculos v WHERE v.IdCliente = c.ID*/");
+                datos.setearConsulta("SELECT c.ID,c.Nombre,c.Apellido,c.Email,c.DNI,c.Telefono,c.FechaNac,c.Direccion FROM Clientes c where C.ACTIVO = 1");
                 datos.ejecutarConsulta();
 
                 while (datos.Lector.Read())
@@ -90,20 +90,16 @@ namespace negocio
                 DialogResult rta = MessageBox.Show("Eliminar Cliente?", "Cliente Eliminado.", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
                 if (rta == DialogResult.Yes)
                 {
-                    datos.setearConsulta("DELETE FROM CLIENTES WHERE CODIGO = @ID");
+                    datos.setearConsulta("UPDATE CLIENTES SET ACTIVO = 0 WHERE ID = @ID");
                     datos.setearParametro("@ID", id);
                     datos.ejecutarConsulta();
                 }
-                else
-                {
-                    return;
-                }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             finally
             {

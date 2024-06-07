@@ -1,6 +1,7 @@
 CREATE DATABASE TPC_Taller
 USE TPC_Taller
 GO
+
 CREATE TABLE Clientes
 (
     ID int IDENTITY (1,1) NOT NULL,
@@ -8,9 +9,11 @@ CREATE TABLE Clientes
     Apellido varchar(30),
     Email varchar(50),
     DNI int,
-    Telefono varchar(20),
+    Telefono varchar(20),		
     FechaNac datetime,
-    Direccion varchar(50)
+    Direccion varchar(50),
+    IDVehiculo int,
+	Activo bit
 );
 
 
@@ -103,10 +106,61 @@ CREATE procedure [dbo].[spAltaCliente]
 @FechaNac datetime,
 @Direccion varchar(50)
 as
-insert into CLIENTES VALUES (@Nombre,@Apellido,@Email,@DNI,@Telefono,@FechaNac,@Direccion)
+insert into CLIENTES(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion,Activo) VALUES (@Nombre,@Apellido,@Email,@DNI,@Telefono,@FechaNac,@Direccion,1)
+
 
 GO
 
-Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion) Values ('Maria','Perez','maria@gmail.com',24156896,'4444-5555',28/01/1979,'Gral Paz 1500')
-Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion) Values ('Luis','Marquez','luis@gmail.com',25748963,'5555-8888',27037,'San Martin 180')
-Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion) Values ('Marcelo','Mas','marcelo@gmail.com',27859365,'7777-1141',27614,'Talcahuano 852')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (1,'Corolla')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (1,'Camry')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (1,'Prius')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (1,'RAV4')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (1,'Highlander')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (1,'Tacoma')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (1,'Tundra')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (1,'Sienna')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (1,'Yaris')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (1,'Avalon')
+
+
+
+Insert into Modelos(IDMarca,NombreModelo) VALUES (2,'F-150')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (2,'Mustang')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (2,'Explorer')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (2,'Escape')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (2,'Focus')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (2,'Fusion')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (2,'Edge')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (2,'Ranger')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (2,'Expedition')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (2,'Fiesta')
+
+
+Insert into Modelos(IDMarca,NombreModelo) VALUES (3,'Accord')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (3,'Civic')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (3,'CR-V')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (3,'Pilot')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (3,'Odyssey')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (3,'Fit')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (3,'Ridgeline')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (3,'HR-V')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (3,'Passport')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (3,'Insight')
+
+
+Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Silverado')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Equinox')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Malibu')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Traverse')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Colorado')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Agile')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Suburban')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Blazer')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Camaro')
+Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Classic')
+
+
+
+Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion,Activo) Values ('Maria','Perez','maria@gmail.com',24156896,'4444-5555',28/01/1979,'Gral Paz 1500',1)
+Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion,Activo) Values ('Luis','Marquez','luis@gmail.com',25748963,'5555-8888',27037,'San Martin 180',1)
+Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion,Activo) Values ('Marcelo','Mas','marcelo@gmail.com',27859365,'7777-1141',27614,'Talcahuano 852',1)
