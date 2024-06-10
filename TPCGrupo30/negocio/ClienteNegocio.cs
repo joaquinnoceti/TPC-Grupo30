@@ -106,6 +106,51 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+        public List<Cliente> ListarDDL()
+        {
+            List<Cliente> lista = new List<Cliente>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT c.ID,c.Nombre,c.Apellido,c.Email,c.DNI,c.Telefono,c.FechaNac,c.Direccion,c.IDVehiculo,v.NombreVehiculo,c.Activo,v.Patente FROM Clientes c INNER JOIN Vehiculos v ON v.IdCliente=c.ID WHERE c.Activo = 1");
+                datos.ejecutarConsulta();
+
+                while (datos.Lector.Read())
+                {
+
+                    Cliente aux = new Cliente();
+
+                    aux.ID = (int)datos.Lector["ID"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Email = (string)datos.Lector["Email"];
+                    aux.DNI = (int)datos.Lector["DNI"];
+                    aux.Telefono = (string)datos.Lector["Telefono"];
+                    aux.FechaNac = (DateTime)datos.Lector["FechaNac"];
+                    aux.Direccion = (string)datos.Lector["Direccion"];
+
+                    aux.Vehiculo = new Vehiculo();
+                    aux.Vehiculo.IDVehiculo = (int)datos.Lector["IDVehiculo"];
+                    aux.Vehiculo.NombreVehiculo = (string)datos.Lector["NombreVehiculo"];
+
+                    lista.Add(aux);
+
+
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
 
     }
 }

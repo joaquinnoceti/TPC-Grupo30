@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
     <div class="container register-form">
         <div class="form">
@@ -14,10 +14,11 @@
                             <label>Fecha Emision:</label>
                             <asp:TextBox ID="txtFechaEmision" CssClass="form-control" placeholder="Fecha de emision..." runat="server"></asp:TextBox>
                         </div>
-                        
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                            <ContentTemplate>
                                 <div class="form-group mb-3">
                                     <label>Cliente:</label>
-                                    <asp:DropDownList ID="ddlCliente" CssClass="form-select" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCliente_SelectedIndexChanged">
+                                    <asp:DropDownList ID="ddlCliente" CssClass="form-select" runat="server" AutoPostBack="false" OnSelectedIndexChanged="ddlCliente_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </div>
                                 <div class="form-group mb-3">
@@ -25,16 +26,15 @@
                                     <asp:DropDownList ID="ddlVehiculo" CssClass="form-select" runat="server">
                                     </asp:DropDownList>
                                 </div>
-                            
+                            </ContentTemplate>
+                            </asp:UpdatePanel>
                         <div class="form-group mb-3">
                             <label>Horas Reales</label>
                             <asp:TextBox ID="txtReales" CssClass="form-control" placeholder="Horas reales..." runat="server"></asp:TextBox>
                         </div>
                         <div class="form-group mb-3">
                             <label>Servicios</label>
-                            <asp:ListBox ID="ListBox1" runat="server">
-                                <asp:ListItem Text="Ejemplo 1"></asp:ListItem>
-                                <asp:ListItem Text="Ejemplo 2"></asp:ListItem>
+                            <asp:ListBox ID="LbServicios" runat="server">   
                             </asp:ListBox>
                         </div>
                         <div class="form-group mb-3">

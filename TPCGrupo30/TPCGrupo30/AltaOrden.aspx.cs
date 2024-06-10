@@ -19,7 +19,7 @@ namespace TPCGrupo30
             {
                 if (!IsPostBack)
                 {
-                    List<Cliente> listaCliente = negocio.Listar();
+                    List<Cliente> listaCliente = negocio.ListarDDL();
 
                     ddlCliente.DataSource = listaCliente;
                     ddlCliente.DataValueField = "ID";
@@ -44,27 +44,14 @@ namespace TPCGrupo30
 
         protected void ddlCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+            if (IsPostBack)
             {
-                if (ddlCliente.SelectedItem != null)
-                {
-                    int Id = int.Parse(ddlCliente.SelectedItem.Value);
-                    List<Vehiculo> listaVehiculos = (List<Vehiculo>)Session["listaVehiculos"];
-                    if (listaVehiculos != null)
-                    {
-                        var vehiculosCliente = listaVehiculos.FindAll(x => x.IdCliente.ID == Id);
-                        ddlVehiculo.DataSource = vehiculosCliente;
-                        ddlVehiculo.DataValueField = "ID"; 
-                        ddlVehiculo.DataTextField = "NombreVehiculo";
-                        ddlVehiculo.DataBind();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Session.Add("error", ex);
+                int id = int.Parse(ddlCliente.SelectedItem.Value);
 
-            }
+                ddlVehiculo.DataSource = ((List<Vehiculo>)Session["listaVehiculos"]).FindAll(x => x.IdCliente.ID == id);
+                ddlVehiculo.DataBind();
+            } 
+   
         }
     
     }
