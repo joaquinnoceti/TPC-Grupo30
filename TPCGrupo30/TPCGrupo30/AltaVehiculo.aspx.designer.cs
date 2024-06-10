@@ -24,40 +24,31 @@ namespace TPCGrupo30
         protected global::System.Web.UI.WebControls.Label lblNombreCli;
 
         /// <summary>
-        /// Control txtNombreVehiculo.
+        /// Control ddlMarca.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombreVehiculo;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMarca;
 
         /// <summary>
-        /// Control txtMarca.
+        /// Control ddlModelo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMarca;
+        protected global::System.Web.UI.WebControls.DropDownList ddlModelo;
 
         /// <summary>
-        /// Control txtModelo.
+        /// Control txtAño.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtModelo;
-
-        /// <summary>
-        /// Control txtAnio.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAnio;
+        protected global::System.Web.UI.WebControls.TextBox txtAño;
 
         /// <summary>
         /// Control txtPatente.

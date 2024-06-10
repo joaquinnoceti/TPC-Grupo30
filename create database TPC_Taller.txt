@@ -97,6 +97,23 @@ CREATE TABLE EstadoOrden (
 );
 GO
 
+
+CREATE TABLE Modelos  
+(
+    ID int IDENTITY (1,1) NOT NULL,
+    IDMarca int,
+    NombreModelo varchar(50)
+);
+
+go
+
+CREATE TABLE MARCAS
+(
+	ID INT IDENTITY (1,1) NOT NULL,
+	NombreMarca varchar(50)
+)
+
+
 CREATE procedure [dbo].[spAltaCliente]
 @Nombre varchar(50),
 @Apellido varchar(50),

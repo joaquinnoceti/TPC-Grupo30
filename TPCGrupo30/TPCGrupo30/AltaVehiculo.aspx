@@ -17,16 +17,16 @@
                                 <div class="col-md-6 mb-4">
 
                                     <div class="form-outline">
-                                        <label class="form-label" for="txtNombreVehiculo">Nombre: </label>
-                                        <asp:TextBox ID="txtNombreVehiculo" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                        <label class="form-label" for="ddlMarca">Marca: </label>
+                                        <asp:DropDownList ID="ddlMarca" CssClass="form-select form-select-lg" runat="server"></asp:DropDownList>
                                     </div>
 
                                 </div>
                                 <div class="col-md-6 mb-4">
 
                                     <div class="form-outline">
-                                        <label class="form-label" for="txtMarca">Marca: </label>
-                                        <asp:TextBox ID="txtMarca" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                        <label class="form-label" for="txtModelo">Modelo: </label>
+                                        <asp:DropDownList ID="ddlModelo" CssClass="form-select form-select-lg" runat="server"></asp:DropDownList>
                                     </div>
 
                                 </div>
@@ -36,23 +36,12 @@
                                 <div class="col-md-6 mb-4 d-flex align-items-center">
 
                                     <div class="form-outline">
-                                        <label class="form-label" for="txtModelo">Modelo: </label>
-                                        <asp:TextBox ID="txtModelo" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                        <label class="form-label" for="txtAño">Año: </label>
+                                        <asp:TextBox ID="txtAño" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
                                     </div>
 
                                 </div>
                                 <div class="col-md-6 mb-4">
-
-                                    <div class="form-outline">
-                                        <label class="form-label" for="txtAnio">Anio: </label>
-                                        <asp:TextBox ID="txtAnio" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6 mb-4 pb-2">
 
                                     <div class="form-outline">
                                         <label class="form-label" for="txtPatente">Patente: </label>
@@ -60,6 +49,9 @@
                                     </div>
 
                                 </div>
+                            </div>
+
+                            <div class="row">
                                 <div class="col-md-6 mb-4 pb-2">
 
                                     <div class="form-outline">
@@ -68,9 +60,6 @@
                                     </div>
 
                                 </div>
-                            </div>
-
-                            <div class="row">
                                 <div class="col-md-6 mb-4 pb-2">
 
                                     <div class="form-outline">
@@ -82,7 +71,7 @@
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center mb-4">
-                                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary btn-lg"  />
+                                <asp:Button ID="btnAceptar" runat="server" Text="Asignar" CssClass="btn btn-primary btn-lg" OnClick="btnAceptar_Click" />
                                 <div class="ml-auto">
                                     <a href="ABMClientes.aspx" class="btn btn-outline-danger">Atras</a>
                                 </div>
