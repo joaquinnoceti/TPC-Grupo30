@@ -10,14 +10,17 @@ namespace negocio
 {
     public class ClienteNegocio
     {
-        public List<Cliente> Listar()
+        public List<Cliente> Listar(string id = "")
         {
             List<Cliente> lista = new List<Cliente>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("SELECT c.ID,c.Nombre,c.Apellido,c.Email,c.DNI,c.Telefono,c.FechaNac,c.Direccion FROM Clientes c where C.ACTIVO = 1");
+                datos.setearConsulta("SELECT c.ID,c.Nombre,c.Apellido,c.Email,c.DNI,c.Telefono,c.FechaNac,c.Direccion FROM Clientes c where C.ACTIVO = 1 ");
+                if (id != "")
+                    datos.setearConsulta("SELECT c.ID,c.Nombre,c.Apellido,c.Email,c.DNI,c.Telefono,c.FechaNac,c.Direccion FROM Clientes c where C.ACTIVO = 1 AND C.ID = " + int.Parse(id));
+
                 datos.ejecutarConsulta();
 
                 while (datos.Lector.Read())
@@ -43,7 +46,7 @@ namespace negocio
 
 
                 }
-                    return lista;
+                return lista;
             }
             catch (Exception ex)
             {

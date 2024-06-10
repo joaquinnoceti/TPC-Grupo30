@@ -21,28 +21,6 @@ namespace TPCGrupo30
             dgvClientes.DataBind();
         }
 
-        //protected void dgvClientes_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        if (dgvClientes.SelectedDataKey != null)
-        //        {
-        //            ClienteNegocio negocio = new ClienteNegocio();
-        //            int id = (int)dgvClientes.SelectedDataKey.Value;
-        //            negocio.bajaCliente(id);
-        //            dgvClientes.DataSource = negocio.Listar();
-        //            dgvClientes.DataBind();
-
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        ex.ToString();
-        //    }
-
-        //}
-
         protected void txtBuscar_TextChanged(object sender, EventArgs e)
         {
             List<Cliente> lista = (List<Cliente>)Session["listaClientes"];
@@ -74,7 +52,6 @@ namespace TPCGrupo30
                 {
 
                     ClienteNegocio negocio = new ClienteNegocio();
-                    //int id = (int)dgvClientes.SelectedDataKey.Value;
                     negocio.bajaCliente(id);
                     dgvClientes.DataSource = negocio.Listar();
                     dgvClientes.DataBind();
@@ -89,10 +66,7 @@ namespace TPCGrupo30
             }
             else
             {
-                //int id = (int)dgvClientes.SelectedDataKey.Value;
-
                 Response.Redirect("AltaVehiculo.aspx?id=" + id);
-
 
             }
         }
