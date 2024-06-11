@@ -55,8 +55,8 @@
                                 <div class="col-md-6 mb-4 pb-2">
 
                                     <div class="form-outline">
-                                        <label class="form-label" for="txtFechaRegistro">Fecha Registro: </label>
-                                        <asp:TextBox ID="txtFechaRegistro" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                        <label class="form-label" for="txtFechaNacimiento">Fecha Nacimiento: </label>
+                                        <asp:TextBox ID="txtFechaNacimiento" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
                                     </div>
 
                                 </div>
@@ -82,15 +82,34 @@
                                 <div class="col-md-6 mb-4 pb-2">
 
                                     <div class="form-outline">
-                                        <label class="form-label" for="Rol">Rol: </label>
-                                        <asp:TextBox ID="txtRol" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                        <label class="form-label" for="Telefono">Telefono: </label>
+                                        <asp:TextBox ID="txtTelefono" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4 pb-2">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="Direccion">Direccion: </label>
+                                        <asp:TextBox ID="txtDireccion" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 mb-4 pb-2">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="Contrasenia">Contraseña: </label>
+                                        <asp:TextBox ID="txtContrasenia" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
                                     </div>
 
                                 </div>
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center mb-4">
-                                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary btn-lg" />
+                                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary btn-lg" OnClick="btnAceptar_Click" />
                                 <div class="ml-auto">
                                     <a href="ABMEmpleados.aspx" class="btn btn-outline-danger">Atras</a>
                                 </div>

@@ -176,6 +176,8 @@ Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Blazer')
 Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Camaro')
 Insert into Modelos(IDMarca,NombreModelo) VALUES (4,'Classic')
 
+Insert into Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,FechaRegistro,IdEspecialidad,Categoria,Contrasenia,IdRol,Estado) Values ('Pedro','Perez','111111',01/01/1910,'pperez@perez.com','0114444111','Av Siempre viva 123',getdate(),null,'Aprendiz','asd123',2,1)
+
 
 
 Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion,Activo) Values ('Maria','Perez','maria@gmail.com',24156896,'4444-5555',28/01/1979,'Gral Paz 1500',1)
