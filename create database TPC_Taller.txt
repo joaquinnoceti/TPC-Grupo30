@@ -125,6 +125,20 @@ CREATE procedure [dbo].[spAltaCliente]
 as
 insert into CLIENTES(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion,Activo) VALUES (@Nombre,@Apellido,@Email,@DNI,@Telefono,@FechaNac,@Direccion,1)
 
+CREATE procedure [dbo].[spAltaUsuario]
+@Nombre varchar(50),
+@Apellido varchar(50),
+@DNI int,
+@FechaNac datetime,
+@Email varchar(50),
+@Telefono varchar(20),
+@Direccion varchar(50),
+@Especialidad varchar(50),
+@Categoria varchar(50),
+@Contrasenia varchar(20)
+as
+insert into Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,FechaRegistro,IdEspecialidad,Categoria,Contrasenia,IdRol,Estado) VALUES (@Nombre,@Apellido,@DNI,@FechaNac,@Email,@Telefono,@Direccion,getdate(),@Especialidad,@Categoria,@Contrasenia,2,1)
+
 
 GO
 
