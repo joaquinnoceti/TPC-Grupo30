@@ -10,7 +10,7 @@
                     <div class="col-md-6 mt-3">
                         <div class="form-group mb-3">
                             <label>Fecha Emision:</label>
-                            <asp:TextBox ID="txtFechaEmision" CssClass="form-control" placeholder="Fecha de emision..." runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtFechaEmision" CssClass="form-control" placeholder="Fecha de emision..." runat="server" TextMode="Date"></asp:TextBox>
                         </div>
                         <div class="form-group mb-3">
                             <label>Cuenta:</label>

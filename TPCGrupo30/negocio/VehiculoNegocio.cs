@@ -24,7 +24,7 @@ namespace negocio
 
                     Vehiculo aux = new Vehiculo();
 
-                    aux.ID = (int)datos.Lector["ID"];
+                    aux.IDVehiculo = (int)datos.Lector["ID"];
                     aux.NombreVehiculo = (string)datos.Lector["NombreVehiculo"];
 
                     aux.Marca = new Marca();
