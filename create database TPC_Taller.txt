@@ -197,3 +197,12 @@ Insert into Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,Fecha
 Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion,Activo) Values ('Maria','Perez','maria@gmail.com',24156896,'4444-5555',28/01/1979,'Gral Paz 1500',1)
 Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion,Activo) Values ('Luis','Marquez','luis@gmail.com',25748963,'5555-8888',27037,'San Martin 180',1)
 Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion,Activo) Values ('Marcelo','Mas','marcelo@gmail.com',27859365,'7777-1141',27614,'Talcahuano 852',1)
+
+
+GO
+INSERT INTO Servicios(NombreServicio,Descripción,Precio) VALUES ('Distribucion nafta 8v','Distribucion Nafta 8v simple Fiat Duna, 147, Gol',106400)
+INSERT INTO Servicios(NombreServicio,Descripción,Precio) VALUES ('Distribucion nafta Motor Dragon ','Distribucion Nafta Motor Dragon o similar',279460)
+INSERT INTO Servicios(NombreServicio,Descripción,Precio) VALUES ('Distribucion nafta 8v viejo','Distribucion Nafta 8v Fire viejo, Corsa, etc ',130000)
+INSERT INTO Servicios(NombreServicio,Descripción,Precio) VALUES ('Embrague Gol ','Embrague simple VW Gol',250000)
+INSERT INTO Servicios(NombreServicio,Descripción,Precio) VALUES ('Embrague simple naftero','Embrague simple Siena naftero o similar, camionetas viejas simples ',269990)
+INSERT INTO Servicios(NombreServicio,Descripción,Precio) VALUES ('Embrague complejo o crapodina hidraulica ','Embrague complejo Renault o similar o crapodina hidraulica  ',287280)
