@@ -12,7 +12,7 @@ namespace dominio
         public DateTime FechaCreacion { get; set; }
         public Cliente Cliente { get; set; }
         public Vehiculo Vehiculo { get; set; }
-        List<Servicio> Servicios { get; set; }
+        public List<Servicio> Servicios { get; set; }
         public OrdenDeTrabajo()
         {
             Servicios = new List<Servicio>();

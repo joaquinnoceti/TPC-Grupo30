@@ -72,6 +72,7 @@
     <Content Include="ABMEmpleados.aspx" />
     <Content Include="ABMCostos.aspx" />
     <Content Include="ABMOrdenes.aspx" />
+    <Content Include="AltaServicio.aspx" />
     <Content Include="AltaVehiculo.aspx" />
     <Content Include="AltaCliente.aspx" />
     <Content Include="AltaEmpleado.aspx" />
@@ -112,6 +113,13 @@
     </Compile>
     <Compile Include="ABMOrdenes.aspx.designer.cs">
       <DependentUpon>ABMOrdenes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AltaServicio.aspx.cs">
+      <DependentUpon>AltaServicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltaServicio.aspx.designer.cs">
+      <DependentUpon>AltaServicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="AltaVehiculo.aspx.cs">
       <DependentUpon>AltaVehiculo.aspx</DependentUpon>

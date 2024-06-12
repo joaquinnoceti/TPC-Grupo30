@@ -1,4 +1,5 @@
-﻿using System;
+﻿using negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,11 @@ namespace TPCGrupo30
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            ServicioNegocio negocio = new ServicioNegocio();
+            Session.Add("listaServicios", negocio.Listar());
 
+            dgvOrdenes.DataSource = Session["listaServicios"];
+            dgvOrdenes.DataBind();
         }
     }
 }

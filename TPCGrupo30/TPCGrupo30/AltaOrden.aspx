@@ -18,7 +18,7 @@
                             <ContentTemplate>
                                 <div class="form-group mb-3">
                                     <label>Cliente:</label>
-                                    <asp:DropDownList ID="ddlCliente" CssClass="form-select" runat="server" AutoPostBack="false" OnSelectedIndexChanged="ddlCliente_SelectedIndexChanged">
+                                    <asp:DropDownList ID="ddlCliente" CssClass="form-select" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCliente_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </div>
                                 <div class="form-group mb-3">
@@ -33,9 +33,10 @@
                             <asp:TextBox ID="txtReales" CssClass="form-control" placeholder="Horas reales..." runat="server"></asp:TextBox>
                         </div>
                         <div class="form-group mb-3">
-                            <label>Servicios</label>
-                            <asp:ListBox ID="LbServicios" runat="server">   
+                            <asp:Label ID="lblServicios" runat="server" Text="Label">Servicios</asp:Label>
+                            <asp:ListBox ID="lbServicios" runat="server">   
                             </asp:ListBox>
+                            <asp:Button ID="btnAgregarServicio" runat="server" Text="Agregar Servicio" CssClass="btn btn-primary btn-lg" OnClick="btnAgregarServicio_Click"/>
                         </div>
                         <div class="form-group mb-3">
                             <label>Horas Teoricas</label>

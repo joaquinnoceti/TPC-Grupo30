@@ -13,7 +13,7 @@ CREATE TABLE Clientes
     FechaNac datetime,
     Direccion varchar(50),
     IDVehiculo int,
-	Activo bit
+    Activo bit
 );
 
 
@@ -81,8 +81,8 @@ CREATE TABLE OrdenDeTrabajo (
 
 CREATE TABLE Servicios (
     ID INT IDENTITY(1,1),
-    Nombre VARCHAR(100),
-    Descripción VARCHAR(200),
+    NombreServicio VARCHAR(100),
+    Descripcion VARCHAR(200),
     Precio DECIMAL
 );
 

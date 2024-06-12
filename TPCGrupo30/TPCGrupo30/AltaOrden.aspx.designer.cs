@@ -69,13 +69,31 @@ namespace TPCGrupo30
         protected global::System.Web.UI.WebControls.TextBox txtReales;
 
         /// <summary>
-        /// LbServicios control.
+        /// lblServicios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox LbServicios;
+        protected global::System.Web.UI.WebControls.Label lblServicios;
+
+        /// <summary>
+        /// lbServicios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox lbServicios;
+
+        /// <summary>
+        /// btnAgregarServicio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAgregarServicio;
 
         /// <summary>
         /// txtTeoricas control.
