@@ -142,6 +142,11 @@ insert into Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,Fecha
 
 GO
 
+INSERT INTO MARCAS(NombreMarca) values ('TOYOTA')
+INSERT INTO MARCAS(NombreMarca) values ('FORD')
+INSERT INTO MARCAS(NombreMarca) values ('HONDA')
+INSERT INTO MARCAS(NombreMarca) values ('CHEVROLET')
+
 Insert into Modelos(IDMarca,NombreModelo) VALUES (1,'Corolla')
 Insert into Modelos(IDMarca,NombreModelo) VALUES (1,'Camry')
 Insert into Modelos(IDMarca,NombreModelo) VALUES (1,'Prius')

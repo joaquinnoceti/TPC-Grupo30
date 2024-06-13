@@ -23,15 +23,19 @@ namespace TPCGrupo30
 
                 MarcaNegocio marcaNegocio = new MarcaNegocio();
                 List<Marca> ListaMarca = marcaNegocio.Listar();
-
                 ddlMarca.DataSource = ListaMarca;
                 ddlMarca.DataValueField = "ID";
                 ddlMarca.DataTextField = "NombreMarca";
                 ddlMarca.DataBind();
 
 
-
-
+                ModeloNegocio modeloNegocio = new ModeloNegocio();
+                List<Modelo> ListaModelo = modeloNegocio.Listar();
+                Session["listaModelos"] = ListaModelo;
+                ddlModelo.DataSource = ListaModelo;
+                ddlModelo.DataValueField = "ID";
+                ddlModelo.DataTextField = "NombreModelo";
+                ddlModelo.DataBind();
             }
         }
 
@@ -44,13 +48,27 @@ namespace TPCGrupo30
 
 
 
-               
+
 
             }
             catch (Exception)
             {
 
                 throw;
+            }
+        }
+
+        protected void ddlMarca_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (IsPostBack)
+            {
+                int id = int.Parse(ddlMarca.SelectedItem.Value);
+                ddlModelo.DataSource = ((List<Modelo>)Session["listaModelos"]).FindAll(x => x.Marca.ID == id);
+                ddlModelo.DataValueField = "ID";
+                ddlModelo.DataTextField = "NombreModelo";
+                ddlModelo.DataBind();
+
             }
         }
     }
