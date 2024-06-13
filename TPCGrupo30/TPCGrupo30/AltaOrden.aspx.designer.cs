@@ -78,13 +78,13 @@ namespace TPCGrupo30
         protected global::System.Web.UI.WebControls.Label lblServicios;
 
         /// <summary>
-        /// lbServicios control.
+        /// gdvServiciosAgregados1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lbServicios;
+        protected global::System.Web.UI.WebControls.GridView gdvServiciosAgregados1;
 
         /// <summary>
         /// btnAgregarServicio control.

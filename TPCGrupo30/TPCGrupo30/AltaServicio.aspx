@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="AltaServicio.aspx.cs" Inherits="TPCGrupo30.AltaServicio" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title>Alta de Servicios</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -10,15 +11,17 @@
                     <div class="col-md-6 mt-3">
                         <div class="form-group mb-3">
                             <asp:Label ID="lblServicios" runat="server" Text="Servicios"></asp:Label>
-                            <asp:ListBox ID="lbServicios" runat="server" OnSelectedIndexChanged="lbServicios_SelectedIndexChanged" AutoPostBack="true">
-                            </asp:ListBox>
+                            <asp:DropDownList ID="ddlServicios" runat="server"></asp:DropDownList>
+                            <asp:Button ID="btnAgregar" runat="server" CssClass="btn btn-primary btn-lg" Text="Agregar" OnClick="btnAgregar_Click" />
                         </div>
                     </div>
                     <div class="ml-auto">
                     </div>
-                    <asp:GridView ID="gdvServiciosAgregados" CssClass="table table-dark" runat="server"></asp:GridView>
+                    <asp:GridView ID="gdvServiciosAgregados" CssClass="table" runat="server">
+                    </asp:GridView>
+                   
                     <div class="ml-auto">
-                        <asp:Button ID="btnAgregarOT" runat="server" OnClick="btnAgregarOT_Click" Text="Agregar a la Orden de Trabajo" />
+                        <asp:Button ID="btnAgregarOT" runat="server" CssClass="btn btn-primary btn-lg" OnClick="btnAgregarOT_Click" Text="Agregar a la Orden de Trabajo" />
                     </div>
                     <div class="ml-auto">
                         <a href="ABMOrdenes.aspx" class="btn btn-outline-danger">Atras</a>

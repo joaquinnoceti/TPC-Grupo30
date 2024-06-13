@@ -34,8 +34,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <asp:Label ID="lblServicios" runat="server" Text="Label">Servicios</asp:Label>
-                            <asp:ListBox ID="lbServicios" runat="server">   
-                            </asp:ListBox>
+                            <asp:GridView ID="gdvServiciosAgregados1" CssClass="table" runat="server"></asp:GridView>
                             <asp:Button ID="btnAgregarServicio" runat="server" Text="Agregar Servicio" CssClass="btn btn-primary btn-lg" OnClick="btnAgregarServicio_Click"/>
                         </div>
                         <div class="form-group mb-3">
