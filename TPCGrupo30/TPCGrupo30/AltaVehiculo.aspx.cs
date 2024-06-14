@@ -18,7 +18,7 @@ namespace TPCGrupo30
             {
                 ClienteNegocio negocioCli = new ClienteNegocio();
                 Cliente cli = (negocioCli.Listar(id))[0];
-
+                Session.Add("ClienteAVehiculo", cli);
                 lblNombreCli.Text = "Cliente: " + cli.Nombre + " " + cli.Apellido;
 
                 MarcaNegocio marcaNegocio = new MarcaNegocio();
@@ -45,16 +45,33 @@ namespace TPCGrupo30
             {
                 Vehiculo nuevo = new Vehiculo();
                 VehiculoNegocio negocio = new VehiculoNegocio();
+                Cliente cliente = (Cliente)Session["ClienteAVehiculo"];
 
+                nuevo.IdCliente = cliente.ID;
 
+                Marca marca = new Marca();
+                marca.ID = int.Parse(ddlMarca.SelectedValue);
+                marca.NombreMarca = ddlMarca.SelectedItem.ToString();
+                nuevo.Marca = marca;
 
+                Modelo modelo = new Modelo();
+                modelo.ID = int.Parse(ddlModelo.SelectedValue);
+                modelo.NombreModelo = ddlModelo.SelectedItem.ToString();
+                nuevo.Modelo = modelo;
 
+                nuevo.Anio = int.Parse(txtAño.Text);
+                nuevo.Patente = txtPatente.Text;
+                nuevo.NombreVehiculo = ddlModelo.SelectedItem.ToString()+ " " +txtPatente.Text;
+                nuevo.TipoVehiculo = ddlTipoVehiculo.SelectedItem.ToString();
 
+                negocio.AltaVehiculo(nuevo);
+
+                Response.Redirect("ABMClientes.aspx");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
         }
 

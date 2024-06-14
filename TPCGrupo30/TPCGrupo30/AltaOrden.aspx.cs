@@ -65,7 +65,7 @@ namespace TPCGrupo30
             {
                 int id = int.Parse(ddlCliente.SelectedItem.Value);
 
-                ddlVehiculo.DataSource = ((List<Vehiculo>)Session["listaVehiculos"]).FindAll(x => x.IdCliente.ID == id);
+                ddlVehiculo.DataSource = ((List<Vehiculo>)Session["listaVehiculos"]).FindAll(x => x.IdCliente == id);
                 //ddlVehiculo.DataValueField = "IDVehiculo";
                 ddlVehiculo.DataTextField = "NombreVehiculo";
 
