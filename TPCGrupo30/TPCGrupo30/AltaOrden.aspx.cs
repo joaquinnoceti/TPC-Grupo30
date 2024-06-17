@@ -90,32 +90,74 @@ namespace TPCGrupo30
         }
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            OrdenDeTrabajoNegocio negocio = new OrdenDeTrabajoNegocio();    
+            try
+            {
+                OrdenDeTrabajo orden = new OrdenDeTrabajo();
 
-            OrdenDeTrabajo orden = new OrdenDeTrabajo();
+                orden.FechaCreacion = DateTime.Parse(txtFechaEmision.Text);
 
-            orden.FechaCreacion = DateTime.Parse(txtFechaEmision.Text);
-            orden.Cliente.Apellido = ddlCliente.SelectedValue;
-            orden.Vehiculo.NombreVehiculo = ddlVehiculo.SelectedValue;
-            orden.HorasReales = int.Parse(txtReales.Text);
-            orden.HorasTeoricas = int.Parse(txtTeoricas.Text);
-            //orden.Servicios = listaServiciosAgregados1.Items.Cast<Servicio>.ToList();
-            orden.FechaFinalizacion = DateTime.Parse(txtFechaFin.Text);
-            orden.Observaciones = tbObservaciones.Text;
+                Cliente cli = new Cliente();
+                cli.ID = int.Parse(ddlCliente.SelectedItem.Value);
+                cli.Apellido = ddlCliente.SelectedItem.Text;
+                orden.Cliente = cli;
+
+                Vehiculo ve = new Vehiculo();
+                ve.IDVehiculo = int.Parse(ddlVehiculo.SelectedItem.Value);
+                ve.NombreVehiculo = ddlVehiculo.SelectedItem.Text;
+                orden.Vehiculo = ve;
+
+                Usuario em = new Usuario();
+                em.ID = int.Parse(ddlMecanico.SelectedItem.Value);
+                em.Apellido = ddlMecanico.SelectedItem.Text;
+                orden.Mecanico = em;
+
+                EstadoOrden est = new EstadoOrden();
+                est.ID = int.Parse(ddlEstado.SelectedItem.Value);
+                est.NombreEstado = ddlEstado.SelectedItem.Text;
+                orden.Estado = est;
+
+                orden.HorasReales = int.Parse(txtReales.Text);
+                orden.HorasTeoricas = int.Parse(txtTeoricas.Text);
+                
+                orden.FechaFinalizacion = DateTime.Parse(txtFechaFin.Text);
+                orden.Observaciones = tbObservaciones.Text;
 
 
-            decimal total = 0;
+                List<Servicio> listaServiciosAgregados = (List<Servicio>)Session["listaServiciosAgregados"];
+                orden.Servicios = listaServiciosAgregados;
 
-            foreach (Servicio servicio in listaServiciosAgregados1)
+
+                decimal total = 0;
+
+                foreach (Servicio servicio in listaServiciosAgregados1)
+                {
+
+                    total += servicio.Precio;
+
+                }
+
+                txtTotal.Text = total.ToString("N2"); // Formatear como moneda
+
+                orden.Total = total;
+
+                if (rdbSi.Checked)
+                {
+                    orden.Cobrado = true;
+                }
+                else if (rdbNo.Checked)
+                {
+                    orden.Cobrado = false;
+                }
+
+                negocio.GuardarOrden(orden);
+            }
+            catch (Exception ex)
             {
 
-                total += servicio.Precio;
-
+                throw ex;
             }
-
-            txtTotal.Text = total.ToString("N2"); // Formatear como moneda
-
-            orden.Total = total;
-            //orden.Cobrado = btnCobradoNo.
+            
 
         }
 

@@ -27,7 +27,7 @@
                                     </asp:DropDownList>
                                 </div>
                             </ContentTemplate>
-                            </asp:UpdatePanel>
+                        </asp:UpdatePanel>
                         <div class="form-group mb-3">
                             <label>Horas Reales</label>
                             <asp:TextBox ID="txtReales" CssClass="form-control" placeholder="Horas reales..." runat="server"></asp:TextBox>
@@ -67,22 +67,20 @@
                         <div class="form-group mb-3">
                             <label>Cobrado: </label>
                             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                <input type="radio" class="btn-check" name="btnradio" id="btnCobradoSi" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio1">Si</label>
-                                
-                                <input type="radio" class="btn-check" name="btnradio" id="btnCobradoNo" autocomplete="off" checked>
-                                <label class="btn btn-outline-danger" for="btnradio2">No</label>
+                                <asp:RadioButton CssClass="btn btn-outline-primary" ID="rdbSi" Text="SI" runat="server" GroupName="Cobrado" />
+                                <asp:RadioButton CssClass="btn btn-outline-danger" ID="rdbNo" Text="NO" runat="server" GroupName="Cobrado" Checked="true" />
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <asp:Button ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" Text="Guardar" CssClass="btn btn-primary btn-lg" />
-                    <div class="ml-auto">
-                        <a href="ABMOrdenes.aspx" class="btn btn-outline-danger">Atras</a>
-                    </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <asp:Button ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" Text="Guardar" CssClass="btn btn-primary btn-lg" />
+                <div class="ml-auto">
+                    <a href="ABMOrdenes.aspx" class="btn btn-outline-danger">Atras</a>
                 </div>
             </div>
         </div>
     </div>
+    
 </asp:Content>
