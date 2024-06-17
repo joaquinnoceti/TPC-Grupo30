@@ -51,7 +51,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="AltaOrden.aspx">
+                                <a class="nav-link active" aria-current="page" href="AltaServicio.aspx">
                                     <div class="icon"><i class="fa-solid fa-car"></i></div>
                                     <div class="name" data-text="ALTA ORDEN DE TRABAJO">ALTA OT</div>
                                 </a>

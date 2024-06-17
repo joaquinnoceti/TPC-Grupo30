@@ -87,15 +87,6 @@ namespace TPCGrupo30
         protected global::System.Web.UI.WebControls.GridView gdvServiciosAgregados1;
 
         /// <summary>
-        /// btnAgregarServicio control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregarServicio;
-
-        /// <summary>
         /// txtTeoricas control.
         /// </summary>
         /// <remarks>
@@ -105,13 +96,13 @@ namespace TPCGrupo30
         protected global::System.Web.UI.WebControls.TextBox txtTeoricas;
 
         /// <summary>
-        /// TextBox1 control.
+        /// tbObservaciones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox tbObservaciones;
 
         /// <summary>
         /// txtFechaFin control.

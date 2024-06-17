@@ -14,7 +14,11 @@ namespace TPCGrupo30
         VehiculoNegocio negocio1 = new VehiculoNegocio();
         ClienteNegocio negocio = new ClienteNegocio();
         ServicioNegocio negocio2 = new ServicioNegocio();
-        private List<Servicio> listaServiciosAgregados;
+        UsuarioNegocio negocio3 = new UsuarioNegocio();
+        OrdenDeTrabajoNegocio negocio4 = new OrdenDeTrabajoNegocio();
+
+
+        public List<Servicio> listaServiciosAgregados1 { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -32,6 +36,37 @@ namespace TPCGrupo30
                     List<Vehiculo> listaVehiculos = negocio1.Listar();
                     Session["listaVehiculos"] = listaVehiculos;
 
+                    listaServiciosAgregados1 = (List<Servicio>)Session["listaServiciosAgregados"];
+
+                    gdvServiciosAgregados1.DataSource = listaServiciosAgregados1;
+                    gdvServiciosAgregados1.DataBind();
+
+                    List<Usuario> listaEmpleados = negocio3.Listar();
+
+                    ddlMecanico.DataSource = listaEmpleados;
+                    ddlMecanico.DataValueField = "ID";
+                    ddlMecanico.DataTextField = "Apellido";
+                    ddlMecanico.DataBind();
+
+                    List<EstadoOrden> listaEstados = negocio4.ListarEstados();
+
+                    ddlEstado.DataSource = listaEstados;
+                    ddlEstado.DataValueField = "ID";
+                    ddlEstado.DataTextField = "NombreEstado";
+                    ddlEstado.DataBind();
+
+                    decimal total = 0;
+
+                    foreach (Servicio servicio in listaServiciosAgregados1)
+                    {
+
+                        total += servicio.Precio;
+
+                    }
+
+                    txtTotal.Text = total.ToString("N2"); // Formatear como moneda
+
+                    
                 }
             }
             catch (Exception ex)
@@ -40,6 +75,19 @@ namespace TPCGrupo30
             }
         }
 
+        private void CalcularTotal()
+        {
+            decimal total = 0;
+
+            foreach (Servicio servicio in listaServiciosAgregados1)
+            {
+
+                    total += servicio.Precio;
+
+            }
+
+            txtTotal.Text = total.ToString("C"); // Formatear como moneda
+        }
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
 
@@ -50,12 +98,24 @@ namespace TPCGrupo30
             orden.Vehiculo.NombreVehiculo = ddlVehiculo.SelectedValue;
             orden.HorasReales = int.Parse(txtReales.Text);
             orden.HorasTeoricas = int.Parse(txtTeoricas.Text);
-            //orden.Servicios = lbServicios.Items.Cast<Servicio>.ToList();
-            
+            //orden.Servicios = listaServiciosAgregados1.Items.Cast<Servicio>.ToList();
+            orden.FechaFinalizacion = DateTime.Parse(txtFechaFin.Text);
+            orden.Observaciones = tbObservaciones.Text;
 
 
+            decimal total = 0;
 
+            foreach (Servicio servicio in listaServiciosAgregados1)
+            {
 
+                total += servicio.Precio;
+
+            }
+
+            txtTotal.Text = total.ToString("N2"); // Formatear como moneda
+
+            orden.Total = total;
+            //orden.Cobrado = btnCobradoNo.
 
         }
 
