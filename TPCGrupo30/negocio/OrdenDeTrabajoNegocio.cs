@@ -33,32 +33,21 @@ namespace negocio
 
                 datos.ejecutar();
 
-                  
-            }
-            catch (Exception ex)
-            {
 
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
-
-        public void GuardarOrdenServicio(OrdenDeTrabajo orden)
-        {
-            AccesoDatos datos = new AccesoDatos();
-
-            try
-            {
-
-                foreach (var servicio in orden.Servicios)
+                // Obtener el ID generado para la orden
+                datos.setearConsulta("SELECT @@IDENTITY AS 'Identity'");
+                datos.ejecutarConsulta();
+                if (datos.Lector.Read())
                 {
+                    orden.ID = Convert.ToInt32(datos.Lector["Identity"]);
+                }
 
-                    datos.setearConsulta("INSERT INTO OrdenServicio(IdOrden,IdServicio) VALUES(@IdOrden, @IdServicio");
+                // Insertar cada servicio asociado en la tabla intermedia
+                foreach (Servicio item in orden.Servicios)
+                {
+                    datos.setearConsulta("INSERT INTO OrdenServicio(IdOrden, IdServicio) VALUES(@IdOrden, @IdServicio)");
                     datos.setearParametro("@IdOrden", orden.ID);
-                    datos.setearParametro("@IServicio", servicio.ID);
+                    datos.setearParametro("@IdServicio", item.ID);
 
                     datos.ejecutar();
                 }
@@ -74,6 +63,8 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+
 
 
 

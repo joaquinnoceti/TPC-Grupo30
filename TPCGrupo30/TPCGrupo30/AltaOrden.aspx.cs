@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
 
 namespace TPCGrupo30
 {
@@ -35,6 +36,9 @@ namespace TPCGrupo30
 
                     List<Vehiculo> listaVehiculos = negocio1.Listar();
                     Session["listaVehiculos"] = listaVehiculos;
+                    ddlVehiculo.DataValueField = "IDVehiculo";
+                    ddlVehiculo.DataTextField = "NombreVehiculo";
+                    ddlVehiculo.DataBind();
 
                     listaServiciosAgregados1 = (List<Servicio>)Session["listaServiciosAgregados"];
 
@@ -93,9 +97,16 @@ namespace TPCGrupo30
             OrdenDeTrabajoNegocio negocio = new OrdenDeTrabajoNegocio();    
             try
             {
+                // Validar y asignar fecha de finalización
+                DateTime fechaFinalizacion;
+                if (string.IsNullOrEmpty(txtFechaFin.Text))
+                {
+                    fechaFinalizacion = new DateTime(2001, 1, 1);
+                }
+
                 OrdenDeTrabajo orden = new OrdenDeTrabajo();
 
-                orden.FechaCreacion = DateTime.Parse(txtFechaEmision.Text);
+                orden.FechaCreacion = DateTime.ParseExact(txtFechaEmision.Text, "dd/MM/yyyy", null);
 
                 Cliente cli = new Cliente();
                 cli.ID = int.Parse(ddlCliente.SelectedItem.Value);
@@ -117,9 +128,19 @@ namespace TPCGrupo30
                 est.NombreEstado = ddlEstado.SelectedItem.Text;
                 orden.Estado = est;
 
-                orden.HorasReales = int.Parse(txtReales.Text);
                 orden.HorasTeoricas = int.Parse(txtTeoricas.Text);
-                
+
+                // Validar y asignar HorasReales
+                if (string.IsNullOrEmpty(txtReales.Text))
+                {
+                    orden.HorasReales = 0;
+                }
+                else
+                {
+                    orden.HorasReales = int.Parse(txtReales.Text);
+                }
+
+               
                 orden.FechaFinalizacion = DateTime.Parse(txtFechaFin.Text);
                 orden.Observaciones = tbObservaciones.Text;
 
@@ -154,7 +175,7 @@ namespace TPCGrupo30
             }
             catch (Exception ex)
             {
-
+               
                 throw ex;
             }
             
