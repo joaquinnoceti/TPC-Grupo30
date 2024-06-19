@@ -1,6 +1,7 @@
 CREATE DATABASE TPC_Taller
 USE TPC_Taller
 GO
+
 CREATE TABLE Clientes
 (
     ID int IDENTITY (1,1) NOT NULL,
@@ -11,8 +12,8 @@ CREATE TABLE Clientes
     Telefono varchar(20),		
     FechaNac datetime,
     Direccion varchar(50),
-    IDVehiculo int
-
+    IDVehiculo int,
+    Activo bit
 );
 
 
@@ -52,9 +53,8 @@ CREATE TABLE Especialidades
 CREATE TABLE Vehiculos
 (
     ID int IDENTITY (1,1) NOT NULL,
-	NombreVehiculo varchar(100),
-    IDMarca int,
-    IDModelo int,
+    Marca varchar(20),
+    Modelo varchar(20),
     Anio int,
     Patente varchar(10),
     TipoVehiculo varchar(15),
@@ -81,8 +81,8 @@ CREATE TABLE OrdenDeTrabajo (
 
 CREATE TABLE Servicios (
     ID INT IDENTITY(1,1),
-    Nombre VARCHAR(100),
-    Descripción VARCHAR(200),
+    NombreServicio VARCHAR(100),
+    Descripcion VARCHAR(200),
     Precio DECIMAL
 );
 
@@ -93,17 +93,10 @@ CREATE TABLE OrdenServicio (
 
 CREATE TABLE EstadoOrden (
     ID INT PRIMARY KEY IDENTITY(1,1),
-    Nombre VARCHAR(100)
+    NombreEstado VARCHAR(100)
 );
 GO
 
-CREATE TABLE Marcas  
-(
-    ID int IDENTITY (1,1) NOT NULL,
-    NombreMarca varchar(50)
-);
-
-GO
 
 CREATE TABLE Modelos  
 (
@@ -114,6 +107,13 @@ CREATE TABLE Modelos
 
 go
 
+CREATE TABLE MARCAS
+(
+	ID INT IDENTITY (1,1) NOT NULL,
+	NombreMarca varchar(50)
+)
+
+
 CREATE procedure [dbo].[spAltaCliente]
 @Nombre varchar(50),
 @Apellido varchar(50),
@@ -123,10 +123,49 @@ CREATE procedure [dbo].[spAltaCliente]
 @FechaNac datetime,
 @Direccion varchar(50)
 as
-insert into CLIENTES VALUES (@Nombre,@Apellido,@Email,@DNI,@Telefono,@FechaNac,@Direccion)
+insert into CLIENTES(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion,Activo) VALUES (@Nombre,@Apellido,@Email,@DNI,@Telefono,@FechaNac,@Direccion,1)
+
+CREATE procedure [dbo].[spAltaUsuario]
+@Nombre varchar(50),
+@Apellido varchar(50),
+@DNI int,
+@FechaNac datetime,
+@Email varchar(50),
+@Telefono varchar(20),
+@Direccion varchar(50),
+@Especialidad varchar(50),
+@Categoria varchar(50),
+@Contrasenia varchar(20)
+as
+insert into Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,FechaRegistro,IdEspecialidad,Categoria,Contrasenia,IdRol,Estado) VALUES (@Nombre,@Apellido,@DNI,@FechaNac,@Email,@Telefono,@Direccion,getdate(),@Especialidad,@Categoria,@Contrasenia,2,1)
+
 
 GO
 
-Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion) Values ('Maria','Perez','maria@gmail.com',24156896,'4444-5555',28/01/1979,'Gral Paz 1500')
-Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion) Values ('Luis','Marquez','luis@gmail.com',25748963,'5555-8888',27037,'San Martin 180')
-Insert into Clientes(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion) Values ('Marcelo','Mas','marcelo@gmail.com',27859365,'7777-1141',27614,'Talcahuano 852')
+CREATE TABLE Cuentas
+(
+    ID int IDENTITY (1,1) NOT NULL,
+    CodCuenta varchar(30),
+    DescripcionCuenta varchar(50),
+);
+
+CREATE TABLE SubCuentas
+(
+    ID int IDENTITY (1,1) NOT NULL,
+    CodigoSubcuenta varchar(30),
+    DescripcionSubCuenta varchar(50),
+    CodCuenta varchar(30),
+);
+
+CREATE TABLE Costos
+(
+    ID int IDENTITY (1,1) NOT NULL,
+    CodigoCuenta varchar(30),
+    CodigoSubcuenta varchar(30),
+    Tipo varchar(30),
+    Asignacion varchar(50),
+    FechaCosto DATETIME,
+    Importe DECIMAL
+  );
+
+

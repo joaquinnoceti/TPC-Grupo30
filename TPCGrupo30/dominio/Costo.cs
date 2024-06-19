@@ -11,7 +11,6 @@ namespace dominio
         public int ID { get; set; }
         public Cuenta CodigoCuenta { get; set; }
         public SubCuenta CodigoSubCuenta { get; set; }
-        public string DescripcionCuenta { get; set; }
         public string Tipo { get; set; }
         public string Asignacion { get; set; }
         public DateTime FechaCosto { get; set; }

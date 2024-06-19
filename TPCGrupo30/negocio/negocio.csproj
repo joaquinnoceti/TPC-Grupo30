@@ -44,7 +44,11 @@
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
     <Compile Include="ClienteNegocio.cs" />
+<<<<<<< HEAD
+    <Compile Include="CostoNegocio.cs" />
+=======
     <Compile Include="EspecialidadNegocio.cs" />
+>>>>>>> d50e3558bb402325348fbbe6a52d0766203ea055
     <Compile Include="MarcaNegocio.cs" />
     <Compile Include="ModeloNegocio.cs" />
     <Compile Include="OrdenDeTrabajoNegocio.cs" />

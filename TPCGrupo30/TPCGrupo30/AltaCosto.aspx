@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
     <div class="container register-form">
         <div class="form">
@@ -12,26 +13,27 @@
                             <label>Fecha Emision:</label>
                             <asp:TextBox ID="txtFechaEmision" CssClass="form-control" placeholder="Fecha de emision..." runat="server" TextMode="Date"></asp:TextBox>
                         </div>
-                        <div class="form-group mb-3">
-                            <label>Cuenta:</label>
-                            <asp:DropDownList ID="ddlCuenta" CssClass="form-select" runat="server">
-                                <asp:ListItem Text="Cuenta ejemplo 1"></asp:ListItem>
-                                <asp:ListItem Text="Cuenta ejemplo 2"></asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                            <ContentTemplate>
+                                <div class="form-group mb-3">
+                                    <label>Cuenta:</label>
+                                    <asp:DropDownList ID="ddlCuenta" CssClass="form-select" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCuenta_SelectedIndexChanged">
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label>SubCuenta:</label>
+                                    <asp:DropDownList ID="ddlSubCuenta" CssClass="form-select" runat="server">
+                                    </asp:DropDownList>
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                         <div class="form-group mb-3">
                             <label>Tipo:</label>
-                            <asp:DropDownList ID="ddlTipo" CssClass="form-select" runat="server">
-                                <asp:ListItem Text="Tipo ejemplo 1"></asp:ListItem>
-                                <asp:ListItem Text="Tipo ejemplo 2"></asp:ListItem>
-                            </asp:DropDownList>
+                            <asp:TextBox ID="txtTipo" runat="server" CssClass="form-control" placeholder="Fijo o Variable"></asp:TextBox>
                         </div>
                         <div class="form-group mb-3">
                             <label>Asignacion:</label>
-                            <asp:DropDownList ID="ddlAsignacion" CssClass="form-select" runat="server">
-                                <asp:ListItem Text="Asignacion ejemplo 1"></asp:ListItem>
-                                <asp:ListItem Text="Asignacion ejemplo 2"></asp:ListItem>
-                            </asp:DropDownList>
+                            <asp:TextBox ID="txtAsignacion" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                         <div class="form-group mb-3">
                             <label>Importe</label>
@@ -40,7 +42,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary btn-lg" />
+                    <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" CssClass="btn btn-primary btn-lg" />
                     <div class="ml-auto">
                         <a href="ABMCostos.aspx" class="btn btn-outline-danger">Atras</a>
                     </div>

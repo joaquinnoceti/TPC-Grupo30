@@ -10,6 +10,7 @@ namespace dominio
     {
         public int ID { get; set; }
         public string CodSubcuenta { get; set; }
-        public string DescripcionSubcuenta { get; set; }
+        public string DescripcionSubCuenta { get; set; }
+        public Cuenta CuentaPadre { get; set; }
     }
 }
