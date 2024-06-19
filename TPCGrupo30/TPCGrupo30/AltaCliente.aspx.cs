@@ -48,7 +48,7 @@ namespace TPCGrupo30
                 nuevo.Telefono = txtTelefono.Text;
                 nuevo.FechaNac = DateTime.Parse(txtFecha.Text);
                 nuevo.Direccion = txtDirecion.Text;
-                nuevo.ID = int.Parse(Request.QueryString["id"]);
+
 
                 if (Request.QueryString["id"] != null)
                     negocio.modificar(nuevo);
