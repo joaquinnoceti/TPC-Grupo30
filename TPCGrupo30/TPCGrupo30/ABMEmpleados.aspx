@@ -26,7 +26,7 @@
         <asp:GridView ID="dgvEmpleados" CssClass="table table-dark" runat="server" OnRowCommand="dgvEmpleados_RowCommand" DataKeyNames="ID">
             <Columns>
                 <asp:ButtonField ButtonType="Link" Text="❌" CommandName="BajaUsuario" />
-                <%--<asp:ButtonField ButtonType="Link" Text="✍️" CommandName="ModificarUsuario" />--%>
+                <asp:ButtonField ButtonType="Link" Text="✍️" CommandName="ModificarUsuario" />
             </Columns>
         </asp:GridView>
     </div>

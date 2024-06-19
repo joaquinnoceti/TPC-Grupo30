@@ -56,7 +56,6 @@ namespace TPCGrupo30
                     dgvClientes.DataSource = negocio.Listar();
                     dgvClientes.DataBind();
 
-
                 }
                 catch (Exception ex)
                 {
@@ -64,10 +63,13 @@ namespace TPCGrupo30
                     Session.Add("error", ex.ToString());
                 }
             }
-            else
+            else if(e.CommandName == "AsignarVehiculo")
             {
                 Response.Redirect("AltaVehiculo.aspx?id=" + id);
-
+            }
+            else
+            {
+                Response.Redirect("AltaCliente.aspx?id=" + id);
             }
         }
     }

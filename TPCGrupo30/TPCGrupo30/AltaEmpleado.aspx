@@ -9,8 +9,8 @@
             <div class="row justify-content-center align-items-center h-100">
                 <div class="col-12 col-lg-9 col-xl-7">
                     <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
-                        <div class="card-body p-4 p-md-5">
-                            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registrar Empleado</h3>
+                        <div class="card-body p-4">
+                            <asp:Label ID="Label1" CssClass="form form-control-lg toast-header" runat="server" Text="Registrar Empleado"></asp:Label>
 
                             <hr />
                             <div class="row">
@@ -55,8 +55,8 @@
                                 <div class="col-md-6 mb-4 pb-2">
 
                                     <div class="form-outline">
-                                        <label class="form-label" for="txtFechaNacimiento">Fecha Nacimiento: </label>
-                                        <asp:TextBox ID="txtFechaNacimiento" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                        <label class="form-label" for="txtFechaNac">Fecha Nacimiento: </label>
+                                        <asp:TextBox runat="server" ID="txtFechaNac" CssClass="form-control form-control-lg" />
                                     </div>
 
                                 </div>
@@ -75,7 +75,7 @@
 
                                     <div class="form-outline">
                                         <label class="form-label" for="Especialidad">Especialidad: </label>
-                                        <asp:TextBox ID="txtEspecialidad" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                        <asp:DropDownList ID="ddlEspecialidad" CssClass="form form-select form-select-lg" runat="server"></asp:DropDownList>
                                     </div>
 
                                 </div>
@@ -101,8 +101,21 @@
                                 <div class="col-md-6 mb-4 pb-2">
 
                                     <div class="form-outline">
-                                        <label class="form-label" for="Contrasenia">Contraseña: </label>
-                                        <asp:TextBox ID="txtContrasenia" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                        <asp:Label runat="server" class="form-label" ID="lblPass" for="Contrasenia">Contraseña: </asp:Label>
+                                        <asp:TextBox ID="txtContrasenia" TextMode="Password" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-4 pb-2">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="Rol">Rol: </label>
+                                        <asp:DropDownList runat="server" ID="ddlRol">
+                                            <asp:ListItem Text="ADMIN" />
+                                            <asp:ListItem Text="EMPLEADO" />
+                                        </asp:DropDownList>
                                     </div>
 
                                 </div>

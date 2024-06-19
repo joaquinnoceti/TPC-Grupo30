@@ -13,7 +13,25 @@ namespace TPCGrupo30
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                //modificar cliente
+                string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
+                if (id != "")
+                {
+                    Label1.Text = "Modificar Cliente";
+                    ClienteNegocio negocio = new ClienteNegocio();
+                    Cliente cli = (negocio.Listar(id))[0];
 
+                    txtNombre.Text = cli.Nombre;
+                    txtApellido.Text = cli.Apellido;
+                    txtDni.Text = cli.DNI.ToString();
+                    txtDirecion.Text = cli.Direccion;
+                    txtEmail.Text = cli.Email;
+                    txtFecha.Text = cli.FechaNac.ToString();
+                    txtTelefono.Text = cli.Telefono;
+                }
+            }
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
@@ -30,8 +48,14 @@ namespace TPCGrupo30
                 nuevo.Telefono = txtTelefono.Text;
                 nuevo.FechaNac = DateTime.Parse(txtFecha.Text);
                 nuevo.Direccion = txtDirecion.Text;
+                nuevo.ID = int.Parse(Request.QueryString["id"]);
 
-                negocio.altaCliente(nuevo);
+                if (Request.QueryString["id"] != null)
+                    negocio.modificar(nuevo);
+                else
+                {
+                    negocio.altaCliente(nuevo);
+                }
 
                 Response.Redirect("ABMClientes.ASPX");
 

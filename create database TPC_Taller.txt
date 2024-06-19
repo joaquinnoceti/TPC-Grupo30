@@ -157,3 +157,9 @@ CREATE TABLE SubCuentas
     CodCuenta varchar(30),
 );
 
+insert into Especialidades (NombreEspecialidad) values ('Administrador')
+insert into Especialidades (NombreEspecialidad) values ('Mecanico')
+insert into Especialidades (NombreEspecialidad) values ('Motorista')
+insert into Especialidades (NombreEspecialidad) values ('Administrativo')
+
+

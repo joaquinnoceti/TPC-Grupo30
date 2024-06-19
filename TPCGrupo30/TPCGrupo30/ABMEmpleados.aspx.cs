@@ -64,7 +64,7 @@ namespace TPCGrupo30
             }
             else
             {
-                Response.Redirect("ABMEmpleados.aspx");
+                Response.Redirect("AltaEmpleado.aspx?id="+id);
 
             }
         }

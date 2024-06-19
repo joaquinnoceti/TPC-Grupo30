@@ -10,8 +10,7 @@
                 <div class="col-12 col-lg-9 col-xl-7">
                     <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                         <div class="card-body p-4 p-md-5">
-                            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registrar Cliente</h3>
-
+                            <asp:Label ID="Label1" CssClass="form form-control-lg toast-header" runat="server" Text="Registrar Cliente"></asp:Label>
                             <hr />
                             <div class="row">
                                 <div class="col-md-6 mb-4">
