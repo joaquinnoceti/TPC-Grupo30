@@ -9,6 +9,47 @@ namespace negocio
 {
     public class VehiculoNegocio
     {
+
+        public List<Vehiculo> ListarxID(string id)
+        {
+            List<Vehiculo> lista = new List<Vehiculo>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("select Marca,Modelo,Anio,Patente,TipoVehiculo from vehiculos v JOIN Clientes c on (V.IdCliente = c.ID) WHERE C.ID =" + int.Parse(id));
+                datos.ejecutarConsulta();
+
+                while (datos.Lector.Read())
+                {
+                    Vehiculo aux = new Vehiculo();
+
+                    aux.Marca = new Marca();
+                    aux.Marca.NombreMarca = (string)datos.Lector["Marca"];
+                    aux.Modelo = new Modelo();
+                    aux.Modelo.NombreModelo = (string)datos.Lector["Modelo"];
+
+
+                    aux.Anio = (int)datos.Lector["Anio"];
+                    aux.Patente = (string)datos.Lector["Patente"];
+                    aux.TipoVehiculo = (string)datos.Lector["TipoVehiculo"];
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
         public List<Vehiculo> Listar()
         {
             List<Vehiculo> lista = new List<Vehiculo>();

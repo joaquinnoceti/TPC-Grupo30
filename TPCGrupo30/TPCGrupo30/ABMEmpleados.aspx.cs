@@ -44,7 +44,7 @@ namespace TPCGrupo30
         {
             int rowIndex = Convert.ToInt32(e.CommandArgument);
             int id = Convert.ToInt32(dgvEmpleados.DataKeys[rowIndex].Value);
-            if (e.CommandName == "BajaCliente")
+            if (e.CommandName == "BajaUsuario")
             {
                 try
                 {

@@ -67,9 +67,13 @@ namespace TPCGrupo30
             {
                 Response.Redirect("AltaVehiculo.aspx?id=" + id);
             }
-            else
+            else if(e.CommandName == "ModifCliente")
             {
                 Response.Redirect("AltaCliente.aspx?id=" + id);
+            }
+            else
+            {
+                Response.Redirect("ListadoVehiculos.aspx?id=" + id);
             }
         }
     }

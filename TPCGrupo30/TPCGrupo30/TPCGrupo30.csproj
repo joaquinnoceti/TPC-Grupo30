@@ -78,6 +78,7 @@
     <Content Include="AltaEmpleado.aspx" />
     <Content Include="AltaCosto.aspx" />
     <Content Include="CSS\Master.css" />
+    <Content Include="ListadoVehiculos.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Global.asax" />
     <Content Include="AltaOrden.aspx" />
@@ -148,6 +149,13 @@
     </Compile>
     <Compile Include="AltaCosto.aspx.designer.cs">
       <DependentUpon>AltaCosto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoVehiculos.aspx.cs">
+      <DependentUpon>ListadoVehiculos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListadoVehiculos.aspx.designer.cs">
+      <DependentUpon>ListadoVehiculos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

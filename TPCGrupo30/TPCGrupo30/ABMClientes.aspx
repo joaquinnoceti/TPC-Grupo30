@@ -27,7 +27,9 @@
             <Columns>
                 <asp:ButtonField ButtonType="Link" Text="✍️" CommandName="ModifCliente" />
                 <asp:ButtonField ButtonType="Link" Text="❌" CommandName="BajaCliente" />
-                <asp:ButtonField ButtonType="Link" Text="🚗" CommandName="AsignarVehiculo" />
+                <asp:ButtonField ButtonType="Link" Text="Asignar Vehiculo" CommandName="AsignarVehiculo" />
+                <asp:ButtonField ButtonType="Link" Text="🚗" CommandName="ListarVehiculos" />
+
             </Columns>
         </asp:GridView>
     </div>
