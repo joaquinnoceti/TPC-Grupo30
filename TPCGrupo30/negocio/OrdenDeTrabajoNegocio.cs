@@ -33,6 +33,7 @@ namespace negocio
 
                 datos.ejecutar();
 
+                datos.cerrarConexion();
 
                 // Obtener el ID generado para la orden
                 datos.setearConsulta("SELECT @@IDENTITY AS 'Identity'");

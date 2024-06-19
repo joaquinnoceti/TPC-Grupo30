@@ -97,16 +97,47 @@ namespace TPCGrupo30
             OrdenDeTrabajoNegocio negocio = new OrdenDeTrabajoNegocio();    
             try
             {
+                if (string.IsNullOrEmpty(txtFechaEmision.Text) || string.IsNullOrEmpty(ddlCliente.SelectedItem.Value) ||
+                    string.IsNullOrEmpty(ddlVehiculo.SelectedItem.Value) || string.IsNullOrEmpty(ddlMecanico.SelectedItem.Value) ||
+                    string.IsNullOrEmpty(ddlEstado.SelectedItem.Value))
+                {
+                    lblError.Text = "Por favor, complete todos los campos obligatorios.";
+                    return;
+                }
+
+                // Formatos esperados de las fechas
+                string[] formatosFecha = { "dd/MM/yyyy", "MM/dd/yyyy", "yyyy-MM-dd" }; // Ajusta los formatos según tus necesidades
+
+                // Validar fecha de creación
+                DateTime fechaCreacion;
+                if (!DateTime.TryParseExact(txtFechaEmision.Text, formatosFecha, null, System.Globalization.DateTimeStyles.None, out fechaCreacion))
+                {
+                    lblError.Text = "La fecha de emisión no tiene un formato válido.";
+                    return;
+                }
+
                 // Validar y asignar fecha de finalización
                 DateTime fechaFinalizacion;
                 if (string.IsNullOrEmpty(txtFechaFin.Text))
                 {
-                    fechaFinalizacion = new DateTime(2001, 1, 1);
+                    fechaFinalizacion = new DateTime(2999, 1, 1);
                 }
+                else if (!DateTime.TryParseExact(txtFechaFin.Text, formatosFecha, null, System.Globalization.DateTimeStyles.None, out fechaFinalizacion))
+                {
+                    lblError.Text = "La fecha de finalización no tiene un formato válido.";
+                    return;
+                }
+
+                if (fechaFinalizacion < fechaCreacion)
+                {
+                    lblError.Text = "La fecha de finalización no puede ser anterior a la fecha de creación.";
+                    return;
+                }
+
 
                 OrdenDeTrabajo orden = new OrdenDeTrabajo();
 
-                orden.FechaCreacion = DateTime.ParseExact(txtFechaEmision.Text, "dd/MM/yyyy", null);
+                orden.FechaCreacion = fechaCreacion;
 
                 Cliente cli = new Cliente();
                 cli.ID = int.Parse(ddlCliente.SelectedItem.Value);
@@ -140,8 +171,8 @@ namespace TPCGrupo30
                     orden.HorasReales = int.Parse(txtReales.Text);
                 }
 
-               
-                orden.FechaFinalizacion = DateTime.Parse(txtFechaFin.Text);
+
+                orden.FechaFinalizacion = fechaFinalizacion;
                 orden.Observaciones = tbObservaciones.Text;
 
 
@@ -151,7 +182,7 @@ namespace TPCGrupo30
 
                 decimal total = 0;
 
-                foreach (Servicio servicio in listaServiciosAgregados1)
+                foreach (Servicio servicio in listaServiciosAgregados)
                 {
 
                     total += servicio.Precio;
@@ -175,7 +206,7 @@ namespace TPCGrupo30
             }
             catch (Exception ex)
             {
-               
+                lblError.Text = "Ocurrió un error al guardar la orden de trabajo. Por favor, inténtelo de nuevo.";
                 throw ex;
             }
             
