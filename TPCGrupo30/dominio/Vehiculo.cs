@@ -15,6 +15,6 @@ namespace dominio
         public int Anio { get; set; }
         public string Patente { get; set; }
         public string TipoVehiculo { get; set; }
-        public Cliente IdCliente { get; set; }
+        public int IdCliente { get; set; }
     }
 }

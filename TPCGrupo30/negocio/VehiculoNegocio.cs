@@ -40,9 +40,8 @@ namespace negocio
                     aux.TipoVehiculo = (string)datos.Lector["TipoVehiculo"];
                     aux.Patente = (string)datos.Lector["Patente"];
 
-                    aux.IdCliente = new Cliente();
-                    aux.IdCliente.ID = (int)datos.Lector["IdCliente"];
-                    aux.IdCliente.Apellido = (string)datos.Lector["Apellido"];
+                    aux.IdCliente = (int)datos.Lector["IDCliente"];
+
 
                     lista.Add(aux);
                 }
@@ -59,6 +58,31 @@ namespace negocio
             }
         }
 
+        public void AltaVehiculo(Vehiculo nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
 
+            try
+            {
+                datos.setearConsulta("INSERT INTO VEHICULOS(Marca,Modelo,Anio,Patente,TipoVehiculo,IdCliente) VALUES(@Marca,@Modelo,@Anio,@Patente,@TipoVehiculo,@IdCliente)");
+                datos.setearParametro("@Marca", nuevo.Marca.NombreMarca);
+                datos.setearParametro("@Modelo", nuevo.Modelo.NombreModelo);
+                datos.setearParametro("@Anio", nuevo.Anio);
+                datos.setearParametro("@Patente", nuevo.Patente);
+                datos.setearParametro("@TipoVehiculo", nuevo.TipoVehiculo);
+                datos.setearParametro("@IdCliente", nuevo.IdCliente);
+
+                datos.ejecutar();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

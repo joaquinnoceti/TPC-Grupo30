@@ -63,8 +63,12 @@
                                 <div class="col-md-6 mb-4 pb-2">
 
                                     <div class="form-outline">
-                                        <label class="form-label" for="txtTipoVehiculo">Tipo Vehiculo: </label>
-                                        <asp:TextBox ID="txtTipoVehiculo" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                        <label class="form-label" for="ddlTipoVehiculo">Tipo Vehiculo: </label>
+                                        <asp:DropDownList ID="ddlTipoVehiculo" CssClass="form-select form-select-lg" runat="server">
+                                            <asp:ListItem>Coche</asp:ListItem>
+                                            <asp:ListItem>Camioneta</asp:ListItem>
+                                            <asp:ListItem>Camion</asp:ListItem>
+                                        </asp:DropDownList>
                                     </div>
 
                                 </div>

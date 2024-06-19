@@ -16,9 +16,9 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("SELECT ID,IDMARCA,NOMBREMODELO FROM MODELOS");
-                    if(id != "")
-                    datos.setearConsulta("SELECT MO.ID,MO.IDMARCA,MO.NOMBREMODELO FROM MODELOS MO JOIN MARCAS MA ON (MO.IDMARCA = MA.ID) WHERE MO.IDMARCA = " + int.Parse(id));
+                datos.setearConsulta("SELECT MO.ID, MO.IDMARCA, MO.NOMBREMODELO, MA.NOMBREMARCA  FROM MODELOS MO JOIN MARCAS MA ON (MO.IDMARCA = MA.ID)");
+                if (id != "")
+                    datos.setearConsulta("SELECT MO.ID, MO.IDMARCA, MO.NOMBREMODELO, MA.NOMBREMARCA  FROM MODELOS MO JOIN MARCAS MA ON (MO.IDMARCA = MA.ID) WHERE MO.IDMARCA = " + int.Parse(id));
                 datos.ejecutarConsulta();
 
                 while (datos.Lector.Read())
@@ -26,9 +26,10 @@ namespace negocio
                     Modelo mo = new Modelo();
                     Marca ma = new Marca();
                     mo.ID = (int)datos.Lector["ID"];
-                    mo.Marca.ID = (int)datos.Lector["IDMARCA"];
                     mo.NombreModelo = (string)datos.Lector["NombreModelo"];
-                    
+                    ma.ID = (int)datos.Lector["IDMARCA"];
+                    ma.NombreMarca = (string)datos.Lector["NombreMarca"];
+                    mo.Marca = ma;
 
                     list.Add(mo);
                 }

@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="AltaServicio.aspx.cs" Inherits="TPCGrupo30.AltaServicio" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Alta de Servicios</title>
+    <title>Seleccione los servicios</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -21,7 +21,7 @@
                     </asp:GridView>
                    
                     <div class="ml-auto">
-                        <asp:Button ID="btnAgregarOT" runat="server" CssClass="btn btn-primary btn-lg" OnClick="btnAgregarOT_Click" Text="Agregar a la Orden de Trabajo" />
+                        <asp:Button ID="btnAgregarOT" runat="server" CssClass="btn btn-primary btn-lg" OnClick="btnAgregarOT_Click" Text="Crear Orden de Trabajo" />
                     </div>
                     <div class="ml-auto">
                         <a href="ABMOrdenes.aspx" class="btn btn-outline-danger">Atras</a>
