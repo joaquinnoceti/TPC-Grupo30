@@ -25,9 +25,10 @@
         <hr />
         <asp:GridView ID="dgvClientes" CssClass="table table-dark" runat="server" OnRowCommand="dgvClientes_RowCommand" DataKeyNames="ID">
             <Columns>
+                <asp:ButtonField ButtonType="Link" Text="✍️" CommandName="ModifCliente" />
                 <asp:ButtonField ButtonType="Link" Text="❌" CommandName="BajaCliente" />
                 <asp:ButtonField ButtonType="Link" Text="🚗" CommandName="AsignarVehiculo" />
-        </Columns>
+            </Columns>
         </asp:GridView>
     </div>
     <div class="d-flex justify-content-between align-items-center mb-4">

@@ -154,6 +154,32 @@ namespace negocio
             }
         }
 
+        public void modificar(Cliente cli)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE CLIENTES SET Nombre=@nombre, Apellido=@apellido, Email=@email, DNI=@DNI, Telefono=@Telefono, FechaNac=@FechaNac, Direccion=@Direccion where id = @ID");
+                datos.setearParametro("@nombre", cli.Nombre);
+                datos.setearParametro("@apellido", cli.Apellido);
+                datos.setearParametro("@Email", cli.Email);
+                datos.setearParametro("@DNI", cli.DNI);
+                datos.setearParametro("@Telefono", cli.Telefono);
+                datos.setearParametro("@FechaNac", cli.FechaNac);
+                datos.setearParametro("@Direccion", cli.Direccion);
+                datos.setearParametro("@ID", cli.ID);
+                datos.ejecutarConsulta();
 
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
