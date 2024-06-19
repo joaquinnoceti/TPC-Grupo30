@@ -211,3 +211,7 @@ INSERT INTO Servicios(NombreServicio,Descripción,Precio) VALUES ('Distribucion 
 INSERT INTO Servicios(NombreServicio,Descripción,Precio) VALUES ('Embrague Gol ','Embrague simple VW Gol',250000)
 INSERT INTO Servicios(NombreServicio,Descripción,Precio) VALUES ('Embrague simple naftero','Embrague simple Siena naftero o similar, camionetas viejas simples ',269990)
 INSERT INTO Servicios(NombreServicio,Descripción,Precio) VALUES ('Embrague complejo o crapodina hidraulica ','Embrague complejo Renault o similar o crapodina hidraulica  ',287280)
+
+
+insert into Roles values ('Admin')
+insert into Roles values ('Empleado')
