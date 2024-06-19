@@ -13,7 +13,6 @@ namespace TPCGrupo30
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
@@ -25,7 +24,7 @@ namespace TPCGrupo30
                 nuevo.Nombre = txtNombre.Text;
                 nuevo.Apellido = txtApellido.Text;
                 nuevo.DNI = int.Parse(txtDni.Text);
-                nuevo.FechaNacimiento = DateTime.Parse(txtFechaNacimiento.Text);
+                nuevo.FechaNacimiento = DateTime.Parse(txtFechaNac.Text);
                 nuevo.Email = txtEmail.Text;
                 nuevo.Telefono = txtTelefono.Text;
                 nuevo.Direccion = txtDireccion.Text;
@@ -33,7 +32,7 @@ namespace TPCGrupo30
                 nuevo.Categoria = txtCategoria.Text;
                 nuevo.Contrasenia = txtContrasenia.Text;
                 //nuevo.FechaRegistro = DateTime.Parse(txtFechaRegistro.Text);
-                //nuevo.Rol = (Rol)txtRol.Text;
+                nuevo.Rol = ddlRol.SelectedIndex;
 
                 negocio.altaUsuario(nuevo);
 

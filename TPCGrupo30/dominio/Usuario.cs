@@ -7,11 +7,7 @@ using System.Threading.Tasks;
 namespace dominio
 {
 
-    public enum Rol
-    {
-        ADMIN = 1,
-        MECANICO = 2
-    }
+
     public class Usuario
     {
         public int ID { get; set; }
@@ -26,7 +22,7 @@ namespace dominio
         public string Especialidad { get; set; }
         public string Categoria { get; set; }
         public string Contrasenia { get; set; }
-        public Rol Rol { get; set; }
+        public int Rol { get; set; }
         public bool Estado { get; set; }
     }
 }

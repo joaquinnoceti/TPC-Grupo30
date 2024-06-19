@@ -55,8 +55,8 @@
                                 <div class="col-md-6 mb-4 pb-2">
 
                                     <div class="form-outline">
-                                        <label class="form-label" for="txtFechaNacimiento">Fecha Nacimiento: </label>
-                                        <asp:TextBox ID="txtFechaNacimiento" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                        <label class="form-label" for="txtFechaNac">Fecha Nacimiento: </label>
+                                        <asp:TextBox runat="server" ID="txtFechaNac" TextMode="Date" CssClass="form-control" />
                                     </div>
 
                                 </div>
@@ -103,6 +103,19 @@
                                     <div class="form-outline">
                                         <label class="form-label" for="Contrasenia">Contraseña: </label>
                                         <asp:TextBox ID="txtContrasenia" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-4 pb-2">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="Rol">Rol: </label>
+                                        <asp:DropDownList runat="server" ID="ddlRol">
+                                            <asp:ListItem Text="ADMIN" />
+                                            <asp:ListItem Text="EMPLEADO" />
+                                        </asp:DropDownList>
                                     </div>
 
                                 </div>

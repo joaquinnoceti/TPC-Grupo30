@@ -17,9 +17,9 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("SELECT u.ID,u.Nombre,u.Apellido,u.DNI,u.FechaNac,u.Email,u.Telefono,u.Categoria FROM Usuarios u where u.Estado = 1 AND u.IdRol = 2");
+                datos.setearConsulta("SELECT u.ID,u.Nombre,u.Apellido,u.DNI,u.FechaNac,u.Email,u.Telefono,u.Categoria,u.IdRol, r.NombreRol FROM Usuarios u inner join Roles r on u.IdRol = r.ID where u.Estado = 1");
                 if (id != "")
-                    datos.setearConsulta("SELECT u.ID,u.Nombre,u.Apellido,u.DNI,u.FechaNac,u.Email,u.Telefono,u.Categoria FROM Usuarios u where u.Estado = 1 AND u.IdRol = 2 AND C.ID = " + int.Parse(id));
+                    datos.setearConsulta("SELECT u.ID,u.Nombre,u.Apellido,u.DNI,u.FechaNac,u.Email,u.Telefono,u.Categoria,u.IdRol, r.NombreRol FROM Usuarios u inner join Roles r on u.IdRol = r.ID where u.Estado = 1 AND C.ID = " + int.Parse(id));
 
                 datos.ejecutarConsulta();
 
@@ -36,6 +36,7 @@ namespace negocio
                     aux.Email = (string)datos.Lector["Email"];
                     aux.Telefono = (string)datos.Lector["Telefono"];
                     aux.Categoria = (string)datos.Lector["Categoria"];
+                    aux.Rol = (int)datos.Lector["IdRol"];
 
 
                     lista.Add(aux);
