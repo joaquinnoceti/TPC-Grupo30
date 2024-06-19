@@ -253,4 +253,9 @@ INSERT INTO Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,Fecha
 
 GO
 
->>>>>>> 02030d3c6596a7826cc156e74d4fa083d3978c8f
+insert into Especialidades (NombreEspecialidad) values ('Administrador')
+insert into Especialidades (NombreEspecialidad) values ('Mecanico')
+insert into Especialidades (NombreEspecialidad) values ('Motorista')
+insert into Especialidades (NombreEspecialidad) values ('Administrativo')
+
+
