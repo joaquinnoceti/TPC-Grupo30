@@ -28,7 +28,7 @@ namespace TPCGrupo30
                     txtDni.Text = cli.DNI.ToString();
                     txtDirecion.Text = cli.Direccion;
                     txtEmail.Text = cli.Email;
-                    txtFecha.Text = cli.FechaNac.ToString();
+                    txtFecha.Text = cli.FechaNac.ToString("yyyy-MM-dd");
                     txtTelefono.Text = cli.Telefono;
                 }
             }

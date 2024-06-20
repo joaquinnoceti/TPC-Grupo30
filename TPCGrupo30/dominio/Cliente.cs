@@ -16,7 +16,6 @@ namespace dominio
         public string Telefono { get; set; }
         public DateTime FechaNac { get; set; }
         public string Direccion { get; set; }
-        public Vehiculo Vehiculo { get; set; }
 
     }
 }
