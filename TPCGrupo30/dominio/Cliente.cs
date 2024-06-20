@@ -17,5 +17,20 @@ namespace dominio
         public DateTime FechaNac { get; set; }
         public string Direccion { get; set; }
 
+        public Vehiculo Vehiculo { get; set; }
+
     }
+
+    public class ClientexVehiculo
+    {
+        public int IDCliente { get; set; }
+        public int IDVehiculo { get; set; }
+        public string NombreCli { get; set; }
+        public string ApellidoCli { get; set; }
+        public string Marca { get; set; }
+        public string Modelo { get; set; }
+        public string Patente { get; set; }
+    }
+
+
 }

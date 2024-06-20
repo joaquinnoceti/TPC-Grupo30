@@ -21,14 +21,15 @@
 
         </div>
         <hr />
-        <asp:GridView ID="dgvVehiculo" CssClass="table table-dark" runat="server" AutoGenerateColumns="false" DataKeyNames="IDVehiculo">
+        <asp:Label ID="Label1" runat="server" Text="Vehiculos del cliente: "></asp:Label>
+        <asp:GridView ID="dgvVehiculo" CssClass="table table-dark" runat="server" AutoGenerateColumns="false" OnRowCommand="dgvVehiculo_RowCommand" DataKeyNames="IDVehiculo">
             <Columns>
                 <asp:ButtonField ButtonType="Link" Text="Detalle" CommandName="Detalle" />
-                <asp:BoundField HeaderText="Marca" DataField="Marca.NombreMarca" />
-                <asp:BoundField HeaderText="Modelo" DataField="Modelo.NombreModelo" />
-                <asp:BoundField HeaderText="Anio" DataField="Anio" />
+                <asp:ButtonField ButtonType="Link" Text="🗑️" CommandName="Baja" />
+                <asp:BoundField HeaderText="ID" DataField="IDVehiculo" />
+                <asp:BoundField HeaderText="Nombre" DataField="NombreCli" />
+                <asp:BoundField HeaderText="Vehiculo" DataField="Marca" />
                 <asp:BoundField HeaderText="Patente" DataField="Patente" />
-                <asp:BoundField HeaderText="TipoVehiculo" DataField="TipoVehiculo" />
             </Columns>
         </asp:GridView>
     </div>

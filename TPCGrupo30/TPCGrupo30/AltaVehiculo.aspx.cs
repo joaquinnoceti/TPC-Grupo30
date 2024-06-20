@@ -13,11 +13,12 @@ namespace TPCGrupo30
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
-            if (id != "" && !IsPostBack)
+            string idCli = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
+            string idVeh = Request.QueryString["idV"] != null ? Request.QueryString["idV"].ToString() : "";
+            if (idCli != "" && !IsPostBack)
             {
                 ClienteNegocio negocioCli = new ClienteNegocio();
-                Cliente cli = (negocioCli.Listar(id))[0];
+                Cliente cli = (negocioCli.Listar(idCli))[0];
                 Session.Add("ClienteAVehiculo", cli);
                 lblNombreCli.Text = "Cliente: " + cli.Nombre + " " + cli.Apellido;
 
@@ -36,6 +37,11 @@ namespace TPCGrupo30
                 ddlModelo.DataValueField = "ID";
                 ddlModelo.DataTextField = "NombreModelo";
                 ddlModelo.DataBind();
+            }
+            else if (idVeh != "" && !IsPostBack)
+            {
+               //MODIFICAR VEHICULO
+
             }
         }
 
