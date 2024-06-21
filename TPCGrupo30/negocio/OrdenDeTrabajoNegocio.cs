@@ -14,6 +14,7 @@ namespace negocio
         public void GuardarOrden(OrdenDeTrabajo orden)
         {
             AccesoDatos datos = new AccesoDatos();
+            AccesoDatos datos1 = new AccesoDatos();
 
             try
             {
@@ -33,24 +34,24 @@ namespace negocio
 
                 datos.ejecutar();
 
-                datos.cerrarConexion();
+                
 
                 // Obtener el ID generado para la orden
-                datos.setearConsulta("SELECT @@IDENTITY AS 'Identity'");
-                datos.ejecutarConsulta();
-                if (datos.Lector.Read())
+                datos1.setearConsulta("SELECT @@IDENTITY AS 'Identity'");
+                datos1.ejecutarConsulta();
+                if (datos1.Lector.Read())
                 {
-                    orden.ID = Convert.ToInt32(datos.Lector["Identity"]);
+                    orden.ID = Convert.ToInt32(datos1.Lector["Identity"]);
                 }
 
                 // Insertar cada servicio asociado en la tabla intermedia
                 foreach (Servicio item in orden.Servicios)
                 {
-                    datos.setearConsulta("INSERT INTO OrdenServicio(IdOrden, IdServicio) VALUES(@IdOrden, @IdServicio)");
-                    datos.setearParametro("@IdOrden", orden.ID);
-                    datos.setearParametro("@IdServicio", item.ID);
+                    datos1.setearConsulta("INSERT INTO OrdenServicio(IdOrden, IdServicio) VALUES(@IdOrden, @IdServicio)");
+                    datos1.setearParametro("@IdOrden", orden.ID);
+                    datos1.setearParametro("@IdServicio", item.ID);
 
-                    datos.ejecutar();
+                    datos1.ejecutar();
                 }
 
             }
@@ -62,6 +63,7 @@ namespace negocio
             finally
             {
                 datos.cerrarConexion();
+                datos1.cerrarConexion();
             }
         }
 
