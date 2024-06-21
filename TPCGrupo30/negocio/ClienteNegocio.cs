@@ -34,7 +34,7 @@ namespace negocio
                     aux.Email = (string)datos.Lector["Email"];
                     aux.DNI = (int)datos.Lector["DNI"];
                     aux.Telefono = (string)datos.Lector["Telefono"];
-                    aux.FechaNac = (DateTime)datos.Lector["FechaNac"];
+                    aux.FechaNac = DateTime.Parse(datos.Lector["FechaNac"].ToString());
                     aux.Direccion = (string)datos.Lector["Direccion"];
 
                     //aux.Vehiculo = new Vehiculo();

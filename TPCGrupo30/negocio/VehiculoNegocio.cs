@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using dominio;
 
 namespace negocio
@@ -17,7 +18,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("select Marca,Modelo,Anio,Patente,TipoVehiculo from vehiculos v JOIN Clientes c on (V.IdCliente = c.ID) WHERE C.ID =" + int.Parse(id));
+                datos.setearConsulta("select Marca,Modelo,Anio,Patente,TipoVehiculo,idCliente,V.ID from vehiculos v JOIN Clientes c on (V.IdCliente = c.ID) WHERE V.ESTADO = 1 AND C.ID =" + int.Parse(id));
                 datos.ejecutarConsulta();
 
                 while (datos.Lector.Read())
@@ -29,10 +30,11 @@ namespace negocio
                     aux.Modelo = new Modelo();
                     aux.Modelo.NombreModelo = (string)datos.Lector["Modelo"];
 
-
+                    aux.IDVehiculo = (int)datos.Lector["id"];
                     aux.Anio = (int)datos.Lector["Anio"];
                     aux.Patente = (string)datos.Lector["Patente"];
                     aux.TipoVehiculo = (string)datos.Lector["TipoVehiculo"];
+                    aux.IdCliente = (int)datos.Lector["IdCliente"];
 
                     lista.Add(aux);
                 }
@@ -105,7 +107,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("INSERT INTO VEHICULOS(Marca,Modelo,Anio,Patente,TipoVehiculo,IdCliente) VALUES(@Marca,@Modelo,@Anio,@Patente,@TipoVehiculo,@IdCliente)");
+                datos.setearConsulta("INSERT INTO VEHICULOS(Marca,Modelo,Anio,Patente,TipoVehiculo,IdCliente,ESTADO) VALUES(@Marca,@Modelo,@Anio,@Patente,@TipoVehiculo,@IdCliente,1)");
                 datos.setearParametro("@Marca", nuevo.Marca.NombreMarca);
                 datos.setearParametro("@Modelo", nuevo.Modelo.NombreModelo);
                 datos.setearParametro("@Anio", nuevo.Anio);
@@ -125,5 +127,29 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void BajaVehiculo(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                DialogResult rta = MessageBox.Show("Eliminar Vehiculo?", "Atencion", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (rta == DialogResult.Yes)
+                {
+                    datos.setearConsulta("UPDATE VEHICULOS SET ESTADO = 0 WHERE ID = @ID");
+                    datos.setearParametro("@ID", id);
+                    datos.ejecutarConsulta();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }

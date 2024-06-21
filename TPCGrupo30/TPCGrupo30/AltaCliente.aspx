@@ -36,7 +36,7 @@
 
                                     <div class="form-outline datepicker w-100">
                                         <label for="txtFecha" class="form-label">Fecha Nacimiento:</label>
-                                        <asp:TextBox ID="txtFecha" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtFecha" TextMode="Date" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
                                     </div>
 
                                 </div>

@@ -1,0 +1,3 @@
+alter table vehiculos
+add Estado bit
+

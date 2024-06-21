@@ -28,7 +28,7 @@ namespace TPCGrupo30
                     txtDni.Text = cli.DNI.ToString();
                     txtDirecion.Text = cli.Direccion;
                     txtEmail.Text = cli.Email;
-                    txtFecha.Text = cli.FechaNac.ToString();
+                    txtFecha.Text = cli.FechaNac.ToString("yyyy-MM-dd");
                     txtTelefono.Text = cli.Telefono;
                 }
             }
@@ -49,9 +49,12 @@ namespace TPCGrupo30
                 nuevo.FechaNac = DateTime.Parse(txtFecha.Text);
                 nuevo.Direccion = txtDirecion.Text;
 
-
                 if (Request.QueryString["id"] != null)
+                {
+                    nuevo.ID = int.Parse(Request.QueryString["id"]);
                     negocio.modificar(nuevo);
+                }
+
                 else
                 {
                     negocio.altaCliente(nuevo);
