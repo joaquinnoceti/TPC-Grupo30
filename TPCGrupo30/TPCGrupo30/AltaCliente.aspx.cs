@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -41,12 +42,23 @@ namespace TPCGrupo30
                 Cliente nuevo = new Cliente();
                 ClienteNegocio negocio = new ClienteNegocio();
 
+                // Formatos esperados de las fechas
+                string[] formatosFecha = { "dd/MM/yyyy", "MM/dd/yyyy", "yyyy-MM-dd" }; // Ajusta los formatos según tus necesidades
+
+                // Validar fecha de nacimiento
+                DateTime fechaNacimiento;
+                if (!DateTime.TryParseExact(txtFecha.Text, formatosFecha, null, System.Globalization.DateTimeStyles.None, out fechaNacimiento))
+                {
+                    lblError.Text = "La fecha de nacimiento no tiene un formato válido.";
+                    return;
+                }
+
                 nuevo.Nombre = txtNombre.Text;
                 nuevo.Apellido = txtApellido.Text;
                 nuevo.Email = txtEmail.Text;
                 nuevo.DNI = int.Parse(txtDni.Text);
                 nuevo.Telefono = txtTelefono.Text;
-                nuevo.FechaNac = DateTime.Parse(txtFecha.Text);
+                nuevo.FechaNac = fechaNacimiento;
                 nuevo.Direccion = txtDirecion.Text;
 
                 if (Request.QueryString["id"] != null)

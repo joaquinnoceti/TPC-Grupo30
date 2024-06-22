@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -22,6 +23,13 @@ namespace TPCGrupo30
                 ddlEspecialidad.DataTextField = "NombreEspecialidad";
                 ddlEspecialidad.DataBind();
 
+                EspecialidadNegocio negocioCate = new EspecialidadNegocio();
+                List<Categoria> listaCategoria = negocioCate.ListarCategoria();
+                ddlCategoria.DataSource = listaCategoria;
+                ddlCategoria.DataValueField = "ID";
+                ddlCategoria.DataTextField = "NombreCategoria";
+                ddlCategoria.DataBind();
+
                 //modificar empleado
                 string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
                 if (id != "")
@@ -37,7 +45,7 @@ namespace TPCGrupo30
                     txtEmail.Text = User.Email;
                     txtTelefono.Text = User.Telefono;
                     txtDireccion.Text = User.Direccion;
-                    txtCategoria.Text = User.Categoria;
+                    ddlCategoria.SelectedValue=User.Categoria.ID.ToString();
                     ddlEspecialidad.SelectedValue = User.Especialidad.ID.ToString();
                     txtContrasenia.Visible = false;
                     lblPass.Visible = false;
@@ -54,10 +62,21 @@ namespace TPCGrupo30
                 Usuario nuevo = new Usuario();
                 UsuarioNegocio negocio = new UsuarioNegocio();
 
+                // Formatos esperados de las fechas
+                string[] formatosFecha = { "dd/MM/yyyy", "MM/dd/yyyy", "yyyy-MM-dd" }; // Ajusta los formatos según tus necesidades
+
+                // Validar fecha de nacimiento
+                DateTime fechaNacimiento;
+                if (!DateTime.TryParseExact(txtFechaNac.Text, formatosFecha, null, System.Globalization.DateTimeStyles.None, out fechaNacimiento))
+                {
+                    lblError.Text = "La fecha de nacimiento no tiene un formato válido.";
+                    return;
+                }
+
                 nuevo.Nombre = txtNombre.Text;
                 nuevo.Apellido = txtApellido.Text;
                 nuevo.DNI = int.Parse(txtDni.Text);
-                nuevo.FechaNacimiento = DateTime.Parse(txtFechaNac.Text);
+                nuevo.FechaNacimiento = fechaNacimiento;
                 nuevo.Email = txtEmail.Text;
                 nuevo.Telefono = txtTelefono.Text;
                 nuevo.Direccion = txtDireccion.Text;
@@ -65,7 +84,8 @@ namespace TPCGrupo30
                 nuevo.Especialidad = new Especialidad();
                 nuevo.Especialidad.ID = int.Parse(ddlEspecialidad.SelectedValue);
 
-                nuevo.Categoria = txtCategoria.Text;
+                nuevo.Categoria = new Categoria();
+                nuevo.Categoria.ID = int.Parse(ddlCategoria.SelectedValue);
                 nuevo.Contrasenia = txtContrasenia.Text;
                 //nuevo.FechaRegistro = DateTime.Parse(txtFechaRegistro.Text);
                 nuevo.Rol = ddlRol.SelectedIndex;

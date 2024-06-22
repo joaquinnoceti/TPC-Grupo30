@@ -12,7 +12,6 @@ CREATE TABLE Clientes
     Telefono varchar(20),		
     FechaNac datetime,
     Direccion varchar(50),
-    IDVehiculo int,
     Activo bit
 );
 
@@ -29,8 +28,8 @@ CREATE TABLE Usuarios
     Telefono varchar(20),
     Direccion varchar(50),
     FechaRegistro datetime,
-    IdEspecialidad varchar(50),
-    Categoria varchar(50),
+    IdEspecialidad int,
+    IdCategoria int,
     Contrasenia varchar(20),
     IdRol int,
     Estado bit
@@ -49,16 +48,22 @@ CREATE TABLE Especialidades
     NombreEspecialidad varchar(20)
 );
 
+CREATE TABLE Categorias(
+ID int IDENTITY (1,1) NOT NULL,
+NombreCategoria varchar(30)
+);
 
 CREATE TABLE Vehiculos
 (
     ID int IDENTITY (1,1) NOT NULL,
+    NombreVehiculo varchar(50),
     Marca varchar(20),
     Modelo varchar(20),
     Anio int,
     Patente varchar(10),
     TipoVehiculo varchar(15),
-    IdCliente int
+    IdCliente int,
+    Estado bit
 );
 
 GO
@@ -107,11 +112,11 @@ CREATE TABLE Modelos
 
 go
 
-CREATE TABLE MARCAS
+CREATE TABLE Marcas
 (
 	ID INT IDENTITY (1,1) NOT NULL,
 	NombreMarca varchar(50)
-)
+);
 
 
 CREATE procedure [dbo].[spAltaCliente]
@@ -125,6 +130,8 @@ CREATE procedure [dbo].[spAltaCliente]
 as
 insert into CLIENTES(Nombre,Apellido,Email,DNI,Telefono,FechaNac,Direccion,Activo) VALUES (@Nombre,@Apellido,@Email,@DNI,@Telefono,@FechaNac,@Direccion,1)
 
+go
+
 CREATE procedure [dbo].[spAltaUsuario]
 @Nombre varchar(50),
 @Apellido varchar(50),
@@ -133,11 +140,11 @@ CREATE procedure [dbo].[spAltaUsuario]
 @Email varchar(50),
 @Telefono varchar(20),
 @Direccion varchar(50),
-@Especialidad varchar(50),
-@Categoria varchar(50),
+@IdEspecialidad int,
+@IdCategoria int,
 @Contrasenia varchar(20)
 as
-insert into Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,FechaRegistro,IdEspecialidad,Categoria,Contrasenia,IdRol,Estado) VALUES (@Nombre,@Apellido,@DNI,@FechaNac,@Email,@Telefono,@Direccion,getdate(),@Especialidad,@Categoria,@Contrasenia,2,1)
+insert into Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,FechaRegistro,IdEspecialidad,IdCategoria,Contrasenia,IdRol,Estado) VALUES (@Nombre,@Apellido,@DNI,@FechaNac,@Email,@Telefono,@Direccion,getdate(),@IdEspecialidad,@IdCategoria,@Contrasenia,2,1)
 
 
 GO
@@ -167,5 +174,4 @@ CREATE TABLE Costos
     FechaCosto DATETIME,
     Importe DECIMAL
   );
-
 

@@ -17,9 +17,9 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("SELECT u.ID,u.Nombre,u.Apellido,u.DNI,u.FechaNac,u.Email,u.Telefono,u.IdEspecialidad,e.NombreEspecialidad,u.Categoria,u.IdRol, r.NombreRol, u.Direccion FROM Usuarios u inner join Roles r on u.IdRol = r.ID INNER JOIN Especialidades e on(E.ID = U.IdEspecialidad) where u.Estado = 1");
+                datos.setearConsulta("SELECT u.ID,u.Nombre,u.Apellido,u.DNI,u.FechaNac,u.Email,u.Telefono,u.Direccion,u.FechaRegistro,u.IdEspecialidad,e.NombreEspecialidad,u.IdCategoria,c.NombreCategoria,u.IdRol,u.Estado FROM Usuarios u INNER JOIN Especialidades e ON u.IdEspecialidad=e.ID INNER JOIN Categorias c ON u.IdCategoria=c.ID WHERE u.Estado=1");
                 if (id != "")
-                    datos.setearConsulta("SELECT u.ID,u.Nombre,u.Apellido,u.DNI,u.FechaNac,u.Email,u.Telefono,u.IDEspecialidad,e.NombreEspecialidad,u.Categoria,u.IdRol, r.NombreRol, u.Direccion FROM Usuarios u inner join Roles r on u.IdRol = r.ID INNER JOIN Especialidades e on(E.ID = U.IdEspecialidad) where u.Estado = 1 AND U.ID = " + int.Parse(id));
+                    datos.setearConsulta("SELECT u.ID,u.Nombre,u.Apellido,u.DNI,u.FechaNac,u.Email,u.Telefono,u.Direccion,u.FechaRegistro,u.IdEspecialidad,e.NombreEspecialidad,u.IdCategoria,c.NombreCategoria,u.IdRol,u.Estado FROM Usuarios u INNER JOIN Especialidades e ON u.IdEspecialidad=e.ID INNER JOIN Categorias c ON u.IdCategoria=c.ID WHERE u.Estado=1 AND U.ID = " + int.Parse(id));
 
                 datos.ejecutarConsulta();
 
@@ -37,11 +37,15 @@ namespace negocio
                     aux.Telefono = (string)datos.Lector["Telefono"];
 
                     aux.Especialidad = new Especialidad();
-                    aux.Especialidad.ID = (int)datos.Lector["IDEspecialidad"];
+                    aux.Especialidad.ID = (int)datos.Lector["IdEspecialidad"];
                     aux.Especialidad.NombreEspecialidad = (string)datos.Lector["NombreEspecialidad"];
-                    
-                    aux.Categoria = (string)datos.Lector["Categoria"];
+
+                    aux.Categoria = new Categoria();
+                    aux.Categoria.ID = (int)datos.Lector["IdCategoria"];
+                    aux.Categoria.NombreCategoria = (string)datos.Lector["NombreCategoria"];
+
                     aux.Rol = (int)datos.Lector["IdRol"];
+                    
                     aux.Direccion = (string)datos.Lector["Direccion"];
 
                     lista.Add(aux);
@@ -73,8 +77,8 @@ namespace negocio
                 datos.setearParametro("@Email", nuevo.Email);
                 datos.setearParametro("@Telefono", nuevo.Telefono);
                 datos.setearParametro("@Direccion", nuevo.Direccion);
-                datos.setearParametro("@Especialidad", nuevo.Especialidad.ID);
-                datos.setearParametro("@Categoria", nuevo.Categoria);
+                datos.setearParametro("@IdEspecialidad", nuevo.Especialidad.ID);
+                datos.setearParametro("@IdCategoria", nuevo.Categoria.ID);
                 datos.setearParametro("@Contrasenia", nuevo.Contrasenia);
 
                 datos.ejecutar();

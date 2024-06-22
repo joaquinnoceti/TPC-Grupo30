@@ -83,7 +83,7 @@ namespace TPCGrupo30
                 nuevo.CodigoSubCuenta = scuent;
 
                 nuevo.Tipo = txtTipo.Text;
-                nuevo.Asignacion = txtAsignacion.Text;
+                nuevo.Comentarios = txtAsignacion.Text;
                 nuevo.FechaCosto = DateTime.Parse(txtFechaEmision.Text);
                 nuevo.Importe = decimal.Parse(txtImporte.Text);
 

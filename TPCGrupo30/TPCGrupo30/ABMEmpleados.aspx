@@ -23,10 +23,17 @@
 
         </div>
         <hr />
-        <asp:GridView ID="dgvEmpleados" CssClass="table table-dark" runat="server" OnRowCommand="dgvEmpleados_RowCommand" DataKeyNames="ID">
+        <asp:GridView ID="dgvEmpleados" CssClass="table table-dark" runat="server" OnRowCommand="dgvEmpleados_RowCommand" AutoGenerateColumns="false" DataKeyNames="ID">
             <Columns>
                 <asp:ButtonField ButtonType="Link" Text="❌" CommandName="BajaUsuario" />
                 <asp:ButtonField ButtonType="Link" Text="✍️" CommandName="ModificarUsuario" />
+                <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
+                <asp:BoundField DataField="Email" HeaderText="Email" />
+                <asp:BoundField DataField="DNI" HeaderText="DNI" />
+                <asp:BoundField DataField="Telefono" HeaderText="Telefono"/>
+                <asp:BoundField DataField="FechaNacimiento" HeaderText="Fecha de Nacimiento" DataFormatString="{0:d}" />
+                <asp:BoundField DataField="Direccion" HeaderText="Direccion" />
             </Columns>
         </asp:GridView>
     </div>

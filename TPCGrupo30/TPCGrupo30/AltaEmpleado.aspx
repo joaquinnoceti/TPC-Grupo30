@@ -5,6 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <section class="vh-100 gradient-custom">
+        <asp:Label ID="lblError" runat="server"></asp:Label>
         <div class="container py-5 h-100">
             <div class="row justify-content-center align-items-center h-100">
                 <div class="col-12 col-lg-9 col-xl-7">
@@ -56,7 +57,7 @@
 
                                     <div class="form-outline">
                                         <label class="form-label" for="txtFechaNac">Fecha Nacimiento: </label>
-                                        <asp:TextBox runat="server" ID="txtFechaNac" CssClass="form-control form-control-lg" />
+                                        <asp:TextBox runat="server" ID="txtFechaNac" CssClass="form-control form-control-lg" TextMode="Date" />
                                     </div>
 
                                 </div>
@@ -64,7 +65,7 @@
 
                                     <div class="form-outline">
                                         <label class="form-label" for="Categoria">Categoria: </label>
-                                        <asp:TextBox ID="txtCategoria" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                        <asp:DropDownList ID="ddlCategoria" runat="server" CssClass="form form-select form-select-lg"></asp:DropDownList>
                                     </div>
 
                                 </div>

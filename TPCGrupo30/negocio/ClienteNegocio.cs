@@ -133,9 +133,9 @@ namespace negocio
                     aux.FechaNac = (DateTime)datos.Lector["FechaNac"];
                     aux.Direccion = (string)datos.Lector["Direccion"];
 
-                    aux.Vehiculo = new Vehiculo();
-                    aux.Vehiculo.IDVehiculo = (int)datos.Lector["IDVehiculo"];
-                    aux.Vehiculo.NombreVehiculo = (string)datos.Lector["NombreVehiculo"];
+                    //aux.Vehiculo = new Vehiculo();
+                    //aux.Vehiculo.IDVehiculo = (int)datos.Lector["IDVehiculo"];
+                    //aux.Vehiculo.NombreVehiculo = (string)datos.Lector["NombreVehiculo"];
 
                     lista.Add(aux);
 

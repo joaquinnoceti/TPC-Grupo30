@@ -91,7 +91,7 @@ namespace negocio
                 datos.setearParametro("@CodigoCuenta", nuevo.CodigoCuenta);
                 datos.setearParametro("@CodigoSubCuenta", nuevo.CodigoSubCuenta);
                 datos.setearParametro("@Tipo", nuevo.Tipo);
-                datos.setearParametro("@Asignacion", nuevo.Asignacion);
+                datos.setearParametro("@Asignacion", nuevo.Comentarios);
                 datos.setearParametro("@FechaCosto", nuevo.FechaCosto);
                 datos.setearParametro("@Importe", nuevo.Importe);
                 

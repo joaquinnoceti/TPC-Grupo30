@@ -20,7 +20,7 @@ namespace dominio
         public string Direccion { get; set; }
         public DateTime FechaRegistro { get; set; }
         public Especialidad Especialidad { get; set; }
-        public string Categoria { get; set; }
+        public Categoria Categoria { get; set; }
         public string Contrasenia { get; set; }
         public int Rol { get; set; }
         public bool Estado { get; set; }
