@@ -17,7 +17,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("SELECT ID,NombreServicio,Descripción,Precio FROM Servicios");
+                datos.setearConsulta("SELECT ID,NombreServicio,Descripcion,Precio FROM Servicios");
                 datos.ejecutarConsulta();
 
                 while (datos.Lector.Read())
@@ -26,7 +26,7 @@ namespace negocio
 
                     aux.ID = (int)datos.Lector["ID"];
                     aux.NombreServicio = (string)datos.Lector["NombreServicio"];
-                    aux.Descripcion = (string)datos.Lector["Descripción"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.Precio = (decimal)datos.Lector["Precio"];
 
                     lista.Add(aux);
