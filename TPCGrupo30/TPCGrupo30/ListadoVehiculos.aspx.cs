@@ -55,7 +55,7 @@ namespace TPCGrupo30
                 VehiculoNegocio negocio = new VehiculoNegocio();
                 ClienteNegocio Clinegocio = new ClienteNegocio();
                 List<ClientexVehiculo> listadoCV = new List<ClientexVehiculo>();
-                List<Vehiculo> listadoVehiculo = negocio.ListarxID(id);
+                List<Vehiculo> listadoVehiculo = negocio.ListarxIDCLIENTE(id);
                 List<Cliente> listadoCliente = Clinegocio.Listar(id);
 
                 foreach (var cliente in listadoCliente)

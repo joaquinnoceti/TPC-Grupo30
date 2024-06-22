@@ -15,13 +15,8 @@ namespace TPCGrupo30
         {
             string idCli = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
             string idVeh = Request.QueryString["idV"] != null ? Request.QueryString["idV"].ToString() : "";
-            if (idCli != "" && !IsPostBack)
+            if (!IsPostBack)
             {
-                ClienteNegocio negocioCli = new ClienteNegocio();
-                Cliente cli = (negocioCli.Listar(idCli))[0];
-                Session.Add("ClienteAVehiculo", cli);
-                lblNombreCli.Text = "Cliente: " + cli.Nombre + " " + cli.Apellido;
-
                 MarcaNegocio marcaNegocio = new MarcaNegocio();
                 List<Marca> ListaMarca = marcaNegocio.Listar();
                 ddlMarca.DataSource = ListaMarca;
@@ -37,12 +32,43 @@ namespace TPCGrupo30
                 ddlModelo.DataValueField = "ID";
                 ddlModelo.DataTextField = "NombreModelo";
                 ddlModelo.DataBind();
-            }
-            else if (idVeh != "" && !IsPostBack)
-            {
-               //MODIFICAR VEHICULO
+
+                if (idCli != "")
+                {
+                    ClienteNegocio negocioCli = new ClienteNegocio();
+                    Cliente cli = (negocioCli.Listar(idCli))[0];
+                    Session.Add("ClienteAVehiculo", cli);
+                    lblNombreCli.Text = "Registrar vehiculo a Cliente: " + cli.Nombre + " " + cli.Apellido;
+
+                }
+                else if (idVeh != "")
+                {
+
+                    AccesoDatos datos = new AccesoDatos();
+                    lblNombreCli.Text = "Modificar Vehiculo";
+                    try
+                    {
+                        VehiculoNegocio negocio = new VehiculoNegocio();
+                        Vehiculo modificar = (negocio.ListarxID(idVeh))[0];
+                        ddlMarca.SelectedValue = modificar.Marca.ID.ToString();
+                        ddlModelo.SelectedValue = modificar.Modelo.ID.ToString();
+                        txtAño.Text = modificar.Anio.ToString();
+                        txtPatente.Text = modificar.Patente.ToString();
+                        ddlTipoVehiculo.SelectedValue = modificar.TipoVehiculo.ToString();
+
+
+                    }
+                    catch (Exception ex)
+                    {
+
+                        throw ex;
+                    }
+
+                }
+
 
             }
+
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
@@ -51,7 +77,7 @@ namespace TPCGrupo30
             {
                 Vehiculo nuevo = new Vehiculo();
                 VehiculoNegocio negocio = new VehiculoNegocio();
-                Cliente cliente = (Cliente)Session["ClienteAVehiculo"];
+                Cliente cliente = Session["ClienteAVehiculo"] != null ? (Cliente)Session["ClienteAVehiculo"] : (Cliente)Session["cliente"];
 
                 nuevo.IdCliente = cliente.ID;
 
@@ -67,10 +93,19 @@ namespace TPCGrupo30
 
                 nuevo.Anio = int.Parse(txtAño.Text);
                 nuevo.Patente = txtPatente.Text;
-                nuevo.NombreVehiculo = ddlModelo.SelectedItem.ToString()+ " " +txtPatente.Text;
+                nuevo.NombreVehiculo = ddlModelo.SelectedItem.ToString() + " " + txtPatente.Text;
                 nuevo.TipoVehiculo = ddlTipoVehiculo.SelectedItem.ToString();
 
-                negocio.AltaVehiculo(nuevo);
+                if (Session["cliente"] != null)
+                {
+                    nuevo.IDVehiculo = int.Parse(Request.QueryString["idV"]);
+                    negocio.ModificarVehiculo(nuevo); 
+                }
+                else
+                {
+                    negocio.AltaVehiculo(nuevo);
+
+                }
 
                 Response.Redirect("ABMClientes.aspx");
             }

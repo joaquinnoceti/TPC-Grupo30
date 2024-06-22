@@ -11,7 +11,7 @@ namespace negocio
     public class VehiculoNegocio
     {
 
-        public List<Vehiculo> ListarxID(string id)
+        public List<Vehiculo> ListarxIDCLIENTE(string id)
         {
             List<Vehiculo> lista = new List<Vehiculo>();
             AccesoDatos datos = new AccesoDatos();
@@ -25,6 +25,51 @@ namespace negocio
                 {
                     Vehiculo aux = new Vehiculo();
                     
+                    aux.IDVehiculo = (int)datos.Lector["ID"];
+                    aux.NombreVehiculo = (string)datos.Lector["NombreVehiculo"];
+                    aux.Anio = (int)datos.Lector["Anio"];
+                    aux.Patente = (string)datos.Lector["Patente"];
+                    aux.TipoVehiculo = (string)datos.Lector["TipoVehiculo"];
+                    aux.IdCliente = (int)datos.Lector["IdCliente"];
+
+                    aux.Marca = new Marca();
+                    aux.Marca.ID = (int)datos.Lector["idMarca"];
+                    aux.Marca.NombreMarca = (string)datos.Lector["NombreMarca"];
+
+                    aux.Modelo = new Modelo();
+                    aux.Modelo.ID = (int)datos.Lector["idModelo"];
+                    aux.Modelo.NombreModelo = (string)datos.Lector["NombreModelo"];
+
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public List<Vehiculo> ListarxID(string id)
+        {
+            List<Vehiculo> lista = new List<Vehiculo>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT V.ID,V.NombreVehiculo,v.Anio,v.Patente,v.TipoVehiculo,v.IdCliente, M.ID  as 'idMarca',M.NombreMarca,MO.ID as 'idModelo',MO.NombreModelo from vehiculos V JOIN MARCAS M ON (V.MARCA=M.ID) JOIN Modelos MO ON (MO.ID = V.MODELO) JOIN Clientes c on (c.ID = v.IdCliente) WHERE v.Estado = 1 and v.ID = " + int.Parse(id));
+                datos.ejecutarConsulta();
+
+                while (datos.Lector.Read())
+                {
+                    Vehiculo aux = new Vehiculo();
+
                     aux.IDVehiculo = (int)datos.Lector["ID"];
                     aux.NombreVehiculo = (string)datos.Lector["NombreVehiculo"];
                     aux.Anio = (int)datos.Lector["Anio"];
@@ -156,6 +201,30 @@ namespace negocio
             {
                 datos.cerrarConexion();
             }
+        }
+
+        public void ModificarVehiculo(Vehiculo v)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update VEHICULOS set NOMBREVEHICULO=@NOMBREVEHICULO, MARCA=@IDMARCA, MODELO=@IDMODELO, ANIO=@ANIO, PATENTE=@PATENTE, TIPOVEHICULO=@TIPOVEHICULO WHERE ID=@IDVEHICULO");
+                datos.setearParametro("@NOMBREVEHICULO",v.NombreVehiculo);
+                datos.setearParametro("@IDMARCA", v.Marca.ID);
+                datos.setearParametro("@IDMODELO", v.Modelo.ID);
+                datos.setearParametro("@ANIO", v.Anio);
+                datos.setearParametro("@PATENTE", v.Patente);
+                datos.setearParametro("@TIPOVEHICULO", v.TipoVehiculo);
+                datos.setearParametro("@IDVEHICULO", v.IDVehiculo);
+
+                datos.ejecutarConsulta();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
         }
 
     }

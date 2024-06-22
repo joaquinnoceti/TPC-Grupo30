@@ -73,7 +73,19 @@ namespace TPCGrupo30
             }
             else
             {
-                Response.Redirect("ListadoVehiculos.aspx?id=" + id);
+                try
+                {
+                    ClienteNegocio negocio = new ClienteNegocio();
+                    Cliente cli = (negocio.Listar(id.ToString()))[0];
+                    Session.Add("cliente", cli);
+                    Response.Redirect("ListadoVehiculos.aspx?id=" + id);
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
             }
         }
     }
