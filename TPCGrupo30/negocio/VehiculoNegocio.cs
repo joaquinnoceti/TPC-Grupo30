@@ -18,7 +18,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("select Marca,Modelo,Anio,Patente,TipoVehiculo,idCliente,V.ID from vehiculos v JOIN Clientes c on (V.IdCliente = c.ID) WHERE V.ESTADO = 1 AND C.ID =" + int.Parse(id));
+                datos.setearConsulta("SELECT v.ID,v.NombreVehiculo, m.ID as Marca, m.NombreMarca,mo.ID as Modelo, mo.NombreModelo,v.Anio,v.Patente,v.TipoVehiculo,v.IdCliente, c.Apellido FROM Vehiculos v, Clientes c, Marcas m, Modelos mo WHERE v.IdCliente=c.ID and v.Marca=m.ID and v.Modelo=mo.ID AND C.ID =" + int.Parse(id));
                 datos.ejecutarConsulta();
 
                 while (datos.Lector.Read())
@@ -26,9 +26,12 @@ namespace negocio
                     Vehiculo aux = new Vehiculo();
 
                     aux.Marca = new Marca();
-                    aux.Marca.NombreMarca = (string)datos.Lector["Marca"];
+                    aux.Marca.ID = (int)datos.Lector["Marca"];
+                    aux.Marca.NombreMarca = (string)datos.Lector["NombreMarca"];
+
                     aux.Modelo = new Modelo();
-                    aux.Modelo.NombreModelo = (string)datos.Lector["Modelo"];
+                    aux.Modelo.ID = (int)datos.Lector["Modelo"];
+                    aux.Modelo.NombreModelo = (string)datos.Lector["NombreModelo"];
 
                     aux.IDVehiculo = (int)datos.Lector["id"];
                     aux.Anio = (int)datos.Lector["Anio"];
@@ -107,9 +110,11 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("INSERT INTO VEHICULOS(Marca,Modelo,Anio,Patente,TipoVehiculo,IdCliente,ESTADO) VALUES(@Marca,@Modelo,@Anio,@Patente,@TipoVehiculo,@IdCliente,1)");
-                datos.setearParametro("@Marca", nuevo.Marca.NombreMarca);
-                datos.setearParametro("@Modelo", nuevo.Modelo.NombreModelo);
+                string nombreVehiculo = nuevo.Modelo.NombreModelo+ " " + nuevo.Patente;
+                datos.setearConsulta("INSERT INTO VEHICULOS(NombreVehiculo,Marca,Modelo,Anio,Patente,TipoVehiculo,IdCliente,ESTADO) VALUES(@NombreVehiculo,@Marca,@Modelo,@Anio,@Patente,@TipoVehiculo,@IdCliente,1)");
+                datos.setearParametro("@NombreVehiculo", nombreVehiculo);
+                datos.setearParametro("@Marca", nuevo.Marca.ID);
+                datos.setearParametro("@Modelo", nuevo.Modelo.ID);
                 datos.setearParametro("@Anio", nuevo.Anio);
                 datos.setearParametro("@Patente", nuevo.Patente);
                 datos.setearParametro("@TipoVehiculo", nuevo.TipoVehiculo);

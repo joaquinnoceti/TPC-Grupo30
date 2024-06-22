@@ -116,7 +116,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("SELECT c.ID,c.Nombre,c.Apellido,c.Email,c.DNI,c.Telefono,c.FechaNac,c.Direccion,c.IDVehiculo,v.NombreVehiculo,c.Activo,v.Patente FROM Clientes c INNER JOIN Vehiculos v ON v.IdCliente=c.ID WHERE c.Activo = 1");
+                datos.setearConsulta("SELECT c.ID,c.Nombre,c.Apellido,c.Email,c.DNI,c.Telefono,c.FechaNac,c.Direccion,v.ID,v.NombreVehiculo,v.IdCliente FROM Vehiculos v INNER JOIN Clientes c ON v.IdCliente=c.ID WHERE c.Activo=1");
                 datos.ejecutarConsulta();
 
                 while (datos.Lector.Read())
