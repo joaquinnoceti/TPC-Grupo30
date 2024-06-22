@@ -18,26 +18,28 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("SELECT v.ID,v.NombreVehiculo, m.ID as Marca, m.NombreMarca,mo.ID as Modelo, mo.NombreModelo,v.Anio,v.Patente,v.TipoVehiculo,v.IdCliente, c.Apellido FROM Vehiculos v, Clientes c, Marcas m, Modelos mo WHERE v.IdCliente=c.ID and v.Marca=m.ID and v.Modelo=mo.ID AND C.ID =" + int.Parse(id));
+                datos.setearConsulta("SELECT V.ID,V.NombreVehiculo,v.Anio,v.Patente,v.TipoVehiculo,v.IdCliente, M.ID  as 'idMarca',M.NombreMarca,MO.ID as 'idModelo',MO.NombreModelo from vehiculos V JOIN MARCAS M ON (V.MARCA=M.ID) JOIN Modelos MO ON (MO.ID = V.MODELO) JOIN Clientes c on (c.ID = v.IdCliente) WHERE v.Estado = 1 and c.ID = " + int.Parse(id));
                 datos.ejecutarConsulta();
 
                 while (datos.Lector.Read())
                 {
                     Vehiculo aux = new Vehiculo();
-
-                    aux.Marca = new Marca();
-                    aux.Marca.ID = (int)datos.Lector["Marca"];
-                    aux.Marca.NombreMarca = (string)datos.Lector["NombreMarca"];
-
-                    aux.Modelo = new Modelo();
-                    aux.Modelo.ID = (int)datos.Lector["Modelo"];
-                    aux.Modelo.NombreModelo = (string)datos.Lector["NombreModelo"];
-
-                    aux.IDVehiculo = (int)datos.Lector["id"];
+                    
+                    aux.IDVehiculo = (int)datos.Lector["ID"];
+                    aux.NombreVehiculo = (string)datos.Lector["NombreVehiculo"];
                     aux.Anio = (int)datos.Lector["Anio"];
                     aux.Patente = (string)datos.Lector["Patente"];
                     aux.TipoVehiculo = (string)datos.Lector["TipoVehiculo"];
                     aux.IdCliente = (int)datos.Lector["IdCliente"];
+
+                    aux.Marca = new Marca();
+                    aux.Marca.ID = (int)datos.Lector["idMarca"];
+                    aux.Marca.NombreMarca = (string)datos.Lector["NombreMarca"];
+
+                    aux.Modelo = new Modelo();
+                    aux.Modelo.ID = (int)datos.Lector["idModelo"];
+                    aux.Modelo.NombreModelo = (string)datos.Lector["NombreModelo"];
+
 
                     lista.Add(aux);
                 }
