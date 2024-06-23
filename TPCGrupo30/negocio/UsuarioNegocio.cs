@@ -13,7 +13,7 @@ namespace negocio
         public List<Usuario> Listar(string id = "")
         {
             List<Usuario> lista = new List<Usuario>();
-            AccesoDatos datos = new AccesoDatos();
+            AccesoDatos1 datos = new AccesoDatos1();
 
             try
             {
@@ -66,7 +66,7 @@ namespace negocio
         }
         public void altaUsuario(Usuario nuevo)
         {
-            AccesoDatos datos = new AccesoDatos();
+            AccesoDatos1 datos = new AccesoDatos1();
             try
             {
                 datos.setearSP("spAltaUsuario");
@@ -96,7 +96,7 @@ namespace negocio
 
         public void bajaUsuario(int id)
         {
-            AccesoDatos datos = new AccesoDatos();
+            AccesoDatos1 datos = new AccesoDatos1();
             try
             {
                 DialogResult rta = MessageBox.Show("Eliminar Usuario?", "Usuario Eliminado.", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
@@ -121,10 +121,10 @@ namespace negocio
 
         public void modificarUsuario(Usuario user)
         {
-            AccesoDatos datos = new AccesoDatos();
+            AccesoDatos1 datos = new AccesoDatos1();
             try
             {
-                datos.setearConsulta("UPDATE USUARIOS SET Nombre=@nombre, Apellido=@apellido, DNI=@DNI,FechaNac=@FechaNac, Email=@email, Telefono=@Telefono,  Direccion=@Direccion, IdEspecialidad=@IdEspecialidad, Categoria=@Categoria where id = @ID");
+                datos.setearConsulta("UPDATE USUARIOS SET Nombre=@nombre, Apellido=@apellido, DNI=@DNI,FechaNac=@FechaNac, Email=@email, Telefono=@Telefono,  Direccion=@Direccion, IdEspecialidad=@IdEspecialidad, IdCategoria=@Categoria where id = @ID");
                 datos.setearParametro("@nombre", user.Nombre);
                 datos.setearParametro("@apellido", user.Apellido);
                 datos.setearParametro("@DNI", user.DNI);
@@ -133,7 +133,7 @@ namespace negocio
                 datos.setearParametro("@Telefono", user.Telefono);
                 datos.setearParametro("@Direccion", user.Direccion);
                 datos.setearParametro("@IdEspecialidad", user.Especialidad.ID);
-                datos.setearParametro("@Categoria", user.Categoria);
+                datos.setearParametro("@Categoria", user.Categoria.ID);
 
                 datos.setearParametro("@ID", user.ID);
                 datos.ejecutarConsulta();

@@ -20,13 +20,21 @@ namespace negocio
 
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server=(local) ; database=TPC_Taller; integrated security=true"); //server=(local)  server=.\\SQLEXPRESS
+            conexion = new SqlConnection("server=.\\SQLEXPRESS ; database=TPC_Taller; integrated security=true"); //server=(local)  server=.\\SQLEXPRESS
             comando = new SqlCommand();
+        }
+        public void abrirConexion()
+        {
+            if (conexion.State != System.Data.ConnectionState.Open)
+            {
+                conexion.Open();
+            }
         }
         public void setearConsulta(string consulta)
         {
             comando.CommandType = System.Data.CommandType.Text;
             comando.CommandText = consulta;
+            comando.Parameters.Clear(); // Limpiar parámetros
         }
 
         public void setearSP(string SP)
@@ -40,8 +48,10 @@ namespace negocio
             comando.Connection = conexion;
             try
             {
-                conexion.Open();
+                comando.Connection = conexion;
+                abrirConexion(); // Asegura que la conexión está abierta
                 lector = comando.ExecuteReader();
+
             }
             catch (Exception ex)
             {
@@ -69,16 +79,16 @@ namespace negocio
         {
             comando.Parameters.AddWithValue(nombre, objeto);
         }
-
         public void cerrarConexion()
         {
             if (lector != null)
             {
                 lector.Close();
             }
-            conexion.Close();
+            if (conexion.State == System.Data.ConnectionState.Open)
+            {
+                conexion.Close();
+            }
         }
-
-
     }
 }

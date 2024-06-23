@@ -10,17 +10,22 @@ namespace negocio
 {
     public class OrdenDeTrabajoNegocio
     {
-        
+
         public void GuardarOrden(OrdenDeTrabajo orden)
         {
-            AccesoDatos datos = new AccesoDatos();
-            AccesoDatos datos1 = new AccesoDatos();
+            AccesoDatos1 datos = new AccesoDatos1();
 
             try
             {
-                datos.setearConsulta("INSERT INTO OrdenDeTrabajo(FechaCreacion,IdCliente,IdVehiculo,HorasTeoricas,HorasReales,FechaFinalizacion,Observaciones,Total,Cobrado,IdEmpleado,Estado,CreadoPor) VALUES (@FechaCreacion,@IdCliente,@IdVehiculo,@HorasTeoricas,@HorasReales,@FechaFinalizacion,@Observaciones,@Total,@Cobrado,@IdEmpleado,@Estado,@CreadoPor)");
+                // Insertar la orden de trabajo y obtener el ID generado
+                datos.abrirConexion();
+                datos.setearConsulta(@"
+            INSERT INTO OrdenDeTrabajo(FechaCreacion, IdCliente, IdVehiculo, HorasTeoricas, HorasReales, FechaFinalizacion, Observaciones, Total, Cobrado, IdEmpleado, Estado, CreadoPor)
+            VALUES (@FechaCreacion, @IdCliente, @IdVehiculo, @HorasTeoricas, @HorasReales, @FechaFinalizacion, @Observaciones, @Total, @Cobrado, @IdEmpleado, @Estado, @CreadoPor);
+            SELECT SCOPE_IDENTITY();
+        ");
                 datos.setearParametro("@FechaCreacion", orden.FechaCreacion);
-                datos.setearParametro("@IdCliente",orden.Cliente.ID);
+                datos.setearParametro("@IdCliente", orden.Cliente.ID);
                 datos.setearParametro("@IdVehiculo", orden.Vehiculo.IDVehiculo);
                 datos.setearParametro("@HorasTeoricas", orden.HorasTeoricas);
                 datos.setearParametro("@HorasReales", orden.HorasReales);
@@ -32,43 +37,40 @@ namespace negocio
                 datos.setearParametro("@Estado", orden.Estado.ID);
                 datos.setearParametro("@CreadoPor", orden.Mecanico.ID);
 
-                datos.ejecutar();
-
-                
-
-                // Obtener el ID generado para la orden
-                datos1.setearConsulta("SELECT @@IDENTITY AS 'Identity'");
-                datos1.ejecutarConsulta();
-                if (datos1.Lector.Read())
+                datos.ejecutarConsulta();
+                if (datos.Lector.Read())
                 {
-                    orden.ID = Convert.ToInt32(datos1.Lector["Identity"]);
+                    orden.ID = Convert.ToInt32(datos.Lector[0]);
                 }
+                else
+                {
+                    throw new Exception("No se pudo obtener el ID de la nueva orden de trabajo.");
+                }
+
+                datos.Lector.Close();
+                datos.cerrarConexion();
 
                 // Insertar cada servicio asociado en la tabla intermedia
                 foreach (Servicio item in orden.Servicios)
                 {
-                    datos1.setearConsulta("INSERT INTO OrdenServicio(IdOrden, IdServicio) VALUES(@IdOrden, @IdServicio)");
-                    datos1.setearParametro("@IdOrden", orden.ID);
-                    datos1.setearParametro("@IdServicio", item.ID);
+                    datos.abrirConexion();
+                    datos.setearConsulta("INSERT INTO OrdenServicio(IdOrden, IdServicio) VALUES(@IdOrden, @IdServicio)");
+                    datos.setearParametro("@IdOrden", orden.ID);
+                    datos.setearParametro("@IdServicio", item.ID);
 
-                    datos1.ejecutar();
+                    datos.ejecutar();
+                    datos.cerrarConexion();
                 }
-
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
             {
                 datos.cerrarConexion();
-                datos1.cerrarConexion();
             }
         }
-
-
-
 
 
         public List<EstadoOrden> ListarEstados()
@@ -78,7 +80,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("SELECT ID,Nombre FROM EstadoOrden");
+                datos.setearConsulta("SELECT ID,NombreEstado FROM EstadoOrden");
                 datos.ejecutarConsulta();
 
                 while (datos.Lector.Read())
@@ -86,7 +88,7 @@ namespace negocio
                     EstadoOrden aux = new EstadoOrden();
 
                     aux.ID = (int)datos.Lector["ID"];
-                    aux.NombreEstado= (string)datos.Lector["Nombre"];
+                    aux.NombreEstado= (string)datos.Lector["NombreEstado"];
 
 
                     lista.Add(aux);
