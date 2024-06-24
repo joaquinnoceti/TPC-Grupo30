@@ -73,6 +73,9 @@
                                     <a href="ABMClientes.aspx" class="btn btn-outline-danger">Atras</a>
                                 </div>
                             </div>
+                            <div>
+                                <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
+                            </div>
                         </div>
                     </div>
                 </div>

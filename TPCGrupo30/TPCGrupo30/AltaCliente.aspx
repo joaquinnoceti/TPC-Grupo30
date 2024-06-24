@@ -5,7 +5,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <section class="vh-100 gradient-custom">
-        <asp:Label ID="lblError" runat="server"></asp:Label>
         <div class="container py-5 h-100">
             <div class="row justify-content-center align-items-center h-100">
                 <div class="col-12 col-lg-9 col-xl-7">
@@ -82,16 +81,22 @@
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center mb-4">
-                            <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary btn-lg" OnClick="btnAceptar_Click" />
-                            <div class="ml-auto">
-                                <a href="ABMClientes.aspx" class="btn btn-outline-danger">Atras</a>
+                                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary btn-lg" OnClick="btnAceptar_Click" />
+                                <div class="ml-auto">
+                                    <a href="ABMClientes.aspx" class="btn btn-outline-danger">Atras</a>
+
+                                </div>
+
+
+                            </div>
+                            <div>
+                                <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 </asp:Content>

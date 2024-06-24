@@ -42,37 +42,46 @@ namespace TPCGrupo30
                 Cliente nuevo = new Cliente();
                 ClienteNegocio negocio = new ClienteNegocio();
 
-                // Formatos esperados de las fechas
-                string[] formatosFecha = { "dd/MM/yyyy", "MM/dd/yyyy", "yyyy-MM-dd" }; // Ajusta los formatos según tus necesidades
-
-                // Validar fecha de nacimiento
-                DateTime fechaNacimiento;
-                if (!DateTime.TryParseExact(txtFecha.Text, formatosFecha, null, System.Globalization.DateTimeStyles.None, out fechaNacimiento))
+                if (validarCampos())
                 {
-                    lblError.Text = "La fecha de nacimiento no tiene un formato válido.";
-                    return;
+                    // Formatos esperados de las fechas
+                    string[] formatosFecha = { "dd/MM/yyyy", "MM/dd/yyyy", "yyyy-MM-dd" }; // Ajusta los formatos según tus necesidades
+
+                    // Validar fecha de nacimiento
+                    DateTime fechaNacimiento;
+                    if (!DateTime.TryParseExact(txtFecha.Text, formatosFecha, null, System.Globalization.DateTimeStyles.None, out fechaNacimiento))
+                    {
+                        lblError.ForeColor = System.Drawing.Color.Red;
+                        lblError.Text = "La fecha de nacimiento no tiene un formato válido.";
+                        return;
+                    }
+
+                    nuevo.Nombre = txtNombre.Text;
+                    nuevo.Apellido = txtApellido.Text;
+                    nuevo.Email = txtEmail.Text;
+                    nuevo.DNI = int.Parse(txtDni.Text);
+                    nuevo.Telefono = txtTelefono.Text;
+                    nuevo.FechaNac = fechaNacimiento;
+                    nuevo.Direccion = txtDirecion.Text;
+
+                    if (Request.QueryString["id"] != null)
+                    {
+                        nuevo.ID = int.Parse(Request.QueryString["id"]);
+                        negocio.modificar(nuevo);
+                    }
+
+                    else
+                    {
+                        negocio.altaCliente(nuevo);
+                    }
+
+                    Response.Redirect("ABMClientes.ASPX");
+
                 }
-
-                nuevo.Nombre = txtNombre.Text;
-                nuevo.Apellido = txtApellido.Text;
-                nuevo.Email = txtEmail.Text;
-                nuevo.DNI = int.Parse(txtDni.Text);
-                nuevo.Telefono = txtTelefono.Text;
-                nuevo.FechaNac = fechaNacimiento;
-                nuevo.Direccion = txtDirecion.Text;
-
-                if (Request.QueryString["id"] != null)
-                {
-                    nuevo.ID = int.Parse(Request.QueryString["id"]);
-                    negocio.modificar(nuevo);
-                }
-
                 else
                 {
-                    negocio.altaCliente(nuevo);
+                    return;
                 }
-
-                Response.Redirect("ABMClientes.ASPX");
 
             }
             catch (Exception ex)
@@ -80,6 +89,19 @@ namespace TPCGrupo30
 
                 throw ex;
             }
+        }
+
+        protected bool validarCampos()
+        {
+            if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtApellido.Text) || string.IsNullOrEmpty(txtDni.Text)
+                    || string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtTelefono.Text)
+                    || string.IsNullOrEmpty(txtDirecion.Text) || string.IsNullOrEmpty(txtFecha.Text))
+            {
+                lblError.ForeColor = System.Drawing.Color.Red;
+                lblError.Text = "Por favor, completar todos los campos para continuar";
+                return false;
+            }
+            return true;
         }
     }
 }

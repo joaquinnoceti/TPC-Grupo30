@@ -75,39 +75,43 @@ namespace TPCGrupo30
         {
             try
             {
-                Vehiculo nuevo = new Vehiculo();
-                VehiculoNegocio negocio = new VehiculoNegocio();
-                Cliente cliente = Session["ClienteAVehiculo"] != null ? (Cliente)Session["ClienteAVehiculo"] : (Cliente)Session["cliente"];
-
-                nuevo.IdCliente = cliente.ID;
-
-                Marca marca = new Marca();
-                marca.ID = int.Parse(ddlMarca.SelectedValue);
-                marca.NombreMarca = ddlMarca.SelectedItem.ToString();
-                nuevo.Marca = marca;
-
-                Modelo modelo = new Modelo();
-                modelo.ID = int.Parse(ddlModelo.SelectedValue);
-                modelo.NombreModelo = ddlModelo.SelectedItem.ToString();
-                nuevo.Modelo = modelo;
-
-                nuevo.Anio = int.Parse(txtAño.Text);
-                nuevo.Patente = txtPatente.Text;
-                nuevo.NombreVehiculo = ddlModelo.SelectedItem.ToString() + " " + txtPatente.Text;
-                nuevo.TipoVehiculo = ddlTipoVehiculo.SelectedItem.ToString();
-
-                if (Session["cliente"] != null)
+                if (validarCampos())
                 {
-                    nuevo.IDVehiculo = int.Parse(Request.QueryString["idV"]);
-                    negocio.ModificarVehiculo(nuevo); 
-                }
-                else
-                {
-                    negocio.AltaVehiculo(nuevo);
+                    Vehiculo nuevo = new Vehiculo();
+                    VehiculoNegocio negocio = new VehiculoNegocio();
+                    Cliente cliente = Session["ClienteAVehiculo"] != null ? (Cliente)Session["ClienteAVehiculo"] : (Cliente)Session["cliente"];
+
+                    nuevo.IdCliente = cliente.ID;
+
+                    Marca marca = new Marca();
+                    marca.ID = int.Parse(ddlMarca.SelectedValue);
+                    marca.NombreMarca = ddlMarca.SelectedItem.ToString();
+                    nuevo.Marca = marca;
+
+                    Modelo modelo = new Modelo();
+                    modelo.ID = int.Parse(ddlModelo.SelectedValue);
+                    modelo.NombreModelo = ddlModelo.SelectedItem.ToString();
+                    nuevo.Modelo = modelo;
+
+                    nuevo.Anio = int.Parse(txtAño.Text);
+                    nuevo.Patente = txtPatente.Text;
+                    nuevo.NombreVehiculo = ddlModelo.SelectedItem.ToString() + " " + txtPatente.Text;
+                    nuevo.TipoVehiculo = ddlTipoVehiculo.SelectedItem.ToString();
+
+                    if (Session["cliente"] != null)
+                    {
+                        nuevo.IDVehiculo = int.Parse(Request.QueryString["idV"]);
+                        negocio.ModificarVehiculo(nuevo);
+                    }
+                    else
+                    {
+                        negocio.AltaVehiculo(nuevo);
+
+                    }
+
+                    Response.Redirect("ABMClientes.aspx");
 
                 }
-
-                Response.Redirect("ABMClientes.aspx");
             }
             catch (Exception ex)
             {
@@ -129,5 +133,18 @@ namespace TPCGrupo30
 
             }
         }
+
+        protected bool validarCampos()
+        {
+            if (string.IsNullOrEmpty(ddlMarca.SelectedItem.Value) || string.IsNullOrEmpty(ddlModelo.SelectedItem.Value) || string.IsNullOrEmpty(txtAño.Text)
+                || string.IsNullOrEmpty(txtPatente.Text) || string.IsNullOrEmpty(ddlTipoVehiculo.SelectedItem.Value))
+            {
+                lblError.ForeColor = System.Drawing.Color.Red;
+                lblError.Text = "Por favor, completar todos los campos para continuar";
+                return false;
+            }
+            return true;
+        }
+
     }
 }
