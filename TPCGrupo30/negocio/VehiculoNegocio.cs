@@ -24,7 +24,7 @@ namespace negocio
                 while (datos.Lector.Read())
                 {
                     Vehiculo aux = new Vehiculo();
-                    
+
                     aux.IDVehiculo = (int)datos.Lector["ID"];
                     aux.NombreVehiculo = (string)datos.Lector["NombreVehiculo"];
                     aux.Anio = (int)datos.Lector["Anio"];
@@ -151,32 +151,40 @@ namespace negocio
             }
         }
 
-        public void AltaVehiculo(Vehiculo nuevo)
+        public bool AltaVehiculo(Vehiculo nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
-
-            try
+            if(ChequearPATENTE(nuevo.Patente) == 0)
             {
-                string nombreVehiculo = nuevo.Modelo.NombreModelo+ " " + nuevo.Patente;
-                datos.setearConsulta("INSERT INTO VEHICULOS(NombreVehiculo,Marca,Modelo,Anio,Patente,TipoVehiculo,IdCliente,ESTADO) VALUES(@NombreVehiculo,@Marca,@Modelo,@Anio,@Patente,@TipoVehiculo,@IdCliente,1)");
-                datos.setearParametro("@NombreVehiculo", nombreVehiculo);
-                datos.setearParametro("@Marca", nuevo.Marca.ID);
-                datos.setearParametro("@Modelo", nuevo.Modelo.ID);
-                datos.setearParametro("@Anio", nuevo.Anio);
-                datos.setearParametro("@Patente", nuevo.Patente);
-                datos.setearParametro("@TipoVehiculo", nuevo.TipoVehiculo);
-                datos.setearParametro("@IdCliente", nuevo.IdCliente);
+                try
+                {
+                    string nombreVehiculo = nuevo.Modelo.NombreModelo + " " + nuevo.Patente;
+                    datos.setearConsulta("INSERT INTO VEHICULOS(NombreVehiculo,Marca,Modelo,Anio,Patente,TipoVehiculo,IdCliente,ESTADO) VALUES(@NombreVehiculo,@Marca,@Modelo,@Anio,@Patente,@TipoVehiculo,@IdCliente,1)");
+                    datos.setearParametro("@NombreVehiculo", nombreVehiculo);
+                    datos.setearParametro("@Marca", nuevo.Marca.ID);
+                    datos.setearParametro("@Modelo", nuevo.Modelo.ID);
+                    datos.setearParametro("@Anio", nuevo.Anio);
+                    datos.setearParametro("@Patente", nuevo.Patente);
+                    datos.setearParametro("@TipoVehiculo", nuevo.TipoVehiculo);
+                    datos.setearParametro("@IdCliente", nuevo.IdCliente);
 
-                datos.ejecutar();
+                    datos.ejecutar();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+                finally
+                {
+                    datos.cerrarConexion();
+                }
+
             }
-            catch (Exception ex)
+            else
             {
-
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
+                return false;
             }
         }
 
@@ -209,7 +217,7 @@ namespace negocio
             try
             {
                 datos.setearConsulta("update VEHICULOS set NOMBREVEHICULO=@NOMBREVEHICULO, MARCA=@IDMARCA, MODELO=@IDMODELO, ANIO=@ANIO, PATENTE=@PATENTE, TIPOVEHICULO=@TIPOVEHICULO WHERE ID=@IDVEHICULO");
-                datos.setearParametro("@NOMBREVEHICULO",v.NombreVehiculo);
+                datos.setearParametro("@NOMBREVEHICULO", v.NombreVehiculo);
                 datos.setearParametro("@IDMARCA", v.Marca.ID);
                 datos.setearParametro("@IDMODELO", v.Modelo.ID);
                 datos.setearParametro("@ANIO", v.Anio);
@@ -226,6 +234,27 @@ namespace negocio
             }
             finally { datos.cerrarConexion(); }
         }
+
+        public int ChequearPATENTE(string patente)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string query = "SELECT PATENTE FROM Vehiculos WHERE PATENTE = '" + patente + "'";
+                int resultado = datos.executaScalar(query);
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
 
     }
 }

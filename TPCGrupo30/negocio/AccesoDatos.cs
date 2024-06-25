@@ -87,14 +87,14 @@ namespace negocio
             {
                 comando = new SqlCommand(consulta, conexion);
                 conexion.Open();
-                var dni = comando.ExecuteScalar();
-                if (dni == null)
+                var registro = comando.ExecuteScalar();
+                if (registro == null)
                 {
-                    return 0;   //no existe el documento en BD
+                    return 0;   //no existe el registro en BD
                 }
                 else
                 {
-                    return 1;   //ya se encuentra el documento en BD
+                    return 1;   //ya se encuentra el registro en BD
                 }
             }
             catch (Exception ex)

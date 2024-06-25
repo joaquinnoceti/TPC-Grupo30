@@ -65,6 +65,7 @@ namespace TPCGrupo30
             }
             else if(e.CommandName == "AsignarVehiculo")
             {
+                Session.Remove("cliente");
                 Response.Redirect("AltaVehiculo.aspx?id=" + id);
             }
             else if(e.CommandName == "ModifCliente")
@@ -78,7 +79,7 @@ namespace TPCGrupo30
                     ClienteNegocio negocio = new ClienteNegocio();
                     Cliente cli = (negocio.Listar(id.ToString()))[0];
                     Session.Add("cliente", cli);
-                    Response.Redirect("ListadoVehiculos.aspx?id=" + id);
+                    Response.Redirect("ListadoVehiculos.aspx?id=" + id, false);
 
                 }
                 catch (Exception ex)

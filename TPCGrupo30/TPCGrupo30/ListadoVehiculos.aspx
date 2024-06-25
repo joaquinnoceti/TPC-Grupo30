@@ -24,7 +24,7 @@
         <asp:Label ID="Label1" runat="server" Text="Vehiculos del cliente: "></asp:Label>
         <asp:GridView ID="dgvVehiculo" CssClass="table table-dark" runat="server" AutoGenerateColumns="false" OnRowCommand="dgvVehiculo_RowCommand" DataKeyNames="IDVehiculo">
             <Columns>
-                <asp:ButtonField ButtonType="Link" Text="Detalle" CommandName="Detalle" />
+                <asp:ButtonField ButtonType="Link" Text="Modificar" CommandName="Modificar" />
                 <asp:ButtonField ButtonType="Link" Text="🗑️" CommandName="Baja" />
                 <asp:BoundField HeaderText="ID" DataField="IDVehiculo" />
                 <asp:BoundField HeaderText="Nombre" DataField="NombreCli" />

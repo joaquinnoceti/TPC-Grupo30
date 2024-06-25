@@ -40,7 +40,7 @@ namespace TPCGrupo30
                     throw ex;
                 }
             }
-            else if (e.CommandName == "Detalle")
+            else if (e.CommandName == "Modificar")
             {
                 Response.Redirect("AltaVehiculo.aspx?idV=" + id);
             }

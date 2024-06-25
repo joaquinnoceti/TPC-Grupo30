@@ -105,11 +105,16 @@ namespace TPCGrupo30
                     }
                     else
                     {
-                        negocio.AltaVehiculo(nuevo);
+                        if (!(negocio.AltaVehiculo(nuevo)))
+                        {
+                            lblError.Text = "El numero de patente ya se encuentra registrado";
+                            lblError.ForeColor = System.Drawing.Color.Red;
+                            return;
+                        }
 
                     }
 
-                    Response.Redirect("ABMClientes.aspx");
+                    Response.Redirect("ABMClientes.aspx",false);
 
                 }
             }
