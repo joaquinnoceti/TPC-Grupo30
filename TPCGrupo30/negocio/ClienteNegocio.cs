@@ -58,30 +58,39 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-        public void altaCliente(Cliente nuevo)
+        public bool altaCliente(Cliente nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
-            try
+            if (ChequearDNI(nuevo.DNI) == 0)
             {
-                datos.setearSP("spAltaCliente");
-                datos.setearParametro("@Nombre", nuevo.Nombre);
-                datos.setearParametro("@Apellido", nuevo.Apellido);
-                datos.setearParametro("@Email", nuevo.Email);
-                datos.setearParametro("@DNI", nuevo.DNI);
-                datos.setearParametro("@Telefono", nuevo.Telefono);
-                datos.setearParametro("@FechaNac", nuevo.FechaNac);
-                datos.setearParametro("@Direccion", nuevo.Direccion);
+                try
+                {
+                    datos.setearSP("spAltaCliente");
+                    datos.setearParametro("@Nombre", nuevo.Nombre);
+                    datos.setearParametro("@Apellido", nuevo.Apellido);
+                    datos.setearParametro("@Email", nuevo.Email);
+                    datos.setearParametro("@DNI", nuevo.DNI);
+                    datos.setearParametro("@Telefono", nuevo.Telefono);
+                    datos.setearParametro("@FechaNac", nuevo.FechaNac);
+                    datos.setearParametro("@Direccion", nuevo.Direccion);
 
-                datos.ejecutar();
-            }
-            catch (Exception ex)
-            {
+                    datos.ejecutar();
+                    return true;
+                }
+                catch (Exception ex)
+                {
 
-                throw ex;
+                    throw ex;
+                }
+                finally
+                {
+                    datos.cerrarConexion();
+                }
+
             }
-            finally
+            else
             {
-                datos.cerrarConexion();
+                return false;
             }
         }
 
@@ -170,6 +179,26 @@ namespace negocio
                 datos.setearParametro("@ID", cli.ID);
                 datos.ejecutarConsulta();
 
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public int ChequearDNI(int dni)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string query = "SELECT DNI FROM CLIENTES WHERE DNI = " + dni;
+                int resultado = datos.executaScalar(query);
+                return resultado;
             }
             catch (Exception ex)
             {

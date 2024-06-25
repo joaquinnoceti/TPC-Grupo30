@@ -69,13 +69,18 @@ namespace TPCGrupo30
                         nuevo.ID = int.Parse(Request.QueryString["id"]);
                         negocio.modificar(nuevo);
                     }
-
                     else
                     {
-                        negocio.altaCliente(nuevo);
+                        if (!(negocio.altaCliente(nuevo)))
+                        {
+                            lblError.Text = "El DNI se encuentra repetido.";
+                            lblError.ForeColor= System.Drawing.Color.Red;
+                            return;
+                        }
+
                     }
 
-                    Response.Redirect("ABMClientes.ASPX");
+                    Response.Redirect("ABMClientes.ASPX",false);
 
                 }
                 else

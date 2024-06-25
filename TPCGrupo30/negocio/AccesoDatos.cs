@@ -79,6 +79,38 @@ namespace negocio
         {
             comando.Parameters.AddWithValue(nombre, objeto);
         }
+
+        public int executaScalar(string consulta)
+        {
+            comando.Connection = conexion;
+            try
+            {
+                comando = new SqlCommand(consulta, conexion);
+                conexion.Open();
+                var dni = comando.ExecuteScalar();
+                if (dni == null)
+                {
+                    return 0;   //no existe el documento en BD
+                }
+                else
+                {
+                    return 1;   //ya se encuentra el documento en BD
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+
+
+
         public void cerrarConexion()
         {
             if (lector != null)
@@ -90,5 +122,7 @@ namespace negocio
                 conexion.Close();
             }
         }
+
+
     }
 }
