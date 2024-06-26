@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="AltaEmpleado.aspx.cs" Inherits="TPCGrupo30.AltaEmpleado" %>
+﻿<%@ Page Title="Alta Empleado" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="AltaEmpleado.aspx.cs" Inherits="TPCGrupo30.AltaEmpleado" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -46,7 +46,7 @@
 
                                     <div class="form-outline">
                                         <label class="form-label" for="txtDni">DNI: </label>
-                                        <asp:TextBox ID="txtDni" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                        <asp:TextBox Type="number" ID="txtDni" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
                                     </div>
 
                                 </div>
