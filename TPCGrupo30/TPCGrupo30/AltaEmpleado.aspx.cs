@@ -88,7 +88,7 @@ namespace TPCGrupo30
                 nuevo.Categoria.ID = int.Parse(ddlCategoria.SelectedValue);
                 nuevo.Contrasenia = txtContrasenia.Text;
                 //nuevo.FechaRegistro = DateTime.Parse(txtFechaRegistro.Text);
-                nuevo.Rol = ddlRol.SelectedIndex;
+                //nuevo.Rol = ddlRol.SelectedIndex;
 
                 if (Request.QueryString["id"] != null)
                 {

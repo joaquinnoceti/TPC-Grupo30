@@ -203,14 +203,16 @@ insert into Categorias (NombreCategoria) values ('Auxiliar')
 GO
 
 
-INSERT INTO Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,FechaRegistro,IdEspecialidad,IdCategoria,Contrasenia,IdRol,Estado) VALUES ('ADMIN','ADMIN',12111111,25/05/1978,'admin@admin.com','1188951665','Av. San Martin 1589 Martinez',15/03/2024,1,1,'123456',1,1)
-INSERT INTO Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,FechaRegistro,IdEspecialidad,IdCategoria,Contrasenia,IdRol,Estado) VALUES ('Mariano','Lopez',35789456,01/03/1985,'mariano@gmail.com','1145741559','Jujuy 895 San Martin',15/03/2024,2,4,'123456',2,1)
-INSERT INTO Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,FechaRegistro,IdEspecialidad,IdCategoria,Contrasenia,IdRol,Estado) VALUES ('Luis','Gomes',29159863,17/07/1980,'luis@gmail.com','1185259636','Brasil 452 Villa Martelli',15/03/2024,2,3,'123456',2,1)
-INSERT INTO Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,FechaRegistro,IdEspecialidad,IdCategoria,Contrasenia,IdRol,Estado) VALUES ('Sergio','Paz',26854741,03/04/1979,'sergio@gmail.com','1148792585','Latorre 896 Villa Ballester',15/03/2024,3,3,'123456',2,1)
-INSERT INTO Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,FechaRegistro,IdEspecialidad,IdCategoria,Contrasenia,IdRol,Estado) VALUES ('Fernando','Brondino',30879654,01/08/1981,'fernando@gmail.com','1125468475','Gdor. Castro 859 Boulogne',15/03/2024,2,2,'123456',2,1)
-INSERT INTO Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,FechaRegistro,IdEspecialidad,IdCategoria,Contrasenia,IdRol,Estado) VALUES ('Gabriel','Perez',38264896,15/09/1990,'gabriel@gmail.com','1136957845','Dardo Rocha 847 San Isidro',15/03/2024,2,2,'123456',2,1)
-INSERT INTO Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,FechaRegistro,IdEspecialidad,IdCategoria,Contrasenia,IdRol,Estado) VALUES ('Pedro','Gonzalez',39845174,01/05/1991,'pedro@gmail.com','1178452897','Av. Cabildo 5470 CABA',15/03/2024,2,3,'123456',2,1)
-INSERT INTO Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,FechaRegistro,IdEspecialidad,IdCategoria,Contrasenia,IdRol,Estado) VALUES ('Juan','Gutierrez',41896523,18/12/1992,'juan@gmail.com','1147969473','Dean Funes 355 San Martin',15/03/2024,2,4,'123456',2,1)
+Delete From Usuarios
+
+INSERT INTO Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,FechaRegistro,IdEspecialidad,IdCategoria,Contrasenia,IdRol,Estado) VALUES ('ADMIN','ADMIN',12111111,'05/25/1978','admin@admin.com','1188951665','Av. San Martin 1589 Martinez',15/03/2024,1,1,'123456',1,1)
+INSERT INTO Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,FechaRegistro,IdEspecialidad,IdCategoria,Contrasenia,IdRol,Estado) VALUES ('Mariano','Lopez',35789456,'03/01/1985','mariano@gmail.com','1145741559','Jujuy 895 San Martin',15/03/2024,2,4,'123456',2,1)
+INSERT INTO Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,FechaRegistro,IdEspecialidad,IdCategoria,Contrasenia,IdRol,Estado) VALUES ('Luis','Gomes',29159863,'07/17/1980','luis@gmail.com','1185259636','Brasil 452 Villa Martelli',15/03/2024,2,3,'123456',2,1)
+INSERT INTO Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,FechaRegistro,IdEspecialidad,IdCategoria,Contrasenia,IdRol,Estado) VALUES ('Sergio','Paz',26854741,'04/03/1979','sergio@gmail.com','1148792585','Latorre 896 Villa Ballester',15/03/2024,3,3,'123456',2,1)
+INSERT INTO Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,FechaRegistro,IdEspecialidad,IdCategoria,Contrasenia,IdRol,Estado) VALUES ('Fernando','Brondino',30879654,'08/01/1981','fernando@gmail.com','1125468475','Gdor. Castro 859 Boulogne',15/03/2024,2,2,'123456',2,1)
+INSERT INTO Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,FechaRegistro,IdEspecialidad,IdCategoria,Contrasenia,IdRol,Estado) VALUES ('Gabriel','Perez',38264896,'09/15/1990','gabriel@gmail.com','1136957845','Dardo Rocha 847 San Isidro',15/03/2024,2,2,'123456',2,1)
+INSERT INTO Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,FechaRegistro,IdEspecialidad,IdCategoria,Contrasenia,IdRol,Estado) VALUES ('Pedro','Gonzalez',39845174,'05/01/1991','pedro@gmail.com','1178452897','Av. Cabildo 5470 CABA',15/03/2024,2,3,'123456',2,1)
+INSERT INTO Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,FechaRegistro,IdEspecialidad,IdCategoria,Contrasenia,IdRol,Estado) VALUES ('Juan','Gutierrez',41896523,'12/18/1992','juan@gmail.com','1147969473','Dean Funes 355 San Martin',15/03/2024,2,4,'123456',2,1)
 
 GO  
 

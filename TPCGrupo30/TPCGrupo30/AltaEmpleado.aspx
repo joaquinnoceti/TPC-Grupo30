@@ -19,7 +19,7 @@
 
                                     <div class="form-outline">
                                         <label class="form-label" for="txtNombre">Nombre: </label>
-                                        <asp:TextBox ID="txtNombre" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtNombre" CssClass="form-control form-control-lg" runat="server" required></asp:TextBox>
                                     </div>
 
                                 </div>
@@ -27,7 +27,7 @@
 
                                     <div class="form-outline">
                                         <label class="form-label" for="txtApellido">Apellido: </label>
-                                        <asp:TextBox ID="txtApellido" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtApellido" CssClass="form-control form-control-lg" runat="server" required></asp:TextBox>
                                     </div>
 
                                 </div>
@@ -113,10 +113,11 @@
 
                                     <div class="form-outline">
                                         <label class="form-label" for="Rol">Rol: </label>
-                                        <asp:DropDownList runat="server" ID="ddlRol">
-                                            <asp:ListItem Text="ADMIN" />
-                                            <asp:ListItem Text="EMPLEADO" />
-                                        </asp:DropDownList>
+                                        <%--<asp:DropDownList runat="server" ID="ddlRol">--%>
+                                        <asp:TextBox ID="ddlRol" CssClass="form-control form-control-lg" value="Empleado" runat="server" disabled readonly></asp:TextBox>
+                                            <%--<asp:ListItem Text="ADMIN" />--%>
+                                            <%--<asp:ListItem Text="EMPLEADO" />--%>
+                                        <%--</asp:DropDownList>--%>
                                     </div>
 
                                 </div>

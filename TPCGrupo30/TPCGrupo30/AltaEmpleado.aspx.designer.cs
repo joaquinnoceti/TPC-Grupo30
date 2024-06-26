@@ -138,7 +138,7 @@ namespace TPCGrupo30
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlRol;
+        protected global::System.Web.UI.WebControls.TextBox ddlRol;
 
         /// <summary>
         /// btnAceptar control.
