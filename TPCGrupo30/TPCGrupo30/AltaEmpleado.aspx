@@ -38,7 +38,7 @@
 
                                     <div class="form-outline datepicker w-100">
                                         <label for="txtEmail" class="form-label">Email:</label>
-                                        <asp:TextBox ID="txtEmail" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtEmail" CssClass="form-control form-control-lg" runat="server" required></asp:TextBox>
                                     </div>
 
                                 </div>
@@ -46,7 +46,7 @@
 
                                     <div class="form-outline">
                                         <label class="form-label" for="txtDni">DNI: </label>
-                                        <asp:TextBox Type="number" ID="txtDni" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                        <asp:TextBox Type="number" ID="txtDni" CssClass="form-control form-control-lg" runat="server" required></asp:TextBox>
                                     </div>
 
                                 </div>
@@ -84,7 +84,7 @@
 
                                     <div class="form-outline">
                                         <label class="form-label" for="Telefono">Telefono: </label>
-                                        <asp:TextBox ID="txtTelefono" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtTelefono" CssClass="form-control form-control-lg" runat="server" required></asp:TextBox>
                                     </div>
 
                                 </div>
@@ -95,7 +95,7 @@
 
                                     <div class="form-outline">
                                         <label class="form-label" for="Direccion">Direccion: </label>
-                                        <asp:TextBox ID="txtDireccion" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtDireccion" CssClass="form-control form-control-lg" runat="server" required></asp:TextBox>
                                     </div>
 
                                 </div>
