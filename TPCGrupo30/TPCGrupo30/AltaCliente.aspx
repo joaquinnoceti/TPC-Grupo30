@@ -45,6 +45,7 @@
                                     <div class="form-outline">
                                         <label class="form-label" for="txtDni">DNI: </label>
                                         <asp:TextBox ID="txtDni" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                        <asp:RegularExpressionValidator ErrorMessage="Solo numeros" ForeColor="Red" ControlToValidate="txtDni" ValidationExpression="^[0-9]+$" runat="server" />
                                     </div>
 
                                 </div>
@@ -56,6 +57,7 @@
                                     <div class="form-outline">
                                         <label class="form-label" for="txtEmail">Email: </label>
                                         <asp:TextBox ID="txtEmail" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                        <asp:RegularExpressionValidator ErrorMessage="Email Invalido" ControlToValidate="txtEmail" ValidationExpression="^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$" ForeColor="Red" runat="server" />
                                     </div>
 
                                 </div>
@@ -64,6 +66,8 @@
                                     <div class="form-outline">
                                         <label class="form-label" for="txtTelefono">Telefono: </label>
                                         <asp:TextBox ID="txtTelefono" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                        <asp:RegularExpressionValidator ErrorMessage="Solo numeros" ForeColor="Red" ControlToValidate="txtTelefono" ValidationExpression="^[0-9]+$" runat="server" />
+
                                     </div>
 
                                 </div>

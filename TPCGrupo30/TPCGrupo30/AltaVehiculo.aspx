@@ -37,6 +37,7 @@
                                     <div class="form-outline">
                                         <label class="form-label" for="txtAño">Año: </label>
                                         <asp:TextBox ID="txtAño" CssClass="form-control form-control-lg" runat="server"></asp:TextBox>
+                                        <asp:RegularExpressionValidator ErrorMessage="Solo numeros" ForeColor="Red" ControlToValidate="txtAño" ValidationExpression="^[0-9]+$" runat="server" />
                                     </div>
 
                                 </div>
