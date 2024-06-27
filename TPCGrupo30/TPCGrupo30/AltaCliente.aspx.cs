@@ -39,6 +39,10 @@ namespace TPCGrupo30
         {
             try
             {
+                Page.Validate();
+                if (!Page.IsValid)
+                    return;
+
                 Cliente nuevo = new Cliente();
                 ClienteNegocio negocio = new ClienteNegocio();
 
@@ -74,13 +78,13 @@ namespace TPCGrupo30
                         if (!(negocio.altaCliente(nuevo)))
                         {
                             lblError.Text = "El DNI se encuentra repetido.";
-                            lblError.ForeColor= System.Drawing.Color.Red;
+                            lblError.ForeColor = System.Drawing.Color.Red;
                             return;
                         }
 
                     }
 
-                    Response.Redirect("ABMClientes.ASPX",false);
+                    Response.Redirect("ABMClientes.ASPX", false);
 
                 }
                 else
