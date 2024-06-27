@@ -91,17 +91,21 @@ namespace TPCGrupo30
                     nuevo.Categoria.ID = int.Parse(ddlCategoria.SelectedValue);
                     nuevo.Contrasenia = txtContrasenia.Text;
                     UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
-                    if (usuarioNegocio.VerificarDNI(nuevo.DNI) != 0)
+                    if (Request.QueryString["id"] == null)
                     {
-                        lblError.ForeColor = System.Drawing.Color.Red;
-                        lblError.Text = "Ya existe usuario con ese DNI";
-                        return;
+                        if (usuarioNegocio.VerificarDNI(nuevo.DNI) != 0)
+                        {
+                            lblError.ForeColor = System.Drawing.Color.Red;
+                            lblError.Text = "Ya existe usuario con ese DNI";
+                            return;
+                        }
                     }
                     //nuevo.FechaRegistro = DateTime.Parse(txtFechaRegistro.Text);
                     //nuevo.Rol = ddlRol.SelectedIndex;
 
                     if (Request.QueryString["id"] != null)
                     {
+                        nuevo.ID = int.Parse(Request.QueryString["id"]);
                         negocio.modificarUsuario(nuevo);
                     }
                     else
@@ -120,8 +124,17 @@ namespace TPCGrupo30
         protected bool validarCampos()
         {
             if (string.IsNullOrEmpty(txtApellido.Text) || string.IsNullOrEmpty(txtDni.Text) || string.IsNullOrEmpty(txtDireccion.Text)
-                || string.IsNullOrEmpty(txtFechaNac.Text) || string.IsNullOrEmpty(txtContrasenia.Text))
+                || string.IsNullOrEmpty(txtFechaNac.Text))
             {
+                if (Request.QueryString["id"] == null)
+                {
+                    if (string.IsNullOrEmpty(txtContrasenia.Text))
+                    {
+                        lblError.ForeColor = System.Drawing.Color.Red;
+                        lblError.Text = "Por favor, elija su contraseña";
+                        return false;
+                    }
+                }
                 lblError.ForeColor = System.Drawing.Color.Red;
                 lblError.Text = "Por favor, completar todos los campos para continuar";
                 return false;
