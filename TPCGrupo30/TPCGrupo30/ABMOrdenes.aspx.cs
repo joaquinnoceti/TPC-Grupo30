@@ -12,11 +12,26 @@ namespace TPCGrupo30
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ServicioNegocio negocio = new ServicioNegocio();
-            Session.Add("listaServicios", negocio.Listar());
+            OrdenDeTrabajoNegocio negocio = new OrdenDeTrabajoNegocio();
 
-            dgvOrdenes.DataSource = Session["listaServicios"];
+
+            Session.Add("listaOrdenes", negocio.ListarOrdenes());
+
+            dgvOrdenes.DataSource = Session["listaOrdenes"];
             dgvOrdenes.DataBind();
+        }
+
+        protected void dgvOrdenes_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvOrdenes.PageIndex = e.NewPageIndex;
+            dgvOrdenes.DataBind();
+        }
+
+        protected void dgvOrdenes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var id = dgvOrdenes.SelectedDataKey.Value.ToString();
+
+            Response.Redirect("AltaOrden.aspx?ID=" + id);
         }
     }
 }

@@ -12,8 +12,13 @@ namespace TPCGrupo30
 {
     public partial class AltaServicio : System.Web.UI.Page
     {
+
         public List<Servicio> ServiciosList { get; set; }
         ServicioNegocio negocio = new ServicioNegocio();
+        ServicioNegocio negocio5 = new ServicioNegocio();
+        public List<Servicio> listaServiciosOrden { get; set; }
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -39,14 +44,28 @@ namespace TPCGrupo30
                     // Manejar el caso en que ServiciosList sea null
                     lblServicios.Text = "No se pudo cargar la lista de servicios.";
                 }
-            }
 
-            // Cargar el GridView con los datos de la sesión si existen
-            var listaServiciosAgregados = Session["listaServiciosAgregados"] as List<Servicio>;
-            if (listaServiciosAgregados != null)
+                // Cargar el GridView con los datos de la sesión si existen
+                var listaServiciosAgregados = Session["listaServiciosAgregados"] as List<Servicio>;
+                if (listaServiciosAgregados != null)
                 {
-                gdvServiciosAgregados.DataSource = listaServiciosAgregados;
-                gdvServiciosAgregados.DataBind();
+                    gdvServiciosAgregados.DataSource = listaServiciosAgregados;
+                    gdvServiciosAgregados.DataBind();
+                }
+
+                // Verificar si hay una ID en la query string para cargar los servicios de la orden de trabajo
+                if (Request.QueryString["ID"] != null)
+                {
+                    int id = int.Parse(Request.QueryString["ID"].ToString());
+                    listaServiciosOrden = negocio5.ListarOrdenesServicios(id);
+                    if (listaServiciosOrden != null)
+                    {
+                        gdvServiciosAgregados.DataSource = listaServiciosOrden;
+                        gdvServiciosAgregados.DataBind();
+                        // Guardar la lista en la sesión
+                        Session["listaServiciosAgregados"] = listaServiciosOrden;
+                    }
+                }
             }
 
         }
@@ -55,7 +74,16 @@ namespace TPCGrupo30
 
         protected void btnAgregarOT_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AltaOrden.aspx");
+
+            int id;
+            if (int.TryParse(Request.QueryString["ID"], out id))
+            {
+                Response.Redirect("AltaOrden.aspx?ID=" + id);
+            }
+            else
+            {
+                Response.Redirect("AltaOrden.aspx");
+            }
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
@@ -85,8 +113,8 @@ namespace TPCGrupo30
             // Enlazar el GridView con la lista de servicios agregados
             gdvServiciosAgregados.DataSource = listaServiciosAgregados;
             gdvServiciosAgregados.DataBind();
-
-        
         }
+
     }
+    
 }

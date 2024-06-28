@@ -11,17 +11,24 @@
             </div>
             <div class="col-md-4">
                 <asp:DropDownList ID="ddlFiltrar" runat="server" CssClass="form-control">
-                    <asp:ListItem Text="Opción 1" Value="1" />
-                    <asp:ListItem Text="Opción 2" Value="2" />
+                    <asp:ListItem Text="ID" Value="1" />
+                    <asp:ListItem Text="Cliente" Value="2" />
+                    <asp:ListItem Text="Empleado" Value="2" />
                 </asp:DropDownList>
             </div>
             <div class="col-md-4">
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary" />
             </div>
         </div>
-        <asp:GridView ID="dgvOrdenes" CssClass="table table-dark" runat="server">
+        <asp:GridView ID="dgvOrdenes" CssClass="table table-dark table-bordered table-striped" runat="server" AutoGenerateColumns="false" DataKeyNames="ID" OnPageIndexChanging="dgvOrdenes_PageIndexChanging" OnSelectedIndexChanged="dgvOrdenes_SelectedIndexChanged" AllowPaging="true" PageSize="15">
             <Columns>
-                <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Acción" />
+                <asp:CommandField ButtonType="Button" ControlStyle-BackColor="green" ItemStyle-Width="5%"  ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Acción" />
+                <asp:BoundField DataField="Cliente.Apellido" HeaderText="Cliente" />
+                <asp:BoundField DataField="Mecanico.Apellido" HeaderText="Mecanico" />
+                <asp:BoundField DataField="Vehiculo.NombreVehiculo" HeaderText="Vehiculo" />
+                <asp:BoundField DataField="Total" HeaderText="Total" />
+                <asp:BoundField DataField="Cobrado" HeaderText="Cobrado" />
+                <asp:BoundField DataField="Estado.NombreEstado" HeaderText="Estado" />
             </Columns>
         </asp:GridView>
     </div>

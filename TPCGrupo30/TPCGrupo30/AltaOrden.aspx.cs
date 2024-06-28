@@ -17,60 +17,27 @@ namespace TPCGrupo30
         ServicioNegocio negocio2 = new ServicioNegocio();
         UsuarioNegocio negocio3 = new UsuarioNegocio();
         OrdenDeTrabajoNegocio negocio4 = new OrdenDeTrabajoNegocio();
+        ServicioNegocio negocio5 = new ServicioNegocio();
 
-
+        public List<Servicio> listaServiciosOrden { get; set; }
         public List<Servicio> listaServiciosAgregados1 { get; set; }
+
+        public List<Servicio> listaServiciosAgregados2 { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
                 if (!IsPostBack)
                 {
-                    List<Cliente> listaCliente = negocio.ListarDDL();
+                    // Cargar datos iniciales
+                    CargarDatosIniciales();
 
-                    ddlCliente.DataSource = listaCliente;
-                    ddlCliente.DataValueField = "ID";
-                    ddlCliente.DataTextField = "Apellido";
-                    ddlCliente.DataBind();
-
-
-                    List<Vehiculo> listaVehiculos = negocio1.Listar();
-                    Session["listaVehiculos"] = listaVehiculos;
-                    ddlVehiculo.DataValueField = "IDVehiculo";
-                    ddlVehiculo.DataTextField = "NombreVehiculo";
-                    ddlVehiculo.DataBind();
-
-                    listaServiciosAgregados1 = (List<Servicio>)Session["listaServiciosAgregados"];
-
-                    gdvServiciosAgregados1.DataSource = listaServiciosAgregados1;
-                    gdvServiciosAgregados1.DataBind();
-
-                    List<Usuario> listaEmpleados = negocio3.Listar();
-
-                    ddlMecanico.DataSource = listaEmpleados;
-                    ddlMecanico.DataValueField = "ID";
-                    ddlMecanico.DataTextField = "Apellido";
-                    ddlMecanico.DataBind();
-
-                    List<EstadoOrden> listaEstados = negocio4.ListarEstados();
-
-                    ddlEstado.DataSource = listaEstados;
-                    ddlEstado.DataValueField = "ID";
-                    ddlEstado.DataTextField = "NombreEstado";
-                    ddlEstado.DataBind();
-
-                    decimal total = 0;
-
-                    foreach (Servicio servicio in listaServiciosAgregados1)
+                    // Verificar si hay un ID en la consulta
+                    if (Request.QueryString["ID"] != null)
                     {
-
-                        total += servicio.Precio;
-
+                        int idOrden = int.Parse(Request.QueryString["ID"].ToString());
+                        CargarDatosOrden(idOrden);
                     }
-
-                    txtTotal.Text = total.ToString("N2"); // Formatear como moneda
-
-                    
                 }
             }
             catch (Exception ex)
@@ -79,19 +46,129 @@ namespace TPCGrupo30
             }
         }
 
+        private void CargarDatosIniciales()
+        {
+            // Cargar lista de clientes
+            List<Cliente> listaCliente = negocio.ListarDDL();
+            ddlCliente.DataSource = listaCliente;
+            ddlCliente.DataValueField = "ID";
+            ddlCliente.DataTextField = "Apellido";
+            ddlCliente.DataBind();
+
+            // Cargar lista de vehiculos
+            List<Vehiculo> listaVehiculos = negocio1.Listar();
+            Session["listaVehiculos"] = listaVehiculos;
+            ddlVehiculo.DataSource = listaVehiculos;
+            ddlVehiculo.DataValueField = "IDVehiculo";
+            ddlVehiculo.DataTextField = "NombreVehiculo";
+            ddlVehiculo.DataBind();
+
+            // Cargar servicios agregados
+            listaServiciosAgregados1 = (List<Servicio>)Session["listaServiciosAgregados"];
+            gdvServiciosAgregados1.DataSource = listaServiciosAgregados1;
+            gdvServiciosAgregados1.DataBind();
+
+            // Cargar lista de empleados
+            List<Usuario> listaEmpleados = negocio3.Listar();
+            ddlMecanico.DataSource = listaEmpleados;
+            ddlMecanico.DataValueField = "ID";
+            ddlMecanico.DataTextField = "Apellido";
+            ddlMecanico.DataBind();
+
+            // Cargar lista de estados
+            List<EstadoOrden> listaEstados = negocio4.ListarEstados();
+            ddlEstado.DataSource = listaEstados;
+            ddlEstado.DataValueField = "ID";
+            ddlEstado.DataTextField = "NombreEstado";
+            ddlEstado.DataBind();
+
+            // Calcular el total inicial
+            CalcularTotal();
+        }
+
         private void CalcularTotal()
         {
             decimal total = 0;
-
-            foreach (Servicio servicio in listaServiciosAgregados1)
+            if (Request.QueryString["ID"] != null)
             {
+                int idOrden = int.Parse(Request.QueryString["ID"].ToString());
+                listaServiciosOrden = negocio5.ListarOrdenesServicios(idOrden);
+                foreach (Servicio servicio in listaServiciosOrden)
+                {
+                    total += servicio.Precio;
+                }
+            }
+            else
+            {
+                foreach (Servicio servicio in listaServiciosAgregados1)
+                {
+                    total += servicio.Precio;
+                }
+            }
+            txtTotal.Text = total.ToString("N2"); // Formatear como moneda
+        }
+
+        private void CargarDatosOrden(int id)
+        {
+            // Obtener la orden de trabajo
+            OrdenDeTrabajoNegocio negocio = new OrdenDeTrabajoNegocio();
+            List<OrdenDeTrabajo> listaOrdenes = negocio.ListarOrdenes();
+            OrdenDeTrabajo seleccionado = listaOrdenes.Find(x => x.ID == id);
+
+            if (seleccionado != null)
+            {
+                txtFechaEmision.Text = seleccionado.FechaCreacion.ToString("yyyy-MM-dd");
+                txtFechaEmision.ReadOnly = true;
+
+                txtCliente.Text = seleccionado.Cliente.Apellido.ToString();
+                txtCliente.ReadOnly = true;
+
+                txtVehiculo.Text = seleccionado.Vehiculo.NombreVehiculo;
+                txtVehiculo.ReadOnly = true;
+
+                txtReales.Text = seleccionado.HorasReales.ToString();
+                txtTeoricas.Text = seleccionado.HorasTeoricas.ToString();
+                tbObservaciones.Text = seleccionado.Observaciones.ToString();
+                txtFechaFin.Text = seleccionado.FechaFinalizacion.ToString("yyyy-MM-dd");
+                txtTotal.Text = seleccionado.Total.ToString("N2");
+
+                ddlMecanico.SelectedValue = seleccionado.Mecanico.ID.ToString();
+                ddlEstado.SelectedValue = seleccionado.Estado.ID.ToString();
+
+                rdbSi.Checked = seleccionado.Cobrado;
+                rdbNo.Checked = !seleccionado.Cobrado;
+
+                // Actualizar servicios agregados
+                if (Session["listaServiciosAgregados"] != null)
+                {
+                    listaServiciosOrden = (List<Servicio>)Session["listaServiciosAgregados"];
+                }
+                else
+                {
+                    listaServiciosOrden = negocio5.ListarOrdenesServicios(id);
+                    Session["listaServiciosAgregados"] = listaServiciosOrden;
+                }
+
+                decimal total = 0;
+
+                foreach (Servicio servicio in listaServiciosOrden)
+                {
 
                     total += servicio.Precio;
 
-            }
+                }
 
-            txtTotal.Text = total.ToString("C"); // Formatear como moneda
+                txtTotal.Text = total.ToString("N2"); // Formatear como moneda
+
+
+                gdvServiciosAgregados2.DataSource = listaServiciosOrden;
+                gdvServiciosAgregados2.DataBind();
+
+
+            }
         }
+
+
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             OrdenDeTrabajoNegocio negocio = new OrdenDeTrabajoNegocio();    
@@ -228,14 +305,82 @@ namespace TPCGrupo30
    
         }
 
-        protected void btnAgregarServicio_Click(object sender, EventArgs e)
+
+        protected void btnModificarServicios_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AltaServicio.aspx");
+            int idOrden = int.Parse(Request.QueryString["ID"].ToString()); 
+
+            Response.Redirect("AltaServicio.aspx?ID=" + idOrden);
 
         }
 
-    
-  
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            OrdenDeTrabajoNegocio negocio = new OrdenDeTrabajoNegocio();
 
+            OrdenDeTrabajo ordenMod = new OrdenDeTrabajo();
+
+            DateTime fechaFinalizacion;
+            string[] formatosFecha = { "dd/MM/yyyy", "MM/dd/yyyy", "yyyy-MM-dd" };
+
+            if (!DateTime.TryParseExact(txtFechaFin.Text, formatosFecha, null, System.Globalization.DateTimeStyles.None, out fechaFinalizacion))
+            {
+                lblError.Text = "La fecha de finalización no tiene un formato válido.";
+                return;
+            }
+
+            try
+            {
+                ordenMod.HorasReales = int.Parse(txtReales.Text);             
+                ordenMod.HorasTeoricas = int.Parse(txtTeoricas.Text);
+                ordenMod.Observaciones = tbObservaciones.Text;
+                ordenMod.FechaFinalizacion = fechaFinalizacion;
+               
+              
+                Usuario em = new Usuario();
+                em.ID = int.Parse(ddlMecanico.SelectedItem.Value);
+                em.Apellido = ddlMecanico.SelectedItem.Text;
+                ordenMod.Mecanico = em;
+
+                EstadoOrden est = new EstadoOrden();
+                est.ID = int.Parse(ddlEstado.SelectedItem.Value);
+                est.NombreEstado = ddlEstado.SelectedItem.Text;
+                ordenMod.Estado = est;
+
+                List<Servicio> listaServiciosAgregados = (List<Servicio>)Session["listaServiciosAgregados"];
+                ordenMod.Servicios = listaServiciosAgregados;
+
+                decimal total = 0;
+
+                foreach (Servicio servicio in listaServiciosAgregados)
+                {
+
+                    total += servicio.Precio;
+
+                }
+
+                txtTotal.Text = total.ToString("N2"); // Formatear como moneda
+
+                ordenMod.Total = total;
+
+
+                if (rdbSi.Checked)
+                {
+                    ordenMod.Cobrado = true;
+                }
+                else if (rdbNo.Checked)
+                {
+                    ordenMod.Cobrado = false;
+                }
+
+                negocio.ModificarOrden(ordenMod);
+
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("error", ex);
+            }
+        }
     }
 }
