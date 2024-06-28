@@ -15,6 +15,7 @@
                     <asp:ListItem Text="Nombre" Value="1" />
                     <asp:ListItem Text="Apellido" Value="2" />
                     <asp:ListItem Text="Categoria" Value="3" />
+                    <asp:ListItem Text="DNI" Value="4" />
                 </asp:DropDownList>
             </div>
             <div class="col-md-4">

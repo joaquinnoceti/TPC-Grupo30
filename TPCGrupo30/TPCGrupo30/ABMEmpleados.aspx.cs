@@ -25,19 +25,46 @@ namespace TPCGrupo30
         {
             List<Usuario> lista = (List<Usuario>)Session["listaUsuarios"];
             List<Usuario> filtrada;
-            if (ddlFiltrar.SelectedItem.Text == "Nombre")
+            switch (ddlFiltrar.SelectedItem.Text)
             {
-                filtrada = lista.FindAll(x => x.Nombre.ToLower().Contains(txtBuscar.Text.ToLower()));
-                dgvEmpleados.DataSource = filtrada;
-                dgvEmpleados.DataBind();
+                case ("Nombre"):
+                    filtrada = lista.FindAll(x => x.Nombre.ToLower().Contains(txtBuscar.Text.ToLower()));
+                    dgvEmpleados.DataSource = filtrada;
+                    dgvEmpleados.DataBind();
+                    break;
+                case ("Apellido"):
+                    filtrada = lista.FindAll(x => x.Apellido.ToLower().Contains(txtBuscar.Text.ToLower()));
+                    dgvEmpleados.DataSource = filtrada;
+                    dgvEmpleados.DataBind();
+                    break;
+                case ("DNI"):
+                    if (txtBuscar.Text == "")
+                    {
+                        filtrada = lista;
+                    }
+                    else
+                    {
+                        filtrada = lista.FindAll(x => x.DNI.Equals(int.Parse(txtBuscar.Text)));
+                        dgvEmpleados.DataSource = filtrada;
+                        dgvEmpleados.DataBind();
+                    }
+                    break;
+                default:
+                    break;
             }
-            else
-            {
-                //busqueda por apellido..... armar filtro con case para buscar x mas parametros....
-                filtrada = lista.FindAll(x => x.Apellido.ToLower().Contains(txtBuscar.Text.ToLower()));
-                dgvEmpleados.DataSource = filtrada;
-                dgvEmpleados.DataBind();
-            }
+            //if (ddlFiltrar.SelectedItem.Text == "Nombre")
+            //{
+            //    filtrada = lista.FindAll(x => x.Nombre.ToLower().Contains(txtBuscar.Text.ToLower()));
+            //    dgvEmpleados.DataSource = filtrada;
+            //    dgvEmpleados.DataBind();
+            //}
+            //else
+            //{
+            //    //busqueda por apellido..... armar filtro con case para buscar x mas parametros....
+            //    filtrada = lista.FindAll(x => x.Apellido.ToLower().Contains(txtBuscar.Text.ToLower()));
+            //    dgvEmpleados.DataSource = filtrada;
+            //    dgvEmpleados.DataBind();
+            //}
         }
 
         protected void dgvEmpleados_RowCommand(object sender, GridViewCommandEventArgs e)
