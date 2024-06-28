@@ -64,34 +64,40 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-        public void altaUsuario(Usuario nuevo)
+        public bool altaUsuario(Usuario nuevo)
         {
             AccesoDatos1 datos = new AccesoDatos1();
-            try
+            if (VerificarDNI(nuevo.DNI) == 0)
             {
-                datos.setearSP("spAltaUsuario");
-                datos.setearParametro("@Nombre", nuevo.Nombre);
-                datos.setearParametro("@Apellido", nuevo.Apellido);
-                datos.setearParametro("@DNI", nuevo.DNI);
-                datos.setearParametro("@FechaNac", nuevo.FechaNacimiento);
-                datos.setearParametro("@Email", nuevo.Email);
-                datos.setearParametro("@Telefono", nuevo.Telefono);
-                datos.setearParametro("@Direccion", nuevo.Direccion);
-                datos.setearParametro("@IdEspecialidad", nuevo.Especialidad.ID);
-                datos.setearParametro("@IdCategoria", nuevo.Categoria.ID);
-                datos.setearParametro("@Contrasenia", nuevo.Contrasenia);
+                try
+                {
+                    datos.setearSP("spAltaUsuario");
+                    datos.setearParametro("@Nombre", nuevo.Nombre);
+                    datos.setearParametro("@Apellido", nuevo.Apellido);
+                    datos.setearParametro("@DNI", nuevo.DNI);
+                    datos.setearParametro("@FechaNac", nuevo.FechaNacimiento);
+                    datos.setearParametro("@Email", nuevo.Email);
+                    datos.setearParametro("@Telefono", nuevo.Telefono);
+                    datos.setearParametro("@Direccion", nuevo.Direccion);
+                    datos.setearParametro("@IdEspecialidad", nuevo.Especialidad.ID);
+                    datos.setearParametro("@IdCategoria", nuevo.Categoria.ID);
+                    datos.setearParametro("@Contrasenia", nuevo.Contrasenia);
 
-                datos.ejecutar();
-            }
-            catch (Exception ex)
-            {
+                    datos.ejecutar();
+                    return true;
+                }
+                catch (Exception ex)
+                {
 
-                throw ex;
+                    throw ex;
+                }
+                finally
+                {
+                    datos.cerrarConexion();
+                }
             }
-            finally
-            {
-                datos.cerrarConexion();
-            }
+            else
+                return false;
         }
 
         public void bajaUsuario(int id)
@@ -149,6 +155,25 @@ namespace negocio
                 datos.cerrarConexion();
             }
 
+        }
+        public int VerificarDNI(int dni)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string query = "SELECT DNI FROM Usuarios WHERE DNI = '" + dni + "'";
+                int resultado = datos.executaScalar(query);
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
 

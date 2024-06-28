@@ -75,6 +75,10 @@ namespace TPCGrupo30
         {
             try
             {
+                Page.Validate();
+                if (!Page.IsValid)
+                    return;
+
                 if (validarCampos())
                 {
                     Vehiculo nuevo = new Vehiculo();

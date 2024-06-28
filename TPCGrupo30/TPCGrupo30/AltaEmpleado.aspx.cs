@@ -59,53 +59,87 @@ namespace TPCGrupo30
         {
             try
             {
-                Usuario nuevo = new Usuario();
-                UsuarioNegocio negocio = new UsuarioNegocio();
-
-                // Formatos esperados de las fechas
-                string[] formatosFecha = { "dd/MM/yyyy", "MM/dd/yyyy", "yyyy-MM-dd" }; // Ajusta los formatos según tus necesidades
-
-                // Validar fecha de nacimiento
-                DateTime fechaNacimiento;
-                if (!DateTime.TryParseExact(txtFechaNac.Text, formatosFecha, null, System.Globalization.DateTimeStyles.None, out fechaNacimiento))
+                if (validarCampos())
                 {
-                    lblError.Text = "La fecha de nacimiento no tiene un formato válido.";
-                    return;
+
+                    Usuario nuevo = new Usuario();
+                    UsuarioNegocio negocio = new UsuarioNegocio();
+
+                    // Formatos esperados de las fechas
+                    string[] formatosFecha = { "dd/MM/yyyy", "MM/dd/yyyy", "yyyy-MM-dd" }; // Ajusta los formatos según tus necesidades
+
+                    // Validar fecha de nacimiento
+                    DateTime fechaNacimiento;
+                    if (!DateTime.TryParseExact(txtFechaNac.Text, formatosFecha, null, System.Globalization.DateTimeStyles.None, out fechaNacimiento))
+                    {
+                        lblError.Text = "La fecha de nacimiento no tiene un formato válido.";
+                        return;
+                    }
+
+                    nuevo.Nombre = txtNombre.Text;
+                    nuevo.Apellido = txtApellido.Text;
+                    nuevo.DNI = int.Parse(txtDni.Text);
+                    nuevo.FechaNacimiento = fechaNacimiento;
+                    nuevo.Email = txtEmail.Text;
+                    nuevo.Telefono = txtTelefono.Text;
+                    nuevo.Direccion = txtDireccion.Text;
+
+                    nuevo.Especialidad = new Especialidad();
+                    nuevo.Especialidad.ID = int.Parse(ddlEspecialidad.SelectedValue);
+
+                    nuevo.Categoria = new Categoria();
+                    nuevo.Categoria.ID = int.Parse(ddlCategoria.SelectedValue);
+                    nuevo.Contrasenia = txtContrasenia.Text;
+                    UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+                    if (Request.QueryString["id"] == null)
+                    {
+                        if (usuarioNegocio.VerificarDNI(nuevo.DNI) != 0)
+                        {
+                            lblError.ForeColor = System.Drawing.Color.Red;
+                            lblError.Text = "Ya existe usuario con ese DNI";
+                            return;
+                        }
+                    }
+                    //nuevo.FechaRegistro = DateTime.Parse(txtFechaRegistro.Text);
+                    //nuevo.Rol = ddlRol.SelectedIndex;
+
+                    if (Request.QueryString["id"] != null)
+                    {
+                        nuevo.ID = int.Parse(Request.QueryString["id"]);
+                        negocio.modificarUsuario(nuevo);
+                    }
+                    else
+                    {
+                        negocio.altaUsuario(nuevo);
+                    }
+                    Response.Redirect("ABMEmpleados.aspx");
                 }
-
-                nuevo.Nombre = txtNombre.Text;
-                nuevo.Apellido = txtApellido.Text;
-                nuevo.DNI = int.Parse(txtDni.Text);
-                nuevo.FechaNacimiento = fechaNacimiento;
-                nuevo.Email = txtEmail.Text;
-                nuevo.Telefono = txtTelefono.Text;
-                nuevo.Direccion = txtDireccion.Text;
-
-                nuevo.Especialidad = new Especialidad();
-                nuevo.Especialidad.ID = int.Parse(ddlEspecialidad.SelectedValue);
-
-                nuevo.Categoria = new Categoria();
-                nuevo.Categoria.ID = int.Parse(ddlCategoria.SelectedValue);
-                nuevo.Contrasenia = txtContrasenia.Text;
-                //nuevo.FechaRegistro = DateTime.Parse(txtFechaRegistro.Text);
-                //nuevo.Rol = ddlRol.SelectedIndex;
-
-                if (Request.QueryString["id"] != null)
-                {
-                    negocio.modificarUsuario(nuevo);
-                }
-                else
-                {
-                    negocio.altaUsuario(nuevo);
-                }
-                Response.Redirect("ABMEmpleados.aspx");
-
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
+        }
+        protected bool validarCampos()
+        {
+            if (string.IsNullOrEmpty(txtApellido.Text) || string.IsNullOrEmpty(txtDni.Text) || string.IsNullOrEmpty(txtDireccion.Text)
+                || string.IsNullOrEmpty(txtFechaNac.Text))
+            {
+                if (Request.QueryString["id"] == null)
+                {
+                    if (string.IsNullOrEmpty(txtContrasenia.Text))
+                    {
+                        lblError.ForeColor = System.Drawing.Color.Red;
+                        lblError.Text = "Por favor, elija su contraseña";
+                        return false;
+                    }
+                }
+                lblError.ForeColor = System.Drawing.Color.Red;
+                lblError.Text = "Por favor, completar todos los campos para continuar";
+                return false;
+            }
+            return true;
         }
     }
 }
