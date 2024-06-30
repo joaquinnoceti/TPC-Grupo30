@@ -11,7 +11,7 @@ namespace TPCGrupo30
 {
 
 
-    public partial class NuevaOrden
+    public partial class AltaOrden
     {
 
         /// <summary>

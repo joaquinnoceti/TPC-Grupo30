@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 
 namespace TPCGrupo30
 {
-    public partial class NuevaOrden : System.Web.UI.Page
+    public partial class AltaOrden : System.Web.UI.Page
     {
         VehiculoNegocio negocio1 = new VehiculoNegocio();
         ClienteNegocio negocio = new ClienteNegocio();
@@ -329,8 +329,11 @@ namespace TPCGrupo30
                 return;
             }
 
+            int idOrden = int.Parse(Request.QueryString["ID"].ToString());
+
             try
             {
+                ordenMod.ID = idOrden;
                 ordenMod.HorasReales = int.Parse(txtReales.Text);             
                 ordenMod.HorasTeoricas = int.Parse(txtTeoricas.Text);
                 ordenMod.Observaciones = tbObservaciones.Text;
@@ -350,28 +353,12 @@ namespace TPCGrupo30
                 List<Servicio> listaServiciosAgregados = (List<Servicio>)Session["listaServiciosAgregados"];
                 ordenMod.Servicios = listaServiciosAgregados;
 
-                decimal total = 0;
-
-                foreach (Servicio servicio in listaServiciosAgregados)
-                {
-
-                    total += servicio.Precio;
-
-                }
-
+                decimal total = listaServiciosAgregados.Sum(servicio => servicio.Precio);
                 txtTotal.Text = total.ToString("N2"); // Formatear como moneda
-
                 ordenMod.Total = total;
 
+                ordenMod.Cobrado = rdbSi.Checked; 
 
-                if (rdbSi.Checked)
-                {
-                    ordenMod.Cobrado = true;
-                }
-                else if (rdbNo.Checked)
-                {
-                    ordenMod.Cobrado = false;
-                }
 
                 negocio.ModificarOrden(ordenMod);
 

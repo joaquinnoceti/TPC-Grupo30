@@ -165,9 +165,10 @@ namespace negocio
 
             try
             {
-                datos.abrirConexion(); 
-                datos.setearConsulta("UPDATE OrdenDeTrabajo SET ID=@ID,HorasTeoricas=@HorasTeoricas,HorasReales=@HorasReales,FechaFinalizacion=@FechaFinalizacion,Observaciones=@Observaciones,Total=@Total,Cobrado=@Cobrado,IdEmpleado=@IdEmpleado,Estado=@Estado,CreadoPor=@CreadoPor where ID = @ID");
-                datos.setearParametro("@ID", orden.ID);
+                datos.abrirConexion();
+                int Id = orden.ID;
+                datos.setearConsulta("UPDATE OrdenDeTrabajo SET HorasTeoricas=@HorasTeoricas,HorasReales=@HorasReales,FechaFinalizacion=@FechaFinalizacion,Observaciones=@Observaciones,Total=@Total,Cobrado=@Cobrado,IdEmpleado=@IdEmpleado,Estado=@Estado,CreadoPor=@CreadoPor where ID = "+ Id);
+                //datos.setearParametro("@ID", orden.ID);
                 datos.setearParametro("@HorasTeoricas", orden.HorasTeoricas);
                 datos.setearParametro("@HorasReales", orden.HorasReales);
                 datos.setearParametro("@FechaFinalizacion", orden.FechaFinalizacion);
@@ -179,17 +180,22 @@ namespace negocio
                 datos.setearParametro("@CreadoPor", orden.Mecanico.ID);
 
                 datos.ejecutarConsulta();
-                datos.Lector.Close();
                 datos.cerrarConexion();
 
-                // Insertar cada servicio asociado en la tabla intermedia
+                // Delete existing services for the order
+                datos.abrirConexion();
+                datos.setearConsulta("DELETE FROM OrdenServicio WHERE IdOrden = @IdOrden");
+                datos.setearParametro("@IdOrden", orden.ID);
+                datos.ejecutar();
+                datos.cerrarConexion();
+
+                // Insert each service associated with the order
                 foreach (Servicio item in orden.Servicios)
                 {
                     datos.abrirConexion();
-                    datos.setearConsulta("UPDATE INTO OrdenServicio(IdServicio) VALUES(@IdServicio)");
-                    //datos.setearParametro("@IdOrden", orden.ID);
+                    datos.setearConsulta("INSERT INTO OrdenServicio (IdOrden, IdServicio) VALUES (@IdOrden, @IdServicio)");
+                    datos.setearParametro("@IdOrden", orden.ID);
                     datos.setearParametro("@IdServicio", item.ID);
-
                     datos.ejecutar();
                     datos.cerrarConexion();
                 }

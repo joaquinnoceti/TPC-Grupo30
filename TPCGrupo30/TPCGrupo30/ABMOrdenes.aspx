@@ -23,6 +23,7 @@
         <asp:GridView ID="dgvOrdenes" CssClass="table table-dark table-bordered table-striped" runat="server" AutoGenerateColumns="false" DataKeyNames="ID" OnPageIndexChanging="dgvOrdenes_PageIndexChanging" OnSelectedIndexChanged="dgvOrdenes_SelectedIndexChanged" AllowPaging="true" PageSize="15">
             <Columns>
                 <asp:CommandField ButtonType="Button" ControlStyle-BackColor="green" ItemStyle-Width="5%"  ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Acción" />
+                 <asp:BoundField DataField="ID" HeaderText="NUMERO" />
                 <asp:BoundField DataField="Cliente.Apellido" HeaderText="Cliente" />
                 <asp:BoundField DataField="Mecanico.Apellido" HeaderText="Mecanico" />
                 <asp:BoundField DataField="Vehiculo.NombreVehiculo" HeaderText="Vehiculo" />

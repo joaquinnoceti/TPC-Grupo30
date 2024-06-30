@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Nueva OT" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="AltaOrden.aspx.cs" Inherits="TPCGrupo30.NuevaOrden" %>
+﻿<%@ Page Title="Nueva OT" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="AltaOrden.aspx.cs" Inherits="TPCGrupo30.AltaOrden" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -63,7 +63,8 @@
                             {%>
                         <div class="form-group mb-3">
                             <asp:Label ID="lblServicios" runat="server" Text="Label">Servicios</asp:Label>
-                            <asp:GridView ID="gdvServiciosAgregados1" CssClass="table" runat="server"></asp:GridView>
+                            <asp:GridView ID="gdvServiciosAgregados1" CssClass="table" runat="server">
+                            </asp:GridView>
                         </div>
                         <%}%>
                         <div class="form-group mb-3">
