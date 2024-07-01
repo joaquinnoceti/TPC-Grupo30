@@ -115,6 +115,23 @@ namespace TPCGrupo30
             gdvServiciosAgregados.DataBind();
         }
 
+        protected void gdvServiciosAgregados_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "RemoveService")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                List<Servicio> listaServiciosAgregados = (List<Servicio>)Session["listaServiciosAgregados"];
+
+                if (listaServiciosAgregados != null && listaServiciosAgregados.Count > index)
+                {
+                    listaServiciosAgregados.RemoveAt(index);
+                    Session["listaServiciosAgregados"] = listaServiciosAgregados;
+
+                    gdvServiciosAgregados.DataSource = listaServiciosAgregados;
+                    gdvServiciosAgregados.DataBind();
+                }
+            }
+        }
     }
     
 }

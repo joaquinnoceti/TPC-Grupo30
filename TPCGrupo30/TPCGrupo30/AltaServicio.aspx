@@ -17,18 +17,28 @@
                     </div>
                     <div class="ml-auto">
                     </div>
-                    <asp:GridView ID="gdvServiciosAgregados" CssClass="table" runat="server">
+                    <asp:GridView ID="gdvServiciosAgregados" CssClass="table" runat="server" AutoGenerateColumns="False" OnRowCommand="gdvServiciosAgregados_RowCommand">
+
+                        <Columns>
+                            <asp:BoundField DataField="NombreServicio" HeaderText="Nombre del Servicio" />
+                            <asp:BoundField DataField="Precio" HeaderText="Precio" DataFormatString="{0:N2}" />
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:Button ID="btnRemove" runat="server" Text="Quitar" CommandName="RemoveService" CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn btn-danger" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
                     </asp:GridView>
-                   
-                    <div class="ml-auto">
+                    <div class="ml-auto"></div>
+                    <div class="col-md-12 d-flex justify-content-between">
                         <asp:Button ID="btnAgregarOT" runat="server" CssClass="btn btn-primary btn-lg" OnClick="btnAgregarOT_Click" Text="Crear Orden de Trabajo" />
-                    </div>
-                    <div class="ml-auto">
-                        <a href="ABMOrdenes.aspx" class="btn btn-outline-danger">Atras</a>
+                        <a href="ABMOrdenes.aspx" class="btn btn-outline-danger btn-lg">Atras</a>
+                        <a href="NuevoServicio.aspx" class="btn btn-outline-danger btn-lg">Nuevo Servicio</a>
                     </div>
                 </div>
-            </div>
+             </div>
         </div>
     </div>
+    <br />
 
 </asp:Content>

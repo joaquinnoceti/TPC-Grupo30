@@ -72,6 +72,7 @@
     <Content Include="ABMEmpleados.aspx" />
     <Content Include="ABMCostos.aspx" />
     <Content Include="ABMOrdenes.aspx" />
+    <Content Include="ABMServicios.aspx" />
     <Content Include="AltaServicio.aspx" />
     <Content Include="AltaVehiculo.aspx" />
     <Content Include="AltaCliente.aspx" />
@@ -83,6 +84,7 @@
     <Content Include="Login.aspx" />
     <Content Include="Global.asax" />
     <Content Include="AltaOrden.aspx" />
+    <Content Include="NuevoServicio.aspx" />
     <Content Include="Principal.aspx" />
     <Content Include="Registrarse.aspx" />
     <Content Include="Web.config" />
@@ -115,6 +117,13 @@
     </Compile>
     <Compile Include="ABMOrdenes.aspx.designer.cs">
       <DependentUpon>ABMOrdenes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ABMServicios.aspx.cs">
+      <DependentUpon>ABMServicios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMServicios.aspx.designer.cs">
+      <DependentUpon>ABMServicios.aspx</DependentUpon>
     </Compile>
     <Compile Include="AltaServicio.aspx.cs">
       <DependentUpon>AltaServicio.aspx</DependentUpon>
@@ -188,6 +197,13 @@
     </Compile>
     <Compile Include="AltaOrden.aspx.designer.cs">
       <DependentUpon>AltaOrden.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NuevoServicio.aspx.cs">
+      <DependentUpon>NuevoServicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NuevoServicio.aspx.designer.cs">
+      <DependentUpon>NuevoServicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Principal.aspx.cs">
       <DependentUpon>Principal.aspx</DependentUpon>
