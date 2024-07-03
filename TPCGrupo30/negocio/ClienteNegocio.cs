@@ -58,6 +58,44 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public List<Cliente> ListarInactivos()
+        {
+            List<Cliente> lista = new List<Cliente>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT c.ID,c.Nombre,c.Apellido,c.Email,c.DNI,c.Telefono,c.FechaNac,c.Direccion FROM Clientes c where C.ACTIVO = 0 ");
+                datos.ejecutarConsulta();
+
+                while (datos.Lector.Read())
+                {
+
+                    Cliente aux = new Cliente();
+
+                    aux.ID = (int)datos.Lector["ID"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Email = (string)datos.Lector["Email"];
+                    aux.DNI = (int)datos.Lector["DNI"];
+                    aux.Telefono = (string)datos.Lector["Telefono"];
+                    aux.FechaNac = DateTime.Parse(datos.Lector["FechaNac"].ToString());
+                    aux.Direccion = (string)datos.Lector["Direccion"];
+
+                    lista.Add(aux);
+                }
+                return lista;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            finally { datos.cerrarConexion(); }
+        }
+
         public bool altaCliente(Cliente nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -94,30 +132,60 @@ namespace negocio
             }
         }
 
-        public void bajaCliente(int id)
+        public void bajaCliente(int id,bool activo = true)
         {
             AccesoDatos datos = new AccesoDatos();
-            try
+            
+            if(activo == true)  //cliente activo
             {
-                DialogResult rta = MessageBox.Show("Eliminar Cliente?", "Cliente Eliminado.", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                if (rta == DialogResult.Yes)
+                try
                 {
-                    datos.setearConsulta("UPDATE CLIENTES SET ACTIVO = 0 WHERE ID = @ID");
-                    datos.setearParametro("@ID", id);
-                    datos.ejecutarConsulta();
+                    DialogResult rta = MessageBox.Show("Eliminar Cliente?", "Eliminar Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                    if (rta == DialogResult.Yes)
+                    {
+                        datos.setearConsulta("UPDATE CLIENTES SET ACTIVO = 0 WHERE ID = @ID");
+                        datos.setearParametro("@ID", id);
+                        datos.ejecutarConsulta();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+                finally
+                {
+                    datos.cerrarConexion();
+                }
+            }
+            else //cliente inactivo
+            {
+                try
+                {
+                    DialogResult rta = MessageBox.Show("Reactivar Cliente?", "Reactivar Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                    if (rta == DialogResult.Yes)
+                    {
+                        datos.setearConsulta("UPDATE CLIENTES SET ACTIVO = 1 WHERE ID = @ID");
+                        datos.setearParametro("@ID", id);
+                        datos.ejecutarConsulta();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+                finally
+                {
+                    datos.cerrarConexion();
                 }
 
             }
-            catch (Exception ex)
-            {
 
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
         }
+
         public List<Cliente> ListarDDL()
         {
             List<Cliente> lista = new List<Cliente>();

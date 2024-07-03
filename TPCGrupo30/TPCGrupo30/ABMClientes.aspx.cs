@@ -12,13 +12,20 @@ namespace TPCGrupo30
 {
     public partial class ABMClientes : System.Web.UI.Page
     {
+
+        public bool FiltroInactivos { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            ClienteNegocio negocio = new ClienteNegocio();
-            Session.Add("listaClientes", negocio.Listar());
+            if (!IsPostBack)
+            {
+                FiltroInactivos = false;
+                ClienteNegocio negocio = new ClienteNegocio();
+                Session.Add("listaClientes", negocio.Listar());
 
-            dgvClientes.DataSource = Session["listaClientes"];
-            dgvClientes.DataBind();
+                dgvClientes.DataSource = Session["listaClientes"];
+                dgvClientes.DataBind();
+            }
+            
         }
 
         protected void txtBuscar_TextChanged(object sender, EventArgs e)
@@ -31,14 +38,13 @@ namespace TPCGrupo30
                 dgvClientes.DataSource = filtrada;
                 dgvClientes.DataBind();
             }
-            else
+            else if (ddlFiltrar.SelectedItem.Text == "Apellido")
             {
                 //busqueda por apellido..... armar filtro con case para buscar x mas parametros....
                 filtrada = lista.FindAll(x => x.Apellido.ToLower().Contains(txtBuscar.Text.ToLower()));
                 dgvClientes.DataSource = filtrada;
                 dgvClientes.DataBind();
             }
-
 
         }
 
@@ -50,11 +56,21 @@ namespace TPCGrupo30
             {
                 try
                 {
-
-                    ClienteNegocio negocio = new ClienteNegocio();
-                    negocio.bajaCliente(id);
-                    dgvClientes.DataSource = negocio.Listar();
-                    dgvClientes.DataBind();
+                    if (!(cBoxInactivos.Checked))                           //PREGUNTO Q ESTADO D USUARIOS SE MUESTRAN EN DGV
+                    {                                                       //BAJA DE CLIENTES ACTIVOS
+                        ClienteNegocio negocio = new ClienteNegocio();
+                        negocio.bajaCliente(id);
+                        dgvClientes.DataSource = negocio.Listar();
+                        dgvClientes.DataBind();
+                    }
+                    else
+                    {                                                       //ALTA DE CLIENTES INACTIVOS
+                        ClienteNegocio negocio = new ClienteNegocio();
+                        negocio.bajaCliente(id,false);
+                        dgvClientes.DataSource = negocio.Listar();
+                        dgvClientes.DataBind();
+                        cBoxInactivos.Checked = false;
+                    }
 
                 }
                 catch (Exception ex)
@@ -89,5 +105,33 @@ namespace TPCGrupo30
                 }
             }
         }
+
+        protected void cBoxInactivos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cBoxInactivos.Checked)
+            {
+                FiltroInactivos = cBoxInactivos.Checked;
+                ddlFiltrar.Enabled = !FiltroInactivos;
+                txtBuscar.Enabled = !FiltroInactivos;
+
+                ClienteNegocio negocio = new ClienteNegocio();
+                List<Cliente> lista = new List<Cliente>();
+                lista = negocio.ListarInactivos();
+                dgvClientes.DataSource = lista;
+                dgvClientes.DataBind();
+            }
+            else
+            {
+                FiltroInactivos = cBoxInactivos.Checked;
+                ddlFiltrar.Enabled = !FiltroInactivos;
+                txtBuscar.Enabled = !FiltroInactivos;
+
+                dgvClientes.DataSource = Session["listaClientes"];
+                dgvClientes.DataBind();
+            }
+
+        }
+
+
     }
 }

@@ -14,13 +14,11 @@
                 <asp:DropDownList ID="ddlFiltrar" runat="server" CssClass="form-control">
                     <asp:ListItem Text="Nombre" Value="1" />
                     <asp:ListItem Text="Apellido" Value="2" />
-                    <asp:ListItem Text="Inactivos" Value="3" />
                 </asp:DropDownList>
             </div>
-            <div class="col-md-4">
-                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary" />
+            <div class="col-md-2">
+                <asp:CheckBox ID="cBoxInactivos" Text="Inactivos" CssClass="form-control row-cols-xl-4" OnCheckedChanged="cBoxInactivos_CheckedChanged" AutoPostBack="true" runat="server" />
             </div>
-
         </div>
         <hr />
         <asp:GridView ID="dgvClientes" CssClass="table table-dark table-bordered table-striped" runat="server" OnRowCommand="dgvClientes_RowCommand" AutoGenerateColumns="false" DataKeyNames="ID">
@@ -33,7 +31,7 @@
                 <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
                 <asp:BoundField DataField="Email" HeaderText="Email" />
                 <asp:BoundField DataField="DNI" HeaderText="DNI" />
-                <asp:BoundField DataField="Telefono" HeaderText="Telefono"/>
+                <asp:BoundField DataField="Telefono" HeaderText="Telefono" />
                 <asp:BoundField DataField="FechaNac" HeaderText="Fecha de Nacimiento" DataFormatString="{0:d}" />
                 <asp:BoundField DataField="Direccion" HeaderText="Direccion" />
             </Columns>
