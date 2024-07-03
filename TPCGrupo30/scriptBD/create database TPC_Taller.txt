@@ -88,7 +88,8 @@ CREATE TABLE Servicios (
     ID INT IDENTITY(1,1),
     NombreServicio VARCHAR(100),
     Descripcion VARCHAR(200),
-    Precio DECIMAL
+    Precio DECIMAL,
+    EstadoServicio BIT
 );
 
 CREATE TABLE OrdenServicio (
