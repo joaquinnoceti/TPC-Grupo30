@@ -100,18 +100,42 @@ namespace negocio
                 return false;
         }
 
-        public void bajaUsuario(int id)
+        public List<Usuario> ListarInactivos()
         {
-            AccesoDatos1 datos = new AccesoDatos1();
+            List<Usuario> lista = new List<Usuario>();
+            AccesoDatos datos = new AccesoDatos();
             try
             {
-                DialogResult rta = MessageBox.Show("Eliminar Usuario?", "Usuario Eliminado.", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                if (rta == DialogResult.Yes)
+                datos.setearConsulta("SELECT u.ID,u.Nombre,u.Apellido,u.DNI,u.FechaNac,u.Email,u.Telefono,u.Direccion,u.FechaRegistro,u.IdEspecialidad,e.NombreEspecialidad,u.IdCategoria,c.NombreCategoria,u.IdRol,u.Estado FROM Usuarios u INNER JOIN Especialidades e ON u.IdEspecialidad=e.ID INNER JOIN Categorias c ON u.IdCategoria=c.ID WHERE u.Estado=0");
+                datos.ejecutarConsulta();
+
+                while (datos.Lector.Read())
                 {
-                    datos.setearConsulta("UPDATE Usuarios SET Estado = 0 WHERE ID = @ID");
-                    datos.setearParametro("@ID", id);
-                    datos.ejecutarConsulta();
+                    Usuario aux = new Usuario();
+
+                    aux.ID = (int)datos.Lector["ID"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.DNI = (int)datos.Lector["DNI"];
+                    aux.FechaNacimiento = (DateTime)datos.Lector["FechaNac"];
+                    aux.Email = (string)datos.Lector["Email"];
+                    aux.Telefono = (string)datos.Lector["Telefono"];
+
+                    aux.Especialidad = new Especialidad();
+                    aux.Especialidad.ID = (int)datos.Lector["IdEspecialidad"];
+                    aux.Especialidad.NombreEspecialidad = (string)datos.Lector["NombreEspecialidad"];
+
+                    aux.Categoria = new Categoria();
+                    aux.Categoria.ID = (int)datos.Lector["IdCategoria"];
+                    aux.Categoria.NombreCategoria = (string)datos.Lector["NombreCategoria"];
+
+                    aux.Rol = (int)datos.Lector["IdRol"];
+
+                    aux.Direccion = (string)datos.Lector["Direccion"];
+
+                    lista.Add(aux);
                 }
+                return lista;
 
             }
             catch (Exception ex)
@@ -119,10 +143,55 @@ namespace negocio
 
                 throw ex;
             }
-            finally
+
+            finally { datos.cerrarConexion(); }
+        }
+
+        public void bajaUsuario(int id, bool activo = true)
+        {
+            AccesoDatos1 datos = new AccesoDatos1();
+            if(activo == true)
             {
-                datos.cerrarConexion();
+                try
+                {
+                    DialogResult rta = MessageBox.Show("Eliminar Usuario?", "Usuario Eliminado.", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                    if (rta == DialogResult.Yes)
+                    {
+                        datos.setearConsulta("UPDATE Usuarios SET Estado = 0 WHERE ID = @ID");
+                        datos.setearParametro("@ID", id);
+                        datos.ejecutarConsulta();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+                finally
+                {
+                    datos.cerrarConexion();
+                }
             }
+            else
+            {
+                try
+                {
+                    DialogResult rta = MessageBox.Show("Reactivar Usuario?", "Reactivar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                    if (rta == DialogResult.Yes)
+                    {
+                        datos.setearConsulta("UPDATE Usuarios SET Estado = 1 WHERE ID = @ID");
+                        datos.setearParametro("@ID", id);
+                        datos.ejecutarConsulta();
+                    }
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
+            
         }
 
         public void modificarUsuario(Usuario user)

@@ -19,7 +19,7 @@
                 </asp:DropDownList>
             </div>
             <div class="col-md-4">
-                <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary" />
+                <asp:CheckBox ID="cBoxInactivos" Text="Inactivos" CssClass="form-control row-cols-xl-4" OnCheckedChanged="cBoxInactivos_CheckedChanged" AutoPostBack="true" runat="server"  />
             </div>
 
         </div>

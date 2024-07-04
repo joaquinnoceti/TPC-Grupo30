@@ -12,13 +12,20 @@ namespace TPCGrupo30
 {
     public partial class ABMEmpleados : System.Web.UI.Page
     {
+        public bool FiltroInactivos { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            UsuarioNegocio negocio = new UsuarioNegocio();
-            Session.Add("listaUsuarios", negocio.Listar());
+            if (!IsPostBack)
+            {
+                FiltroInactivos = false;
+                UsuarioNegocio negocio = new UsuarioNegocio();
+                Session.Add("listaUsuarios", negocio.Listar());
 
-            dgvEmpleados.DataSource = Session["listaUsuarios"];
-            dgvEmpleados.DataBind();
+                dgvEmpleados.DataSource = Session["listaUsuarios"];
+                dgvEmpleados.DataBind();
+            }
+            
         }
 
         protected void txtBuscar_TextChanged(object sender, EventArgs e)
@@ -75,11 +82,23 @@ namespace TPCGrupo30
             {
                 try
                 {
+                    if (!(cBoxInactivos.Checked))
+                    {
+                        UsuarioNegocio negocio = new UsuarioNegocio();
+                        negocio.bajaUsuario(id);
+                        dgvEmpleados.DataSource = negocio.Listar();
+                        dgvEmpleados.DataBind();
+                    }
+                    else
+                    {
+                        UsuarioNegocio negocio = new UsuarioNegocio();
+                        negocio.bajaUsuario(id,false);
+                        dgvEmpleados.DataSource = negocio.Listar();
+                        dgvEmpleados.DataBind();
+                        cBoxInactivos.Checked = false;
 
-                    UsuarioNegocio negocio = new UsuarioNegocio();
-                    negocio.bajaUsuario(id);
-                    dgvEmpleados.DataSource = negocio.Listar();
-                    dgvEmpleados.DataBind();
+                    }
+
 
 
                 }
@@ -93,6 +112,31 @@ namespace TPCGrupo30
             {
                 Response.Redirect("AltaEmpleado.aspx?id="+id);
 
+            }
+        }
+
+        protected void cBoxInactivos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cBoxInactivos.Checked)
+            {
+                FiltroInactivos = cBoxInactivos.Checked;
+                ddlFiltrar.Enabled = !FiltroInactivos;
+                txtBuscar.Enabled = !FiltroInactivos;
+
+                UsuarioNegocio negocio = new UsuarioNegocio();
+                List<Usuario> lista = new List<Usuario>();
+                lista = negocio.ListarInactivos();
+                dgvEmpleados.DataSource = lista;
+                dgvEmpleados.DataBind();
+            }
+            else
+            {
+                FiltroInactivos = cBoxInactivos.Checked;
+                ddlFiltrar.Enabled = !FiltroInactivos;
+                txtBuscar.Enabled = !FiltroInactivos;
+
+                dgvEmpleados.DataSource = Session["listaClientes"];
+                dgvEmpleados.DataBind();
             }
         }
     }
