@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="NuevoServicio.aspx.cs" Inherits="TPCGrupo30.NuevoServicio" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -25,9 +26,10 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" CssClass="btn btn-primary btn-lg" />
+                    <a href="ABMOrden.aspx" class="btn btn-outline-danger">Atras</a>
                     <div class="ml-auto">
-                        <a href="ABMOrden.aspx" class="btn btn-outline-danger">Atras</a>
+
+                        <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" CssClass="btn btn-primary btn-lg" />
                     </div>
                 </div>
             </div>

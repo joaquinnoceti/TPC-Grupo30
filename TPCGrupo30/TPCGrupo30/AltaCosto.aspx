@@ -42,9 +42,10 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" CssClass="btn btn-primary btn-lg" />
+                    <a href="ABMCostos.aspx" class="btn btn-outline-danger">Atras</a>
                     <div class="ml-auto">
-                        <a href="ABMCostos.aspx" class="btn btn-outline-danger">Atras</a>
+                        <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" CssClass="btn btn-primary btn-lg" />
+                        
                     </div>
                 </div>
             </div>

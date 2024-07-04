@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="AltaServicio.aspx.cs" Inherits="TPCGrupo30.AltaServicio" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Seleccione los servicios</title>
 </asp:Content>
@@ -31,12 +32,12 @@
                     </asp:GridView>
                     <div class="ml-auto"></div>
                     <div class="col-md-12 d-flex justify-content-between">
-                        <asp:Button ID="btnAgregarOT" runat="server" CssClass="btn btn-primary btn-lg" OnClick="btnAgregarOT_Click" Text="Crear Orden de Trabajo" />
                         <a href="ABMOrdenes.aspx" class="btn btn-outline-danger btn-lg">Atras</a>
+                        <asp:Button ID="btnAgregarOT" runat="server" CssClass="btn btn-primary btn-lg" OnClick="btnAgregarOT_Click" Text="Crear Orden de Trabajo" />
                         <a href="NuevoServicio.aspx" class="btn btn-outline-danger btn-lg">Nuevo Servicio</a>
                     </div>
                 </div>
-             </div>
+            </div>
         </div>
     </div>
     <br />
