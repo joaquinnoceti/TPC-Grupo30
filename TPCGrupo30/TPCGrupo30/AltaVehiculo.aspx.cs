@@ -23,16 +23,16 @@ namespace TPCGrupo30
                 ddlMarca.DataValueField = "ID";
                 ddlMarca.DataTextField = "NombreMarca";
                 ddlMarca.DataBind();
-
+                int idMarca = int.Parse(ddlMarca.SelectedValue);
 
                 ModeloNegocio modeloNegocio = new ModeloNegocio();
                 List<Modelo> ListaModelo = modeloNegocio.Listar();
                 Session["listaModelos"] = ListaModelo;
-                ddlModelo.DataSource = ListaModelo;
+                ddlModelo.DataSource = ((List<Modelo>)Session["listaModelos"]).FindAll(x => x.Marca.ID == idMarca);
                 ddlModelo.DataValueField = "ID";
                 ddlModelo.DataTextField = "NombreModelo";
                 ddlModelo.DataBind();
-                ddlModelo.Enabled = false;
+                //ddlModelo.Enabled = false;
 
                 if (idCli != "")
                 {
