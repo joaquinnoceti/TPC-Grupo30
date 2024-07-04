@@ -32,6 +32,7 @@ namespace TPCGrupo30
                 ddlModelo.DataValueField = "ID";
                 ddlModelo.DataTextField = "NombreModelo";
                 ddlModelo.DataBind();
+                ddlModelo.Enabled = false;
 
                 if (idCli != "")
                 {
@@ -131,7 +132,7 @@ namespace TPCGrupo30
 
         protected void ddlMarca_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            ddlModelo.Enabled = true;
             if (IsPostBack)
             {
                 int id = int.Parse(ddlMarca.SelectedItem.Value);

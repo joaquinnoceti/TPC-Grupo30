@@ -17,7 +17,7 @@
 
                                     <div class="form-outline">
                                         <label class="form-label" for="ddlMarca">Marca: </label>
-                                        <asp:DropDownList ID="ddlMarca" CssClass="form-select form-select-lg" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlMarca_SelectedIndexChanged"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlMarca" CssClass="form-select form-select-lg" runat="server" placeholder="Seleccionar Marca" AutoPostBack="true" OnSelectedIndexChanged="ddlMarca_SelectedIndexChanged"></asp:DropDownList>
                                     </div>
 
                                 </div>
@@ -25,7 +25,7 @@
 
                                     <div class="form-outline">
                                         <label class="form-label" for="txtModelo">Modelo: </label>
-                                        <asp:DropDownList ID="ddlModelo" CssClass="form-select form-select-lg" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlModelo" CssClass="form-select form-select-lg" placeholder="Seleccionar Modelo" runat="server"></asp:DropDownList>
                                     </div>
 
                                 </div>
