@@ -1,8 +1,7 @@
 README
 
 LOGIN
-
-REPORTE MENSUAL
+	-controlar acceso de roles a ventanas
 
 ABMS EN GENERAL
 	-ver en cuales agregar filtrado de inactivos
@@ -24,9 +23,6 @@ ABM COSTOS
 ALTA ORDENES
 	- pincha cuando no se selecciona ningun servicio y se le da click a alta de orden. ver como validar
 	- dll clientes repite el cliente x la cantidad de autos que posea
-
-
-ACCESO A VENTANAS X ROLES (ADMIN > EMPLEADO)
 
 ALTA VEHICULOS
 	probar con updatepanel ddl MODELOS al iniciar ventana
