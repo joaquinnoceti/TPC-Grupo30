@@ -5,7 +5,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <section class="vh-100 gradient-custom">
-        <asp:Label ID="lblError" runat="server"></asp:Label>
         <div class="container py-5 h-100">
             <div class="row justify-content-center align-items-center h-100">
                 <div class="col-12 col-lg-9 col-xl-7">
@@ -39,6 +38,7 @@
                                     <div class="form-outline datepicker w-100">
                                         <label for="txtEmail" class="form-label">Email:</label>
                                         <asp:TextBox ID="txtEmail" CssClass="form-control form-control-lg" runat="server" required></asp:TextBox>
+                                        <asp:RegularExpressionValidator ErrorMessage="Email Invalido" ControlToValidate="txtEmail" ValidationExpression="^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$" ForeColor="Red" runat="server" />
                                     </div>
 
                                 </div>
@@ -85,6 +85,7 @@
                                     <div class="form-outline">
                                         <label class="form-label" for="Telefono">Telefono: </label>
                                         <asp:TextBox ID="txtTelefono" CssClass="form-control form-control-lg" runat="server" required></asp:TextBox>
+                                        <asp:RegularExpressionValidator ErrorMessage="Solo numeros" ForeColor="Red" ControlToValidate="txtTelefono" ValidationExpression="^[0-9]+$" runat="server" />
                                     </div>
 
                                 </div>
@@ -129,6 +130,10 @@
                                     <a href="ABMEmpleados.aspx" class="btn btn-outline-danger">Atras</a>
                                 </div>
                             </div>
+                            <div>
+                                 <asp:Label ID="lblError" runat="server"></asp:Label>
+                            </div>
+
                         </div>
                     </div>
                 </div>

@@ -24,8 +24,6 @@ ALTA ORDENES
 	- pincha cuando no se selecciona ningun servicio y se le da click a alta de orden. ver como validar
 	- dll clientes repite el cliente x la cantidad de autos que posea
 
-ALTA VEHICULOS
-	probar con updatepanel ddl MODELOS al iniciar ventana
 
 DISEÑO
 	dar vuelta botones de atras y aceptar 
