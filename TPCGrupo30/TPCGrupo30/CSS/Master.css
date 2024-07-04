@@ -15,11 +15,11 @@ body {
     padding: 0;
     background-color: #ADA4CB;
 }
-.container1 {
+/*.container1 {
     display: flex;
     flex-wrap: wrap;
 }
-
+*/
 .left-section, .right-section {
     padding: 20px;
 }

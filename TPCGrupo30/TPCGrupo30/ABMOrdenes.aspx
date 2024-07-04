@@ -34,7 +34,7 @@
         </asp:GridView>
     </div>
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <a href="AltaOrden.aspx" class="btn btn-primary mr-2">Nueva Orden</a>
+        <a href="AltaServicio.aspx" class="btn btn-primary mr-2">Nueva Orden</a>
         <div class="ml-auto">
             <a href="Principal.aspx" class="btn btn-outline-danger">Atras</a>
         </div>

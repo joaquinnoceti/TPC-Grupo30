@@ -20,7 +20,7 @@ namespace negocio
 
         public AccesoDatos1()
         {
-            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=TPC_Taller; integrated security=true");
+            conexion = new SqlConnection("server=(local); database=TPC_Taller; integrated security=true");
             comando = new SqlCommand();
             comando.Connection = conexion;
         }

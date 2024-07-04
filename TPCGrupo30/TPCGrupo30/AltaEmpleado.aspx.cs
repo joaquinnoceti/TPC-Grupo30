@@ -41,12 +41,17 @@ namespace TPCGrupo30
                     txtNombre.Text = User.Nombre;
                     txtApellido.Text = User.Apellido;
                     txtDni.Text = User.DNI.ToString();
-                    txtFechaNac.Text = User.FechaNacimiento.ToString();
+                    txtFechaNac.Text = User.FechaNacimiento.ToString("yyyy-MM-dd");
                     txtEmail.Text = User.Email;
                     txtTelefono.Text = User.Telefono;
                     txtDireccion.Text = User.Direccion;
                     ddlCategoria.SelectedValue=User.Categoria.ID.ToString();
                     ddlEspecialidad.SelectedValue = User.Especialidad.ID.ToString();
+                    if (User.Rol == 1)
+                        ddlRol.Text = "ADMIN";
+                    else
+                        ddlRol.Text = "EMPLEADO";  
+
                     txtContrasenia.Visible = false;
                     lblPass.Visible = false;
                     ddlRol.Enabled = false;
