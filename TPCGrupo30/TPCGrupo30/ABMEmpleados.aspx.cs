@@ -16,6 +16,11 @@ namespace TPCGrupo30
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Seguridad.EsAdmin(Session["user"]))
+            {
+                MessageBox.Show("Necesita permisos de ADMIN");
+                Response.Redirect("Principal.aspx");
+            }
             if (!IsPostBack)
             {
                 FiltroInactivos = false;

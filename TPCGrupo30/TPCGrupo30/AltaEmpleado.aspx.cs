@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 using dominio;
 using negocio;
 
@@ -14,6 +15,11 @@ namespace TPCGrupo30
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Seguridad.EsAdmin(Session["user"]))
+            {
+                MessageBox.Show("Necesita permisos de ADMIN");
+                Response.Redirect("Principal.aspx");
+            }
             if (!IsPostBack)
             {
                 EspecialidadNegocio ESPnegocio = new EspecialidadNegocio();

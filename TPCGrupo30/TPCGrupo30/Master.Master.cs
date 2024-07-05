@@ -19,5 +19,11 @@ namespace TPCGrupo30
             }
             
         }
+
+        protected void btnDeslogear_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("login.aspx");
+        }
     }
 }
