@@ -38,15 +38,17 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <h1>Taller Mecanico</h1>
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav navbar-nav navbar-center" "  >
-                            <li class="nav-item">
+
+
+                            <%if (negocio.Seguridad.sesionActiva(Session["user"]))
+                                {%>
+                                                        <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="Principal.aspx">
                                     <div class="icon"><i class="fa-solid fa-house"></i></div>
                                     <div class="name" data-text="HOME">HOME</div>
                                 </a>
                             </li>
-
-
-                            <li class="nav-item">
+<li class="nav-item">
                                 <a class="nav-link active"  aria-current="page" href="AltaCliente.aspx">
                                     <div class="icon"><i class="fa-solid fa-user-check"></i></div>
                                     <div class="name" data-text="ALTA CLIENTE">ALTA CLIENTE</div>
@@ -65,17 +67,21 @@
                                 </a>
                             </li>
 
+                            <ul class="nav-item">
+                                    <div class="icon"><i class="fa-solid fa-window-close"></i></div>
+                                    <asp:Button ID="btnDeslogear" runat="server" cssclass="nav-link active" Text="Cerrar Sesion" OnClick="btnDeslogear_Click" />
+                                </a>
 
+
+                                    
+                            </ul>
+             <%} %>
+                            
 
                         </ul>
 
                     </div>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="Login.aspx">
-                                    <div class="icon"><i class="fa-solid fa-people-group"></i></div>
-                                    <div class="name" data-text="Cerrar Sesion">Cerrar Sesion</div>
-                                </a>
-                            </li>
+
                 </div>
             </nav>
 

@@ -26,7 +26,7 @@
                                     <asp:TextBox ID="txtPass" TextMode="Password" runat="server" cssclass="form-control form-control-lg"></asp:TextBox>
                                     <label class="form-label" for="typePasswordX">Password</label>
                                 </div>
-                                <asp:Button ID="btnAceptar" cssclass="btn btn-outline-light btn-lg px-5" runat="server" Text="Button" OnClick="btnAceptar_Click" />
+                                <asp:Button ID="btnAceptar" cssclass="btn btn-outline-light btn-lg px-5" runat="server" Text="Login" OnClick="btnAceptar_Click" />
                             </div>
                             <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
 
