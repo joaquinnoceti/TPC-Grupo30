@@ -88,8 +88,8 @@ namespace negocio
             try
             {
                 datos.setearConsulta("INSERT INTO Costos(CodigoCuenta,CodigoSubcuenta,Tipo,Asignacion,FechaCosto,Importe) VALUES (@CodigoCuenta,@CodigoSubcuenta,@Tipo,@Asignacion,@FechaCosto,@Importe)");
-                datos.setearParametro("@CodigoCuenta", nuevo.CodigoCuenta);
-                datos.setearParametro("@CodigoSubCuenta", nuevo.CodigoSubCuenta);
+                datos.setearParametro("@CodigoCuenta", nuevo.CodigoCuenta.ID);              //agregar id o nombre de cuenta?
+                datos.setearParametro("@CodigoSubCuenta", nuevo.CodigoSubCuenta.ID);    
                 datos.setearParametro("@Tipo", nuevo.Tipo);
                 datos.setearParametro("@Asignacion", nuevo.Comentarios);
                 datos.setearParametro("@FechaCosto", nuevo.FechaCosto);
