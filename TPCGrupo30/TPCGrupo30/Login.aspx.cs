@@ -13,5 +13,10 @@ namespace TPCGrupo30
         {
 
         }
+
+        //public void ValidarCampos()
+        //{
+        //    if()
+        //}
     }
 }

@@ -108,6 +108,12 @@ namespace TPCGrupo30
                             lblError.Text = "Ya existe usuario con ese DNI";
                             return;
                         }
+                        if (usuarioNegocio.VerificarMAIL(nuevo.Email) != 0)
+                        {
+                            lblError.ForeColor = System.Drawing.Color.Red;
+                            lblError.Text = "Ya existe usuario con ese MAIL";
+                            return;
+                        }
                     }
                     //nuevo.FechaRegistro = DateTime.Parse(txtFechaRegistro.Text);
                     //nuevo.Rol = ddlRol.SelectedIndex;
@@ -121,7 +127,7 @@ namespace TPCGrupo30
                     {
                         negocio.altaUsuario(nuevo);
                     }
-                    Response.Redirect("ABMEmpleados.aspx");
+                    Response.Redirect("ABMEmpleados.aspx",false);
                 }
             }
             catch (Exception ex)
@@ -133,7 +139,7 @@ namespace TPCGrupo30
         protected bool validarCampos()
         {
             if (string.IsNullOrEmpty(txtApellido.Text) || string.IsNullOrEmpty(txtDni.Text) || string.IsNullOrEmpty(txtDireccion.Text)
-                || string.IsNullOrEmpty(txtFechaNac.Text))
+                || string.IsNullOrEmpty(txtFechaNac.Text) || string.IsNullOrEmpty(txtContrasenia.Text))
             {
                 if (Request.QueryString["id"] == null)
                 {
@@ -148,6 +154,7 @@ namespace TPCGrupo30
                 lblError.Text = "Por favor, completar todos los campos para continuar";
                 return false;
             }
+
             return true;
         }
     }

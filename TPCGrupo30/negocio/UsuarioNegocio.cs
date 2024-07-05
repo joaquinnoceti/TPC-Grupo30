@@ -67,7 +67,7 @@ namespace negocio
         public bool altaUsuario(Usuario nuevo)
         {
             AccesoDatos1 datos = new AccesoDatos1();
-            if (VerificarDNI(nuevo.DNI) == 0)
+            if (VerificarDNI(nuevo.DNI) == 0 && VerificarMAIL(nuevo.Email) == 0)
             {
                 try
                 {
@@ -231,6 +231,26 @@ namespace negocio
             try
             {
                 string query = "SELECT DNI FROM Usuarios WHERE DNI = '" + dni + "'";
+                int resultado = datos.executaScalar(query);
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public int VerificarMAIL(string email)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string query = "SELECT EMAIL FROM Usuarios WHERE email = '" + email + "'";
                 int resultado = datos.executaScalar(query);
                 return resultado;
             }

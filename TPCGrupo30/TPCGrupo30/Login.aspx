@@ -18,12 +18,12 @@
                                 <p class="text-white-50 mb-5">Porfavor, ingresar credenciales</p>
 
                                 <div  class="form-outline form-white mb-4">
-                                    <input type="email" id="typeEmailX" class="form-control form-control-lg" />
+                                    <asp:TextBox ID="txtMail" cssclass="form-control form-control-lg" runat="server"></asp:TextBox>
                                     <label class="form-label" for="typeEmailX">Usuario</label>
                                 </div>
 
                                 <div  class="form-outline form-white mb-4">
-                                    <input type="password" id="typePasswordX" class="form-control form-control-lg" />
+                                    <asp:TextBox ID="txtPass" TextMode="Password" runat="server" cssclass="form-control form-control-lg"></asp:TextBox>
                                     <label class="form-label" for="typePasswordX">Password</label>
                                 </div>
                                 <a href="Principal.aspx"  class="btn btn-outline-light btn-lg px-5" >Ingresar</a>

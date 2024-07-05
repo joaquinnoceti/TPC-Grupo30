@@ -44,6 +44,8 @@
                                     <div class="name" data-text="HOME">HOME</div>
                                 </a>
                             </li>
+
+
                             <li class="nav-item">
                                 <a class="nav-link active"  aria-current="page" href="AltaCliente.aspx">
                                     <div class="icon"><i class="fa-solid fa-user-check"></i></div>
@@ -62,8 +64,18 @@
                                     <div class="name" data-text="ALTA EMPLEADO">ALTA EMPLEADO</div>
                                 </a>
                             </li>
+
+
+
                         </ul>
+
                     </div>
+                                                <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="Login.aspx">
+                                    <div class="icon"><i class="fa-solid fa-people-group"></i></div>
+                                    <div class="name" data-text="Cerrar Sesion">Cerrar Sesion</div>
+                                </a>
+                            </li>
                 </div>
             </nav>
 
