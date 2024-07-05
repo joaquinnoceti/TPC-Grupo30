@@ -17,8 +17,9 @@ namespace TPCGrupo30
             if (!IsPostBack)
             {
                 //modificar servicio
-                int id = int.Parse(Request.QueryString["ID"].ToString());
-                if (id != 0)
+                
+                string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
+                if (id != "")
                 {
                     ServicioNegocio negocio = new ServicioNegocio();
                     Servicio serv = (negocio.ListarConID(id))[0];
@@ -35,21 +36,26 @@ namespace TPCGrupo30
         {
             try
                 {
-                Servicio nuevo = new Servicio();
-                ServicioNegocio negocio = new ServicioNegocio();
+                    Servicio nuevo = new Servicio();
+                    ServicioNegocio negocio = new ServicioNegocio();
 
-                nuevo.NombreServicio = txtNombreServ.Text;
-                nuevo.Descripcion = txtDescripcion.Text;
-                nuevo.Precio = decimal.Parse(txtPrecio.Text);
+                    nuevo.NombreServicio = txtNombreServ.Text;
+                    nuevo.Descripcion = txtDescripcion.Text;
+                    nuevo.Precio = decimal.Parse(txtPrecio.Text);
 
-                negocio.altaServicio(nuevo);
-
-
-                if (Request.QueryString["id"] != null)
+                 if (Request.QueryString["id"] != null)
                 {
                     nuevo.ID = int.Parse(Request.QueryString["id"]);
                     negocio.modificar(nuevo);
+                    Response.Redirect("ABMServicios.aspx");
+
                 }
+                else
+                {
+                    negocio.altaServicio(nuevo);
+                    Response.Redirect("ABMServicios.aspx");
+                }
+
             }
             catch (Exception ex)
             {

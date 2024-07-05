@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <a href="ABMOrden.aspx" class="btn btn-outline-danger">Atras</a>
+                    <a href="ABMServicios.aspx" class="btn btn-outline-danger">Atras</a>
                     <div class="ml-auto">
 
                         <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" CssClass="btn btn-primary btn-lg" />

@@ -11,15 +11,23 @@ namespace TPCGrupo30
 {
     public partial class ABMServicios : System.Web.UI.Page
     {
+        public bool FiltroInactivos { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            ServicioNegocio negocio = new ServicioNegocio();
 
+            if (!IsPostBack)
+            {
 
-            Session.Add("listaServicios", negocio.Listar());
+                if (!Seguridad.sesionActiva(Session["user"]))
+                    Response.Redirect("login.aspx");
 
-            dgvServicios.DataSource = Session["listaServicios"];
-            dgvServicios.DataBind();
+                FiltroInactivos = false;
+
+                ServicioNegocio negocio = new ServicioNegocio();
+                Session.Add("listaServicios", negocio.Listar());
+                dgvServicios.DataSource = Session["listaServicios"];
+                dgvServicios.DataBind();
+            }
         }
 
         protected void dgvServicios_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -29,20 +37,31 @@ namespace TPCGrupo30
             int id = Convert.ToInt32(dgvServicios.DataKeys[rowIndex].Value);
             if (e.CommandName == "BajaServicio")
             {
-                try
+                if (!(cBoxInactivosServ.Checked))
                 {
+                    try
+                    {
+                        ServicioNegocio negocio = new ServicioNegocio();
+                        negocio.bajaServicio(id);
+                        dgvServicios.DataSource = negocio.Listar();
+                        dgvServicios.DataBind();
 
+                    }
+                    catch (Exception ex)
+                    {
+
+                        Session.Add("error", ex.ToString());
+                    }
+                }
+                else
+                {
                     ServicioNegocio negocio = new ServicioNegocio();
-                    negocio.bajaServicio(id);
+                    negocio.bajaServicio(id, false);
                     dgvServicios.DataSource = negocio.Listar();
                     dgvServicios.DataBind();
-
+                    cBoxInactivosServ.Checked = false;
                 }
-                catch (Exception ex)
-                {
 
-                    Session.Add("error", ex.ToString());
-                }
             }
             else if (e.CommandName == "ModifServicio")
             {
@@ -52,8 +71,9 @@ namespace TPCGrupo30
             {
                 try
                 {
+                    string idS = id.ToString();
                     ServicioNegocio negocio = new ServicioNegocio();
-                    Servicio serv = (negocio.ListarConID(id))[0];
+                    Servicio serv = (negocio.ListarConID(idS))[0];
                     Session.Add("servicio", serv);
                 }
                 catch (Exception ex)
@@ -64,7 +84,29 @@ namespace TPCGrupo30
             }
         }
 
+        protected void cBoxInactivosServ_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cBoxInactivosServ.Checked)
+            {
+                FiltroInactivos = cBoxInactivosServ.Checked;
+                ddlFiltrar.Enabled = !FiltroInactivos;
+                txtBuscar.Enabled = !FiltroInactivos;
 
-        
+                ServicioNegocio negocio = new ServicioNegocio();
+                List<Servicio> lista = new List<Servicio>();
+                lista = negocio.ListarInactivos();
+                dgvServicios.DataSource = lista;
+                dgvServicios.DataBind();
+            }
+            else
+            {
+                FiltroInactivos = cBoxInactivosServ.Checked;
+                ddlFiltrar.Enabled = !FiltroInactivos;
+                txtBuscar.Enabled = !FiltroInactivos;
+
+                dgvServicios.DataSource = Session["listaServicios"];
+                dgvServicios.DataBind();
+            }
+        }
     }
 }

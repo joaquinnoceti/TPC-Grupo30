@@ -17,7 +17,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("SELECT o.ID,o.FechaCreacion,o.IdCliente,o.IdVehiculo,o.HorasTeoricas,o.HorasReales,o.FechaFinalizacion,o.IdEmpleado,u.Apellido as Mecanico,o.Observaciones,o.Total,o.Cobrado,o.CreadoPor,c.Apellido as Cliente,v.NombreVehiculo,o.Estado,eo.NombreEstado FROM OrdenDeTrabajo o INNER JOIN Clientes c ON o.IdCliente=c.ID INNER JOIN Vehiculos v ON c.ID=v.IdCliente INNER JOIN EstadoOrden eo ON o.Estado=eo.ID INNER JOIN Usuarios u ON o.IdEmpleado=u.ID");
+                datos.setearConsulta("SELECT o.ID,o.FechaCreacion,o.IdCliente,o.IdVehiculo,o.HorasTeoricas,o.HorasReales,o.FechaFinalizacion,o.IdEmpleado,u.Apellido as Mecanico,o.Observaciones,o.Total,o.Cobrado,o.CreadoPor,c.Apellido as Cliente,v.NombreVehiculo,o.Estado,eo.NombreEstado,v.ID FROM OrdenDeTrabajo o INNER JOIN Clientes c ON o.IdCliente=c.ID INNER JOIN Vehiculos v ON c.ID=v.IdCliente INNER JOIN EstadoOrden eo ON o.Estado=eo.ID INNER JOIN Usuarios u ON o.IdEmpleado=u.ID");
                 datos.ejecutarConsulta();
 
                 while (datos.Lector.Read())
@@ -32,7 +32,7 @@ namespace negocio
                     aux.Cliente.Apellido = (string)datos.Lector["Cliente"];
 
                     aux.Vehiculo = new Vehiculo();
-                    aux.Vehiculo.IDVehiculo = (int)datos.Lector["IdVehiculo"];
+                    aux.Vehiculo.IDVehiculo = (int)datos.Lector["ID"];
                     aux.Vehiculo.Patente = (string)datos.Lector["NombreVehiculo"];
 
                     aux.HorasTeoricas = (int)datos.Lector["HorasTeoricas"];

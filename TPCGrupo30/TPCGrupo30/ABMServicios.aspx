@@ -18,6 +18,9 @@
             <div class="col-md-4">
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary" />
             </div>
+            <div class="col-md-2">
+                <asp:CheckBox ID="cBoxInactivosServ" Text="Inactivos" CssClass="form-control row-cols-xl-4" OnCheckedChanged="cBoxInactivosServ_CheckedChanged" AutoPostBack="true" runat="server" />
+            </div>
         </div>
         <hr />
         <asp:GridView ID="dgvServicios" CssClass="table table-dark table-bordered table-striped" runat="server" AutoGenerateColumns="false" DataKeyNames="ID" OnRowCommand="dgvServicios_RowCommand">

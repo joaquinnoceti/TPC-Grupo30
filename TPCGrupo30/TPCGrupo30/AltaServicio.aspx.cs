@@ -75,15 +75,39 @@ namespace TPCGrupo30
         protected void btnAgregarOT_Click(object sender, EventArgs e)
         {
 
-            int id;
-            if (int.TryParse(Request.QueryString["ID"], out id))
+            // Verificar si la lista de servicios agregados está en la sesión y no está vacía
+            var listaServiciosAgregados = Session["listaServiciosAgregados"] as List<Servicio>;
+            if (listaServiciosAgregados != null && listaServiciosAgregados.Count > 0)
             {
-                Response.Redirect("AltaOrden.aspx?ID=" + id);
+                int id;
+                if (int.TryParse(Request.QueryString["ID"], out id))
+                {
+                    Response.Redirect("AltaOrden.aspx?ID=" + id);
+                }
+                else
+                {
+                    Response.Redirect("AltaOrden.aspx");
+                }
             }
             else
             {
-                Response.Redirect("AltaOrden.aspx");
+                // Mostrar un mensaje de error o alerta indicando que no hay servicios en la lista
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('No hay servicios en la lista. Por favor, agregue al menos un servicio.');", true);
             }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
