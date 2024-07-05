@@ -265,7 +265,33 @@ namespace negocio
             }
         }
 
+        public bool UserLogin(Usuario user)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT EMAIL,CONTRASENIA,idrol from USUARIOS where EMAIL=@email and CONTRASENIA=@pass");
+                datos.setearParametro("@email", user.Email);
+                datos.setearParametro("@pass", user.Contrasenia);
+                datos.ejecutarConsulta();
 
+                while (datos.Lector.Read())
+                {
+                    user.Rol = (int)datos.Lector["idrol"];
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
 

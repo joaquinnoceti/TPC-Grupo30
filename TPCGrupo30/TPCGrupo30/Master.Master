@@ -70,7 +70,7 @@
                         </ul>
 
                     </div>
-                                                <li class="nav-item">
+                            <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="Login.aspx">
                                     <div class="icon"><i class="fa-solid fa-people-group"></i></div>
                                     <div class="name" data-text="Cerrar Sesion">Cerrar Sesion</div>

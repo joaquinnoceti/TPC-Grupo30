@@ -18,6 +18,10 @@ namespace TPCGrupo30
         {
             if (!IsPostBack)
             {
+
+                if (!Seguridad.sesionActiva(Session["user"]))
+                    Response.Redirect("login.aspx");
+
                 FiltroInactivos = false;
                 ClienteNegocio negocio = new ClienteNegocio();
                 Session.Add("listaClientes", negocio.Listar());

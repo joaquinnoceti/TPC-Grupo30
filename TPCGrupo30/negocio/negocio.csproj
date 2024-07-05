@@ -51,6 +51,7 @@
     <Compile Include="ModeloNegocio.cs" />
     <Compile Include="OrdenDeTrabajoNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seguridad.cs" />
     <Compile Include="ServicioNegocio.cs" />
     <Compile Include="UsuarioNegocio.cs" />
     <Compile Include="VehiculoNegocio.cs" />

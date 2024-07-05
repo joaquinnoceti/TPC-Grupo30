@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using negocio;
 
 namespace TPCGrupo30
 {
@@ -11,7 +12,12 @@ namespace TPCGrupo30
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!(Page is Default))
+            {
+                if (!Seguridad.sesionActiva(Session["user"]))
+                    Response.Redirect("login.aspx");
+            }
+            
         }
     }
 }
