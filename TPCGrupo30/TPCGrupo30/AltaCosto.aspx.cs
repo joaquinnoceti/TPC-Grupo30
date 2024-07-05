@@ -67,33 +67,52 @@ namespace TPCGrupo30
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            try
+            if (validarCampos())
             {
-                Costo nuevo = new Costo();
-                CostoNegocio negocio = new CostoNegocio();
+                try
+                {
+                    Costo nuevo = new Costo();
+                    CostoNegocio negocio = new CostoNegocio();
 
-                Cuenta cuent = new Cuenta();
-                cuent.ID = int.Parse(ddlCuenta.SelectedItem.Value);
-                cuent.DescripcionCuenta = ddlCuenta.SelectedItem.Text;
-                nuevo.CodigoCuenta = cuent;
+                    Cuenta cuent = new Cuenta();
+                    cuent.ID = int.Parse(ddlCuenta.SelectedItem.Value);
+                    cuent.DescripcionCuenta = ddlCuenta.SelectedItem.Text;
+                    nuevo.CodigoCuenta = cuent;
 
-                SubCuenta scuent = new SubCuenta();
-                scuent.ID = int.Parse(ddlSubCuenta.SelectedItem.Value);
-                scuent.DescripcionSubCuenta = ddlSubCuenta.SelectedItem.Text;
-                nuevo.CodigoSubCuenta = scuent;
+                    SubCuenta scuent = new SubCuenta();
+                    scuent.ID = int.Parse(ddlSubCuenta.SelectedItem.Value);
+                    scuent.DescripcionSubCuenta = ddlSubCuenta.SelectedItem.Text;
+                    nuevo.CodigoSubCuenta = scuent;
 
-                nuevo.Tipo = txtTipo.Text;
-                nuevo.Comentarios = txtAsignacion.Text;
-                nuevo.FechaCosto = DateTime.Parse(txtFechaEmision.Text);
-                nuevo.Importe = decimal.Parse(txtImporte.Text);
+                    nuevo.Tipo = txtTipo.Text;
+                    nuevo.Comentarios = txtAsignacion.Text;
+                    nuevo.FechaCosto = DateTime.Parse(txtFechaEmision.Text);
+                    nuevo.Importe = decimal.Parse(txtImporte.Text);
 
-                negocio.altaCosto(nuevo);
-            }
-            catch (Exception ex)
-            {
-                Session.Add("error", ex);
+                    negocio.altaCosto(nuevo);
+                }
+                catch (Exception ex)
+                {
+                    Session.Add("error", ex);
+                }
+                lblError.Text = "Agregado con exito!";
+                lblError.ForeColor = System.Drawing.Color.Green;
             }
 
         }
-    } 
+
+        protected bool validarCampos()
+        {
+            if (string.IsNullOrEmpty(txtAsignacion.Text) || string.IsNullOrEmpty(txtFechaEmision.Text) || string.IsNullOrEmpty(txtImporte.Text)
+                || string.IsNullOrEmpty(txtTipo.Text) || string.IsNullOrEmpty(ddlCuenta.SelectedItem.Value) || string.IsNullOrEmpty(ddlSubCuenta.SelectedItem.Value))
+            {
+                lblError.ForeColor = System.Drawing.Color.Red;
+                lblError.Text = "Por favor, completar todos los campos para continuar";
+                return false;
+            }
+            return true;
+        }
+
+
+    }
 }
