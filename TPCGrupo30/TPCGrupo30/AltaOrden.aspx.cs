@@ -287,7 +287,7 @@ namespace TPCGrupo30
                 lblError.Text = "Ocurrió un error al guardar la orden de trabajo. Por favor, inténtelo de nuevo.";
                 throw ex;
             }
-            
+            Response.Redirect("ABMOrdenes.aspx");
 
         }
 
