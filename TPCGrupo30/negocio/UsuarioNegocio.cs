@@ -270,7 +270,7 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("SELECT EMAIL,CONTRASENIA,idrol from USUARIOS where EMAIL=@email and CONTRASENIA=@pass");
+                datos.setearConsulta("SELECT Apellido,EMAIL,CONTRASENIA,idrol from USUARIOS where EMAIL=@email and CONTRASENIA=@pass");
                 datos.setearParametro("@email", user.Email);
                 datos.setearParametro("@pass", user.Contrasenia);
                 datos.ejecutarConsulta();
@@ -278,6 +278,7 @@ namespace negocio
                 while (datos.Lector.Read())
                 {
                     user.Rol = (int)datos.Lector["idrol"];
+                    user.Apellido = (string)datos.Lector["Apellido"];
                     return true;
                 }
                 return false;

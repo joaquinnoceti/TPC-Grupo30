@@ -106,14 +106,6 @@
                                 <%}%>
                             </div>
                         <%}%>
-
-                        <div class="form-group mb-3">
-                            <label>Cobrado: </label>
-                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                <asp:RadioButton CssClass="btn btn-outline-primary" ID="rdbSi" Text="SI" runat="server" GroupName="Cobrado" />
-                                <asp:RadioButton CssClass="btn btn-outline-danger" ID="rdbNo" Text="NO" runat="server" GroupName="Cobrado" Checked="true" />
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

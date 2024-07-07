@@ -68,13 +68,23 @@ namespace TPCGrupo30
             gdvServiciosAgregados1.DataSource = listaServiciosAgregados1;
             gdvServiciosAgregados1.DataBind();
 
-            // Cargar lista de empleados
-            List<Usuario> listaEmpleados = negocio3.Listar();
-            ddlMecanico.DataSource = listaEmpleados;
-            ddlMecanico.DataValueField = "ID";
-            ddlMecanico.DataTextField = "Apellido";
-            ddlMecanico.DataBind();
-
+            Usuario usuario = new Usuario();
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+            usuario = Session["user"] as Usuario;
+                // Cargar lista de empleados
+                List<Usuario> listaEmpleados = negocio3.Listar();
+                ddlMecanico.DataSource = listaEmpleados;
+                ddlMecanico.DataValueField = "ID";
+                ddlMecanico.DataTextField = "Apellido";
+                ddlMecanico.DataBind();
+            if (usuario.Apellido != "ADMIN")
+            {
+                ListItem item = ddlMecanico.Items.FindByText(usuario.Apellido);
+                ddlMecanico.SelectedValue = item.Value;
+                ddlMecanico.Enabled = false;
+            }
+            
+            
             // Cargar lista de estados
             //List<EstadoOrden> listaEstados = negocio4.ListarEstados();
             //ddlEstado.DataSource = listaEstados;
@@ -135,9 +145,6 @@ namespace TPCGrupo30
                 ddlMecanico.SelectedValue = seleccionado.Mecanico.ID.ToString();
                 //ddlEstado.SelectedValue = seleccionado.Estado.ID.ToString();
                 txtEstado.Text = seleccionado.Estado.NombreEstado;
-
-                rdbSi.Checked = seleccionado.Cobrado;
-                rdbNo.Checked = !seleccionado.Cobrado;
 
                 // Actualizar servicios agregados
                 if (Session["listaServiciosAgregados"] != null)
@@ -271,14 +278,6 @@ namespace TPCGrupo30
 
                 orden.Total = total;
 
-                if (rdbSi.Checked)
-                {
-                    orden.Cobrado = true;
-                }
-                else if (rdbNo.Checked)
-                {
-                    orden.Cobrado = false;
-                }
 
                 negocio.GuardarOrden(orden);
             }
@@ -358,7 +357,6 @@ namespace TPCGrupo30
                 txtTotal.Text = total.ToString("N2"); // Formatear como moneda
                 ordenMod.Total = total;
 
-                ordenMod.Cobrado = rdbSi.Checked; 
 
 
                 negocio.ModificarOrden(ordenMod);
@@ -412,7 +410,6 @@ namespace TPCGrupo30
                 txtTotal.Text = total.ToString("N2"); // Formatear como moneda
                 ordenMod.Total = total;
 
-                ordenMod.Cobrado = rdbSi.Checked;
                 
                 negocio.ModificarOrden(ordenMod);
             }

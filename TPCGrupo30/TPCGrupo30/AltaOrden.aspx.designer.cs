@@ -222,24 +222,6 @@ namespace TPCGrupo30
         protected global::System.Web.UI.WebControls.Button btnAvanzarEstado;
 
         /// <summary>
-        /// rdbSi control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbSi;
-
-        /// <summary>
-        /// rdbNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbNo;
-
-        /// <summary>
         /// btnModificar control.
         /// </summary>
         /// <remarks>
