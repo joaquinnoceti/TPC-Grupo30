@@ -76,11 +76,11 @@ namespace TPCGrupo30
             ddlMecanico.DataBind();
 
             // Cargar lista de estados
-            List<EstadoOrden> listaEstados = negocio4.ListarEstados();
-            ddlEstado.DataSource = listaEstados;
-            ddlEstado.DataValueField = "ID";
-            ddlEstado.DataTextField = "NombreEstado";
-            ddlEstado.DataBind();
+            //List<EstadoOrden> listaEstados = negocio4.ListarEstados();
+            //ddlEstado.DataSource = listaEstados;
+            //ddlEstado.DataValueField = "ID";
+            //ddlEstado.DataTextField = "NombreEstado";
+            //ddlEstado.DataBind();
 
             // Calcular el total inicial
             CalcularTotal();
@@ -133,7 +133,8 @@ namespace TPCGrupo30
                 txtTotal.Text = seleccionado.Total.ToString("N2");
 
                 ddlMecanico.SelectedValue = seleccionado.Mecanico.ID.ToString();
-                ddlEstado.SelectedValue = seleccionado.Estado.ID.ToString();
+                //ddlEstado.SelectedValue = seleccionado.Estado.ID.ToString();
+                txtEstado.Text = seleccionado.Estado.NombreEstado;
 
                 rdbSi.Checked = seleccionado.Cobrado;
                 rdbNo.Checked = !seleccionado.Cobrado;
@@ -175,8 +176,8 @@ namespace TPCGrupo30
             try
             {
                 if (string.IsNullOrEmpty(txtFechaEmision.Text) || string.IsNullOrEmpty(ddlCliente.SelectedItem.Value) ||
-                    string.IsNullOrEmpty(ddlVehiculo.SelectedItem.Value) || string.IsNullOrEmpty(ddlMecanico.SelectedItem.Value) ||
-                    string.IsNullOrEmpty(ddlEstado.SelectedItem.Value))
+                    string.IsNullOrEmpty(ddlVehiculo.SelectedItem.Value) || string.IsNullOrEmpty(ddlMecanico.SelectedItem.Value)) //||
+                    //string.IsNullOrEmpty(ddlEstado.SelectedItem.Value))
                 {
                     lblError.Text = "Por favor, complete todos los campos obligatorios.";
                     return;
@@ -232,8 +233,8 @@ namespace TPCGrupo30
                 orden.Mecanico = em;
 
                 EstadoOrden est = new EstadoOrden();
-                est.ID = int.Parse(ddlEstado.SelectedItem.Value);
-                est.NombreEstado = ddlEstado.SelectedItem.Text;
+                est.ID = 1;
+                est.NombreEstado = "Pendiente";
                 orden.Estado = est;
 
                 orden.HorasTeoricas = int.Parse(txtTeoricas.Text);
@@ -346,8 +347,8 @@ namespace TPCGrupo30
                 ordenMod.Mecanico = em;
 
                 EstadoOrden est = new EstadoOrden();
-                est.ID = int.Parse(ddlEstado.SelectedItem.Value);
-                est.NombreEstado = ddlEstado.SelectedItem.Text;
+                //est.ID = int.Parse(ddlEstado.SelectedItem.Value);
+                est.NombreEstado = txtEstado.Text;
                 ordenMod.Estado = est;
 
                 List<Servicio> listaServiciosAgregados = (List<Servicio>)Session["listaServiciosAgregados"];
@@ -368,6 +369,58 @@ namespace TPCGrupo30
 
                 Session.Add("error", ex);
             }
+        }
+
+        protected void btnAvanzarEstado_Click(object sender, EventArgs e)
+        {
+            OrdenDeTrabajoNegocio negocio = new OrdenDeTrabajoNegocio();
+            OrdenDeTrabajo ordenMod = new OrdenDeTrabajo();
+            DateTime fechaFinalizacion;
+            string[] formatosFecha = { "dd/MM/yyyy", "MM/dd/yyyy", "yyyy-MM-dd" };
+
+            if (!DateTime.TryParseExact(txtFechaFin.Text, formatosFecha, null, System.Globalization.DateTimeStyles.None, out fechaFinalizacion))
+            {
+                lblError.Text = "La fecha de finalización no tiene un formato válido.";
+                return;
+            }
+            int idOrden = int.Parse(Request.QueryString["ID"].ToString());
+            try
+            {
+                ordenMod.ID = idOrden;
+                ordenMod.HorasReales = int.Parse(txtReales.Text);
+                ordenMod.HorasTeoricas = int.Parse(txtTeoricas.Text);
+                ordenMod.Observaciones = tbObservaciones.Text;
+                ordenMod.FechaFinalizacion = fechaFinalizacion;
+
+
+                Usuario em = new Usuario();
+                em.ID = int.Parse(ddlMecanico.SelectedItem.Value);
+                em.Apellido = ddlMecanico.SelectedItem.Text;
+                ordenMod.Mecanico = em;
+
+                EstadoOrden est = new EstadoOrden();
+                est.ID = negocio.ObtenerIDEstado(txtEstado.Text);
+                est.NombreEstado = negocio.ObtenerNombreEstado(est.ID);
+                est.ID++;
+                ordenMod.Estado = est;
+
+                List<Servicio> listaServiciosAgregados = (List<Servicio>)Session["listaServiciosAgregados"];
+                ordenMod.Servicios = listaServiciosAgregados;
+
+                decimal total = listaServiciosAgregados.Sum(servicio => servicio.Precio);
+                txtTotal.Text = total.ToString("N2"); // Formatear como moneda
+                ordenMod.Total = total;
+
+                ordenMod.Cobrado = rdbSi.Checked;
+                
+                negocio.ModificarOrden(ordenMod);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            Response.Redirect("ABMOrdenes.aspx");
         }
     }
 }

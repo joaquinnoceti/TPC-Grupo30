@@ -90,11 +90,23 @@
                             <asp:DropDownList ID="ddlMecanico" CssClass="form-select" placeholder="Mecanico..." runat="server">
                             </asp:DropDownList>
                         </div>
-                        <div class="form-group mb-3">
+                        <%--<div class="form-group mb-3">
                             <label>Estado</label>
                             <asp:DropDownList ID="ddlEstado" CssClass="form-select" runat="server">
                             </asp:DropDownList>
-                        </div>
+                        </div>--%>
+                        <%if (Request.QueryString["ID"] != null)
+                            {%>
+                            <div class="form-group mb-3">
+                                <label class="h4">Estado:</label>
+                                <asp:TextBox ID="txtEstado" CssClass="form-control" runat="server" ReadOnly="true"></asp:TextBox>
+                                <asp:Label Text="Avanzar Estado" ID="lblAvanzar" runat="server" />
+                                <%if(txtEstado.Text != "COMPLETADO") { %>
+                                <asp:Button ID="btnAvanzarEstado" CssClass="btn btn-outline-success btn-sm" Text="Avanzar" OnClick="btnAvanzarEstado_Click" runat="server" />
+                                <%}%>
+                            </div>
+                        <%}%>
+
                         <div class="form-group mb-3">
                             <label>Cobrado: </label>
                             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">

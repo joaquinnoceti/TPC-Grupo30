@@ -60,5 +60,10 @@ namespace TPCGrupo30
                 }
             }
         }
+
+        protected void btnAceptar_Click1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

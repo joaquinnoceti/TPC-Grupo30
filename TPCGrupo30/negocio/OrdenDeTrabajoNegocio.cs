@@ -1,5 +1,6 @@
 ﻿using dominio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -211,5 +212,94 @@ namespace negocio
             }
 
         }
+        public string ObtenerNombreEstado(int id)
+        {
+            AccesoDatos1 datos = new AccesoDatos1();
+            try
+            {
+                datos.abrirConexion();
+                datos.setearConsulta("Select NombreEstado From EstadoOrden Where @ID=" + id);
+                datos.setearParametro("@ID", id);
+                datos.ejecutarConsulta();
+                while (datos.Lector.Read())
+                {
+                    EstadoOrden aux = new EstadoOrden();
+
+                    aux.ID = id;
+                    aux.NombreEstado = (string)datos.Lector["NombreEstado"];
+                    datos.cerrarConexion();
+                    return aux.NombreEstado;
+                }
+
+                return "error";
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public int ObtenerIDEstado(string nombre)
+        {
+            AccesoDatos1 datos = new AccesoDatos1();
+            try
+            {
+                datos.abrirConexion();
+                datos.setearConsulta("Select ID From EstadoOrden Where NombreEstado ='" + nombre + "'");
+                datos.ejecutarConsulta();
+                while (datos.Lector.Read())
+                {
+                    EstadoOrden aux = new EstadoOrden();
+
+                    aux.ID = (int)datos.Lector["ID"];
+                    aux.NombreEstado = nombre;
+                    datos.cerrarConexion();
+                    return aux.ID;
+                }
+
+                return 0;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public void AvanzarEstado(OrdenDeTrabajo orden)
+        {
+            AccesoDatos1 datos = new AccesoDatos1();
+            try
+            {
+                datos.abrirConexion();
+                int Id = orden.ID;
+                datos.setearConsulta("UPDATE OrdenDeTrabajo SET HorasTeoricas=@HorasTeoricas,HorasReales=@HorasReales,FechaFinalizacion=@FechaFinalizacion,Observaciones=@Observaciones,Total=@Total,Cobrado=@Cobrado,IdEmpleado=@IdEmpleado,Estado=@Estado,CreadoPor=@CreadoPor where ID = " + Id);
+                //datos.setearParametro("@ID", orden.ID);
+                datos.setearParametro("@HorasTeoricas", orden.HorasTeoricas);
+                datos.setearParametro("@HorasReales", orden.HorasReales);
+                datos.setearParametro("@FechaFinalizacion", orden.FechaFinalizacion);
+                datos.setearParametro("@Observaciones", orden.Observaciones);
+                datos.setearParametro("@Total", orden.Total);
+                datos.setearParametro("@Cobrado", orden.Cobrado);
+                datos.setearParametro("@IdEmpleado", orden.Mecanico.ID);
+                datos.setearParametro("@Estado", orden.Estado.ID);
+                datos.setearParametro("@CreadoPor", orden.Mecanico.ID);
+
+                datos.ejecutarConsulta();
+                datos.cerrarConexion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
     }
-}
+    }
+
