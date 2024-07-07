@@ -347,8 +347,8 @@ namespace TPCGrupo30
                 ordenMod.Mecanico = em;
 
                 EstadoOrden est = new EstadoOrden();
-                //est.ID = int.Parse(ddlEstado.SelectedItem.Value);
-                est.NombreEstado = txtEstado.Text;
+                est.ID = negocio.ObtenerIDEstado(txtEstado.Text);
+                est.NombreEstado = negocio.ObtenerNombreEstado(est.ID);
                 ordenMod.Estado = est;
 
                 List<Servicio> listaServiciosAgregados = (List<Servicio>)Session["listaServiciosAgregados"];
@@ -369,6 +369,7 @@ namespace TPCGrupo30
 
                 Session.Add("error", ex);
             }
+            Response.Redirect("ABMOrdenes.aspx");
         }
 
         protected void btnAvanzarEstado_Click(object sender, EventArgs e)
@@ -415,10 +416,10 @@ namespace TPCGrupo30
                 
                 negocio.ModificarOrden(ordenMod);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                Session.Add("error", ex);
             }
             Response.Redirect("ABMOrdenes.aspx");
         }
