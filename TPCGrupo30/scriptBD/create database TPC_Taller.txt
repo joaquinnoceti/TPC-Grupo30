@@ -176,3 +176,20 @@ CREATE TABLE Costos
     Importe DECIMAL
   );
 
+Create Table ObservacionesOT(
+    ID int primary key identity(1,1),
+    IDOrdenDeTrabajo int not null foreign key references OrdenDeTrabajo(ID),
+    FechaObservacion datetime,
+    Observacion varchar(200) not null,
+    IDEmpleado int not null foreign key references Usuarios(ID)
+);
+Go
+Create Table HistorialModificacionesOT(
+    ID int primary key identity(1,1),
+    IDOrdenDeTrabajo int not null foreign key references OrdenDeTrabajo(ID),
+    FechaModificacion datetime,
+    CampoModificado varchar(50),
+    ValorAnterior varchar(50),
+    ValorNuevo varchar(50),
+    ModificadoPor int not null foreign key references Usuarios(ID)
+);
