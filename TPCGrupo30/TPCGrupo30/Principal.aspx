@@ -9,7 +9,7 @@
             <div class="links">
                 <a href="ABMClientes.aspx">ADMINISTRACION CLIENTES</a>
                 <a href="ABMEmpleados.aspx">ADMINISTRACION EMPLEADOS</a>
-                <a href="ABMOrdenes.aspx">ADMINISTRACION ORDENES</a>
+                <a href="PanelControlAdmin.aspx">PANEL ORDENES</a>
             </div>
         </div>
         <div class="right-section">

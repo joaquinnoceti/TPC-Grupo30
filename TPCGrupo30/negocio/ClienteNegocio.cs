@@ -193,7 +193,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("SELECT c.ID,c.Nombre,c.Apellido,c.Email,c.DNI,c.Telefono,c.FechaNac,c.Direccion,v.ID,v.NombreVehiculo,v.IdCliente FROM Vehiculos v INNER JOIN Clientes c ON v.IdCliente=c.ID WHERE c.Activo=1");
+                datos.setearConsulta("SELECT DISTINCT c.ID,c.Nombre,c.Apellido,c.Email,c.DNI,c.Telefono,c.FechaNac,c.Direccion,v.ID AS VehiculoID,v.NombreVehiculo FROM Vehiculos v INNER JOIN Clientes c ON v.IdCliente = c.ID WHERE c.Activo = 1");
                 datos.ejecutarConsulta();
 
                 while (datos.Lector.Read())

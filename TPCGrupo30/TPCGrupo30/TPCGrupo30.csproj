@@ -85,6 +85,7 @@
     <Content Include="Global.asax" />
     <Content Include="AltaOrden.aspx" />
     <Content Include="NuevoServicio.aspx" />
+    <Content Include="PanelControlAdmin.aspx" />
     <Content Include="Principal.aspx" />
     <Content Include="Registrarse.aspx" />
     <Content Include="Web.config" />
@@ -204,6 +205,13 @@
     </Compile>
     <Compile Include="NuevoServicio.aspx.designer.cs">
       <DependentUpon>NuevoServicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PanelControlAdmin.aspx.cs">
+      <DependentUpon>PanelControlAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PanelControlAdmin.aspx.designer.cs">
+      <DependentUpon>PanelControlAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Principal.aspx.cs">
       <DependentUpon>Principal.aspx</DependentUpon>

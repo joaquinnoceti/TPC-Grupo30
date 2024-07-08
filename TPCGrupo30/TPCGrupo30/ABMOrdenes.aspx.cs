@@ -14,7 +14,6 @@ namespace TPCGrupo30
         {
             OrdenDeTrabajoNegocio negocio = new OrdenDeTrabajoNegocio();
 
-
             Session.Add("listaOrdenes", negocio.ListarOrdenes());
 
             dgvOrdenes.DataSource = Session["listaOrdenes"];
