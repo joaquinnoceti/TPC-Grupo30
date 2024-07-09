@@ -26,7 +26,7 @@ namespace negocio
                     aux.ID = (int)datos.Lector["ID"];
                     aux.IDOrdenDeTrabajo = (int)datos.Lector["IDOrdenDeTrabajo"];
                     aux.FechaModificacion = DateTime.Parse(datos.Lector["FechaModificacion"].ToString());
-                    aux.CampoModificado = (string)datos.Lector["CampoModificado"];
+                    aux.Observacion = (string)datos.Lector["Observacion"];
                     aux.ValorAnterior = (string)datos.Lector["ValorAnterior"];
                     aux.ValorNuevo = (string)datos.Lector["ValorNuevo"];
                     aux.ModificadoPor = (int)datos.Lector["ModificadoPor"];
@@ -64,7 +64,7 @@ namespace negocio
                     aux.ID = (int)datos.Lector["ID"];
                     aux.IDOrdenDeTrabajo = (int)datos.Lector["IDOrdenDeTrabajo"];
                     aux.FechaModificacion = DateTime.Parse(datos.Lector["FechaModificacion"].ToString());
-                    aux.CampoModificado = (string)datos.Lector["CampoModificado"];
+                    aux.Observacion = (string)datos.Lector["Observacion"];
                     aux.ValorAnterior = (string)datos.Lector["ValorAnterior"];
                     aux.ValorNuevo = (string)datos.Lector["ValorNuevo"];
                     aux.ModificadoPor = (int)datos.Lector["ModificadoPor"];
@@ -92,15 +92,13 @@ namespace negocio
                 // Registrar historial y obtener el ID generado
                 datos.abrirConexion();
                 datos.setearConsulta(@"
-                    INSERT INTO HistorialModificacionesOT(IDOrdenDeTrabajo, FechaModificacion, CampoModificado, ValorAnterior, ValorNuevo, ModificadoPor)
-                    VALUES (@IDOrdenDeTrabajo, @FechaModificacion, @CampoModificado, @ValorAnterior, @ValorNuevo, @ModificadoPor);
+                    INSERT INTO HistorialModificacionesOT(IDOrdenDeTrabajo, FechaModificacion, ModificadoPor, Observacion)
+                    VALUES (@IDOrdenDeTrabajo, @FechaModificacion, @ModificadoPor, @Observacion);
                     SELECT SCOPE_IDENTITY();");
                 datos.setearParametro("@IDOrdenDeTrabajo", historial.IDOrdenDeTrabajo);
-                datos.setearParametro("@IdCliente", historial.FechaModificacion);
-                datos.setearParametro("@IdVehiculo", historial.CampoModificado);
-                datos.setearParametro("@HorasTeoricas", historial.ValorAnterior);
-                datos.setearParametro("@HorasReales", historial.ValorNuevo);
-                datos.setearParametro("@FechaFinalizacion", historial.ModificadoPor);
+                datos.setearParametro("@FechaModificacion", historial.FechaModificacion);
+                datos.setearParametro("@ModificadoPor", historial.ModificadoPor);
+                datos.setearParametro("@Observacion", historial.Observacion);
 
                 datos.ejecutarConsulta();
                 if (datos.Lector.Read())

@@ -280,6 +280,13 @@ namespace TPCGrupo30
 
 
                 negocio.GuardarOrden(orden);
+                HistorialOTNegocio historialNegocio = new HistorialOTNegocio();
+                HistorialModificacionesOT historial = new HistorialModificacionesOT();
+                historial.IDOrdenDeTrabajo = orden.ID;
+                historial.FechaModificacion = DateTime.Today;
+                historial.ModificadoPor = em.ID;
+                historial.Observacion = tbObservaciones.Text;
+                historialNegocio.RegistrarHistorial(historial);
             }
             catch (Exception ex)
             {
@@ -412,6 +419,13 @@ namespace TPCGrupo30
 
                 
                 negocio.ModificarOrden(ordenMod);
+                HistorialOTNegocio historialNegocio = new HistorialOTNegocio();
+                HistorialModificacionesOT historial = new HistorialModificacionesOT();
+                historial.IDOrdenDeTrabajo = ordenMod.ID;
+                historial.FechaModificacion = DateTime.Today;
+                historial.ModificadoPor = em.ID;
+                historial.Observacion = tbObservaciones.Text;
+                historialNegocio.RegistrarHistorial(historial);
             }
             catch (Exception ex)
             {

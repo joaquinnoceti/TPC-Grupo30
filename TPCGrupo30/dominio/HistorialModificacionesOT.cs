@@ -11,7 +11,7 @@ namespace dominio
         public int ID { get; set; }
         public int IDOrdenDeTrabajo { get; set; }
         public DateTime FechaModificacion { get; set; }
-        public string CampoModificado { get; set; }
+        public string Observacion { get; set; }
         public string ValorAnterior { get; set; }
         public string ValorNuevo { get; set; }
         public int ModificadoPor { get; set; }

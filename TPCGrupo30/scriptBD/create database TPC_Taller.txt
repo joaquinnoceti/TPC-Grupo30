@@ -193,3 +193,10 @@ Create Table HistorialModificacionesOT(
     ValorNuevo varchar(50),
     ModificadoPor int not null foreign key references Usuarios(ID)
 );
+
+Select * From HistorialModificacionesOT
+
+EXEC sp_rename 'HistorialModificacionesOT.CampoModificado', 'Observacion', 'COLUMN';
+
+ALTER TABLE HistorialModificacionesOT
+ALTER COLUMN Observacion VARCHAR(200);
