@@ -1,4 +1,5 @@
-﻿using negocio;
+﻿using dominio;
+using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,15 @@ namespace TPCGrupo30
         protected void Page_Load(object sender, EventArgs e)
         {
             OrdenDeTrabajoNegocio negocio = new OrdenDeTrabajoNegocio();
-
-            Session.Add("listaOrdenes", negocio.ListarOrdenes());
-
+            Usuario usuario = new Usuario();
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+            usuario = Session["user"] as Usuario;
+            if (usuario.Apellido != "ADMIN")
+            {
+                usuario.ID = usuarioNegocio.buscarPorApellido(usuario.Apellido);
+                Session.Add("listaOrdenes", negocio.ListarOrdenes(usuario.ID));
+            }
+            else negocio.ListarOrdenes();
             dgvOrdenes.DataSource = Session["listaOrdenes"];
             dgvOrdenes.DataBind();
         }

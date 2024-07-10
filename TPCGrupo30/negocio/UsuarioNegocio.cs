@@ -293,6 +293,30 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+        public int buscarPorApellido(string apellido)
+        {
+            
+            AccesoDatos1 datos = new AccesoDatos1();
+            try
+            {
+                datos.setearConsulta("Select * From Usuarios Where Apellido = @apellido");
+                datos.setearParametro("@apellido", apellido);
+                datos.ejecutarConsulta();
+                int idUsuario = 0;
+                while (datos.Lector.Read())
+                {
+                    idUsuario = (int)datos.Lector["ID"];
+                    break;
+                }
+                    return idUsuario;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+        }
     }
 }
 

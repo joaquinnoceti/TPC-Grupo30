@@ -11,6 +11,61 @@ namespace negocio
 {
     public class OrdenDeTrabajoNegocio
     {
+        public List<OrdenDeTrabajo> ListarOrdenes(int idEmpleado)
+        {
+            List<OrdenDeTrabajo> lista = new List<OrdenDeTrabajo>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT o.ID,o.FechaCreacion,o.IdCliente,o.IdVehiculo,o.HorasTeoricas,o.HorasReales,o.FechaFinalizacion,o.IdEmpleado,u.Apellido as Mecanico,o.Observaciones,o.Total,o.Cobrado,o.CreadoPor,c.Apellido as Cliente,v.NombreVehiculo,o.Estado,eo.NombreEstado,v.ID FROM OrdenDeTrabajo o INNER JOIN Clientes c ON o.IdCliente=c.ID INNER JOIN Vehiculos v ON c.ID=v.IdCliente INNER JOIN EstadoOrden eo ON o.Estado=eo.ID INNER JOIN Usuarios u ON o.IdEmpleado=u.ID Where o.IdEmpleado =" + idEmpleado);
+                datos.ejecutarConsulta();
+
+                while (datos.Lector.Read())
+                {
+                    OrdenDeTrabajo aux = new OrdenDeTrabajo();
+
+                    aux.ID = (int)datos.Lector["ID"];
+                    aux.FechaCreacion = DateTime.Parse(datos.Lector["FechaCreacion"].ToString());
+
+                    aux.Cliente = new Cliente();
+                    aux.Cliente.ID = (int)datos.Lector["IdCliente"];
+                    aux.Cliente.Apellido = (string)datos.Lector["Cliente"];
+
+                    aux.Vehiculo = new Vehiculo();
+                    aux.Vehiculo.IDVehiculo = (int)datos.Lector["ID"];
+                    aux.Vehiculo.Patente = (string)datos.Lector["NombreVehiculo"];
+
+                    aux.HorasTeoricas = (int)datos.Lector["HorasTeoricas"];
+                    aux.HorasReales = (int)datos.Lector["HorasReales"];
+                    aux.FechaFinalizacion = DateTime.Parse(datos.Lector["FechaFinalizacion"].ToString());
+                    aux.Observaciones = (string)datos.Lector["Observaciones"];
+                    aux.Total = (decimal)datos.Lector["Total"];
+                    aux.Cobrado = (bool)datos.Lector["Cobrado"];
+
+                    aux.Estado = new EstadoOrden();
+                    aux.Estado.ID = (int)datos.Lector["Estado"];
+                    aux.Estado.NombreEstado = (string)datos.Lector["NombreEstado"];
+
+                    aux.Mecanico = new Usuario();
+                    aux.Mecanico.ID = (int)datos.Lector["IdEmpleado"];
+                    aux.Mecanico.Apellido = (string)datos.Lector["Mecanico"];
+
+                    lista.Add(aux);
+
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public List<OrdenDeTrabajo> ListarOrdenes()
         {
             List<OrdenDeTrabajo> lista = new List<OrdenDeTrabajo>();
@@ -18,7 +73,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("SELECT o.ID,o.FechaCreacion,o.IdCliente,o.IdVehiculo,o.HorasTeoricas,o.HorasReales,o.FechaFinalizacion,o.IdEmpleado,u.Apellido as Mecanico,o.Observaciones,o.Total,o.Cobrado,o.CreadoPor,c.Apellido as Cliente,v.NombreVehiculo,o.Estado,eo.NombreEstado,v.ID FROM OrdenDeTrabajo o INNER JOIN Clientes c ON o.IdCliente=c.ID INNER JOIN Vehiculos v ON c.ID=v.IdCliente INNER JOIN EstadoOrden eo ON o.Estado=eo.ID INNER JOIN Usuarios u ON o.IdEmpleado=u.ID");
+                datos.setearConsulta("SELECT o.ID,o.FechaCreacion,o.IdCliente,o.IdVehiculo,o.HorasTeoricas,o.HorasReales,o.FechaFinalizacion,o.IdEmpleado,u.Apellido as Mecanico,o.Observaciones,o.Total,o.Cobrado,o.CreadoPor,c.Apellido as Cliente,v.NombreVehiculo,o.Estado,eo.NombreEstado,v.ID FROM OrdenDeTrabajo o INNER JOIN Clientes c ON o.IdCliente=c.ID INNER JOIN Vehiculos v ON c.ID=v.IdCliente INNER JOIN EstadoOrden eo ON o.Estado=eo.ID INNER JOIN Usuarios u ON o.IdEmpleado=u.ID Where o.IdEmpleado =");
                 datos.ejecutarConsulta();
 
                 while (datos.Lector.Read())
