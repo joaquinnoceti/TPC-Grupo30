@@ -22,7 +22,11 @@ namespace TPCGrupo30
                 usuario.ID = usuarioNegocio.buscarPorApellido(usuario.Apellido);
                 Session.Add("listaOrdenes", negocio.ListarOrdenes(usuario.ID));
             }
-            else negocio.ListarOrdenes();
+            else
+            {
+                Session.Add("listaOrdenes", negocio.ListarOrdenes());
+                //negocio.ListarOrdenes();
+            }
             dgvOrdenes.DataSource = Session["listaOrdenes"];
             dgvOrdenes.DataBind();
         }
