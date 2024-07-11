@@ -293,14 +293,14 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-        public int buscarPorApellido(string apellido)
+        public int buscarPorApellido(string Email)
         {
             
             AccesoDatos1 datos = new AccesoDatos1();
             try
             {
-                datos.setearConsulta("Select * From Usuarios Where Apellido = @apellido");
-                datos.setearParametro("@apellido", apellido);
+                datos.setearConsulta("Select * From Usuarios Where Email = @Email");
+                datos.setearParametro("@Email", Email);
                 datos.ejecutarConsulta();
                 int idUsuario = 0;
                 while (datos.Lector.Read())

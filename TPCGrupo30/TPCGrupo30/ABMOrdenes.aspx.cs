@@ -19,7 +19,7 @@ namespace TPCGrupo30
             usuario = Session["user"] as Usuario;
             if (usuario.Apellido != "ADMIN")
             {
-                usuario.ID = usuarioNegocio.buscarPorApellido(usuario.Apellido);
+                usuario.ID = usuarioNegocio.buscarPorApellido(usuario.Email);
                 Session.Add("listaOrdenes", negocio.ListarOrdenes(usuario.ID));
             }
             else

@@ -88,8 +88,8 @@ namespace negocio
                     aux.Cliente.Apellido = (string)datos.Lector["Cliente"];
 
                     aux.Vehiculo = new Vehiculo();
-                    aux.Vehiculo.IDVehiculo = (int)datos.Lector["ID"];
-                    aux.Vehiculo.Patente = (string)datos.Lector["NombreVehiculo"];
+                    aux.Vehiculo.IDVehiculo = (int)datos.Lector["IdVehiculo"];
+                    aux.Vehiculo.NombreVehiculo = (string)datos.Lector["NombreVehiculo"];
 
                     aux.HorasTeoricas = (int)datos.Lector["HorasTeoricas"];
                     aux.HorasReales = (int)datos.Lector["HorasReales"];

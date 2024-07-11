@@ -31,6 +31,7 @@ namespace TPCGrupo30
                 {
                     // Cargar datos iniciales
                     CargarDatosIniciales();
+                    tbObservaciones.Text = "";
 
                     // Verificar si hay un ID en la consulta
                     if (Request.QueryString["ID"] != null)
@@ -72,7 +73,7 @@ namespace TPCGrupo30
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             usuario = Session["user"] as Usuario;
                 // Cargar lista de empleados
-                List<Usuario> listaEmpleados = negocio3.Listar();
+                List<Usuario> listaEmpleados = usuarioNegocio.Listar();
                 ddlMecanico.DataSource = listaEmpleados;
                 ddlMecanico.DataValueField = "ID";
                 ddlMecanico.DataTextField = "Apellido";
@@ -83,8 +84,9 @@ namespace TPCGrupo30
                 ddlMecanico.SelectedValue = item.Value;
                 ddlMecanico.Enabled = false;
             }
+
             
-            
+
             // Cargar lista de estados
             //List<EstadoOrden> listaEstados = negocio4.ListarEstados();
             //ddlEstado.DataSource = listaEstados;
@@ -138,7 +140,7 @@ namespace TPCGrupo30
 
                 txtReales.Text = seleccionado.HorasReales.ToString();
                 txtTeoricas.Text = seleccionado.HorasTeoricas.ToString();
-                tbObservaciones.Text = seleccionado.Observaciones.ToString();
+                //tbObservaciones.Text = seleccionado.Observaciones.ToString();
                 txtFechaFin.Text = seleccionado.FechaFinalizacion.ToString("yyyy-MM-dd");
                 txtTotal.Text = seleccionado.Total.ToString("N2");
 
@@ -398,6 +400,7 @@ namespace TPCGrupo30
                 ordenMod.Observaciones = tbObservaciones.Text;
                 ordenMod.FechaFinalizacion = fechaFinalizacion;
 
+                
 
                 Usuario em = new Usuario();
                 em.ID = int.Parse(ddlMecanico.SelectedItem.Value);

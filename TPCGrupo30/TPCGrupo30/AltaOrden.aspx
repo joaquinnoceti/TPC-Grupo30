@@ -69,11 +69,11 @@
                         <%}%>
                         <div class="form-group mb-3">
                             <label>Horas Teoricas</label>
-                            <asp:TextBox ID="txtTeoricas" CssClass="form-control" placeholder="Horas teoricas..." runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtTeoricas" CssClass="form-control" placeholder="Horas teoricas..." runat="server" required></asp:TextBox>
                         </div>
                         <div class="form-group mb-3">
                             <label>Observaciones</label>
-                            <asp:TextBox ID="tbObservaciones" TextMode="MultiLine" CssClass="form-control" placeholder="Observaciones..." runat="server"></asp:TextBox>
+                            <asp:TextBox ID="tbObservaciones" TextMode="MultiLine" CssClass="form-control" placeholder="Observaciones..." runat="server" required></asp:TextBox>
                         </div>
                     </div>
                     <div class="col-md-6 mt-3">
