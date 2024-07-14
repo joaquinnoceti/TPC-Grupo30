@@ -216,4 +216,33 @@ INSERT INTO Usuarios(Nombre,Apellido,DNI,FechaNac,Email,Telefono,Direccion,Fecha
 
 GO  
 
-
+-- Insert 1
+INSERT INTO Costos (CodigoCuenta, CodigoSubcuenta, Tipo, Asignacion, FechaCosto, Importe)
+VALUES ('1', '1.1', 'Fijo', 'Renta Mensual', '2024-07-14', 5000.00);
+-- Insert 2
+INSERT INTO Costos (CodigoCuenta, CodigoSubcuenta, Tipo, Asignacion, FechaCosto, Importe)
+VALUES ('2', '2.1', 'Variable', 'Pago de Sueldos', '2024-07-14', 15000.00);
+-- Insert 3
+INSERT INTO Costos (CodigoCuenta, CodigoSubcuenta, Tipo, Asignacion, FechaCosto, Importe)
+VALUES ('3', '3.1', 'Fijo', 'Pago de Cargas Sociales', '2024-07-14', 3000.00);
+-- Insert 4
+INSERT INTO Costos (CodigoCuenta, CodigoSubcuenta, Tipo, Asignacion, FechaCosto, Importe)
+VALUES ('4', '4.1', 'Fijo', 'Pago de Medicina Prepaga', '2024-07-14', 2000.00);
+-- Insert 5
+INSERT INTO Costos (CodigoCuenta, CodigoSubcuenta, Tipo, Asignacion, FechaCosto, Importe)
+VALUES ('5', '5.1', 'Variable', 'Pago de Servicios', '2024-07-14', 1000.00);
+-- Insert 6
+INSERT INTO Costos (CodigoCuenta, CodigoSubcuenta, Tipo, Asignacion, FechaCosto, Importe)
+VALUES ('6', '6.1', 'Fijo', 'Pago de Seguros', '2024-07-14', 4000.00);
+-- Insert 7
+INSERT INTO Costos (CodigoCuenta, CodigoSubcuenta, Tipo, Asignacion, FechaCosto, Importe)
+VALUES ('7', '7.1', 'Fijo', 'Pago de Impuestos', '2024-07-14', 6000.00);
+-- Insert 8
+INSERT INTO Costos (CodigoCuenta, CodigoSubcuenta, Tipo, Asignacion, FechaCosto, Importe)
+VALUES ('8', '8.1', 'Variable', 'Pago de Tasas', '2024-07-14', 800.00);
+-- Insert 9
+INSERT INTO Costos (CodigoCuenta, CodigoSubcuenta, Tipo, Asignacion, FechaCosto, Importe)
+VALUES ('9', '9.1', 'Fijo', 'Gastos Bancarios', '2024-07-14', 500.00);
+-- Insert 10
+INSERT INTO Costos (CodigoCuenta, CodigoSubcuenta, Tipo, Asignacion, FechaCosto, Importe)
+VALUES ('10', '10.1', 'Variable', 'Pago de Intereses', '2024-07-14', 1200.00);

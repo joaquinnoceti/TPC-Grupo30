@@ -41,16 +41,16 @@ body {
 }
 
 
-.links a {
-    flex-grow: 1; /* Para que los enlaces ocupen todo el alto disponible */
-    padding: 70px 70px 70px 70px;
-    margin-bottom: 10px;
-    text-decoration: none;
-    background-color: #ddd;
-    color: #333;
-    border-radius: 5px;
-    text-align:center;
-}
+    .links a {
+        flex-grow: 1; /* Para que los enlaces ocupen todo el alto disponible */
+        padding: 70px 70px 70px 70px;
+        margin-bottom: 10px;
+        text-decoration: none;
+        background-color: #ddd;
+        color: #333;
+        border-radius: 5px;
+        text-align: center;
+    }
 
 .navbar-nav.navbar-center {
     position: absolute;
