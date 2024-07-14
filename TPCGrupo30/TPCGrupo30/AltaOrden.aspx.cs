@@ -432,6 +432,7 @@ namespace TPCGrupo30
                 HistorialModificacionesOT historial = new HistorialModificacionesOT();
                 historial.IDOrdenDeTrabajo = ordenMod.ID;
                 historial.FechaModificacion = DateTime.Today;
+                historial.ModificadoPor = new Usuario();
                 historial.ModificadoPor.ID = em.ID;
                 historial.Observacion = tbObservaciones.Text;
                 historialNegocio.RegistrarHistorial(historial);

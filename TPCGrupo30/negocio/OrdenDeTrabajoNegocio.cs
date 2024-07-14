@@ -139,12 +139,16 @@ namespace negocio
                 datos.setearParametro("@IdVehiculo", orden.Vehiculo.IDVehiculo);
                 datos.setearParametro("@HorasTeoricas", orden.HorasTeoricas);
                 datos.setearParametro("@HorasReales", orden.HorasReales);
-                datos.setearParametro("@FechaFinalizacion", orden.FechaFinalizacion);
                 datos.setearParametro("@Observaciones", orden.Observaciones);
                 datos.setearParametro("@Total", orden.Total);
                 datos.setearParametro("@Cobrado", orden.Cobrado);
                 datos.setearParametro("@IdEmpleado", orden.Mecanico.ID);
                 datos.setearParametro("@Estado", orden.Estado.ID);
+                if(orden.Estado.ID == 5)
+                {
+                    datos.setearParametro("@FechaFinalizacion", DateTime.Today);
+                }
+                else datos.setearParametro("@FechaFinalizacion", orden.FechaFinalizacion);
                 datos.setearParametro("@CreadoPor", orden.Mecanico.ID);
 
                 datos.ejecutarConsulta();
@@ -227,12 +231,16 @@ namespace negocio
                 //datos.setearParametro("@ID", orden.ID);
                 datos.setearParametro("@HorasTeoricas", orden.HorasTeoricas);
                 datos.setearParametro("@HorasReales", orden.HorasReales);
-                datos.setearParametro("@FechaFinalizacion", orden.FechaFinalizacion);
                 datos.setearParametro("@Observaciones", orden.Observaciones);
                 datos.setearParametro("@Total", orden.Total);
                 datos.setearParametro("@Cobrado", orden.Cobrado);
                 datos.setearParametro("@IdEmpleado", orden.Mecanico.ID);
                 datos.setearParametro("@Estado", orden.Estado.ID);
+                if (orden.Estado.ID == 5)
+                {
+                    datos.setearParametro("@FechaFinalizacion", DateTime.Today);
+                }
+                else datos.setearParametro("@FechaFinalizacion", orden.FechaFinalizacion);
                 datos.setearParametro("@CreadoPor", orden.Mecanico.ID);
 
                 datos.ejecutarConsulta();
