@@ -49,7 +49,6 @@
     <Compile Include="Costo.cs" />
     <Compile Include="HistorialModificacionesOT.cs" />
     <Compile Include="Marca.cs" />
-    <Compile Include="ObservacionesOT.cs" />
     <Compile Include="OrdenDeTrabajo.cs" />
     <Compile Include="Servicio.cs" />
     <Compile Include="SubCuenta.cs" />

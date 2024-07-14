@@ -41,9 +41,14 @@ namespace TPCGrupo30
             {
                 try
                 {
-                    if (!(negocio.UserLogin(usuario)))
+                    if (negocio.UserLogin(usuario)==0) // 0 no reconoce usuario o password
                     {
-                        lblError.Text = "email o password invalidos";
+                        lblError.Text = "Email o password invalidos";
+                        lblError.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else if (negocio.UserLogin(usuario) == 2) // devuelve 2 cuando el usuario está dado de baja
+                    {
+                        lblError.Text = "UPS! Usuario dado de baja";
                         lblError.ForeColor = System.Drawing.Color.Red;
                     }
                     else
