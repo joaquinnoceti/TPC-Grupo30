@@ -29,7 +29,7 @@ namespace negocio
                     aux.Observacion = (string)datos.Lector["Observacion"];
                     aux.ValorAnterior = (string)datos.Lector["ValorAnterior"];
                     aux.ValorNuevo = (string)datos.Lector["ValorNuevo"];
-                    aux.ModificadoPor = (int)datos.Lector["ModificadoPor"];
+                    //aux.ModificadoPor = (int)datos.Lector["ModificadoPor"];
 
                     lista.Add(aux);
 
@@ -46,28 +46,30 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-        public List<HistorialModificacionesOT> ListarHistorialPorOT(OrdenDeTrabajo ot)
+        public List<HistorialModificacionesOT> ListarHistorialPorOT(int ot)
         {
             List<HistorialModificacionesOT> lista = new List<HistorialModificacionesOT>();
             AccesoDatos1 datos = new AccesoDatos1();
 
+
             try
             {
-                datos.setearConsulta("Select * From HistorialModificacionesOT Where IDOrdenDeTrabajo = @OT");
-                datos.setearParametro("@OT", ot.ID);
+                datos.setearConsulta("Select h.IDOrdenDeTrabajo, h.FechaModificacion, h.Observacion, u.Apellido From HistorialModificacionesOT h inner join USuarios u On h.ModificadoPor = u.ID Where IDOrdenDeTrabajo = @OT");
+                datos.setearParametro("@OT", ot);
                 datos.ejecutarConsulta();
 
                 while (datos.Lector.Read())
                 {
                     HistorialModificacionesOT aux = new HistorialModificacionesOT();
 
-                    aux.ID = (int)datos.Lector["ID"];
+                    //aux.ID = (int)datos.Lector["h.ID"];
                     aux.IDOrdenDeTrabajo = (int)datos.Lector["IDOrdenDeTrabajo"];
                     aux.FechaModificacion = DateTime.Parse(datos.Lector["FechaModificacion"].ToString());
                     aux.Observacion = (string)datos.Lector["Observacion"];
-                    aux.ValorAnterior = (string)datos.Lector["ValorAnterior"];
-                    aux.ValorNuevo = (string)datos.Lector["ValorNuevo"];
-                    aux.ModificadoPor = (int)datos.Lector["ModificadoPor"];
+                    //aux.ValorAnterior = (string)datos.Lector["ValorAnterior"];
+                    //aux.ValorNuevo = (string)datos.Lector["ValorNuevo"];
+                    aux.ModificadoPor = new Usuario();
+                    aux.ModificadoPor.Apellido = (string)datos.Lector["Apellido"];
 
                     lista.Add(aux);
 

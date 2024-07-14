@@ -14,6 +14,6 @@ namespace dominio
         public string Observacion { get; set; }
         public string ValorAnterior { get; set; }
         public string ValorNuevo { get; set; }
-        public int ModificadoPor { get; set; }
+        public Usuario ModificadoPor { get; set; }
     }
 }

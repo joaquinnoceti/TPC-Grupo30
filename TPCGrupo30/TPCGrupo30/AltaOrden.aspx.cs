@@ -286,7 +286,7 @@ namespace TPCGrupo30
                 HistorialModificacionesOT historial = new HistorialModificacionesOT();
                 historial.IDOrdenDeTrabajo = orden.ID;
                 historial.FechaModificacion = DateTime.Today;
-                historial.ModificadoPor = em.ID;
+                historial.ModificadoPor.ID = em.ID;
                 historial.Observacion = tbObservaciones.Text;
                 historialNegocio.RegistrarHistorial(historial);
             }
@@ -394,6 +394,11 @@ namespace TPCGrupo30
             int idOrden = int.Parse(Request.QueryString["ID"].ToString());
             try
             {
+                if (string.IsNullOrEmpty(tbObservaciones.Text)) {
+                    lblErrorObs.ForeColor = System.Drawing.Color.Red;
+                    lblErrorObs.Text = "Debe agregar una observación para avanzar."; 
+                    return;
+                }
                 ordenMod.ID = idOrden;
                 ordenMod.HorasReales = int.Parse(txtReales.Text);
                 ordenMod.HorasTeoricas = int.Parse(txtTeoricas.Text);
@@ -426,7 +431,7 @@ namespace TPCGrupo30
                 HistorialModificacionesOT historial = new HistorialModificacionesOT();
                 historial.IDOrdenDeTrabajo = ordenMod.ID;
                 historial.FechaModificacion = DateTime.Today;
-                historial.ModificadoPor = em.ID;
+                historial.ModificadoPor.ID = em.ID;
                 historial.Observacion = tbObservaciones.Text;
                 historialNegocio.RegistrarHistorial(historial);
             }
@@ -436,6 +441,13 @@ namespace TPCGrupo30
                 Session.Add("error", ex);
             }
             Response.Redirect("ABMOrdenes.aspx");
+        }
+
+        protected void btnHistorial_Click(object sender, EventArgs e)
+        {
+            int idOrden = int.Parse(Request.QueryString["ID"].ToString());
+            Response.Redirect("Historial.aspx?ID=" + idOrden);
+
         }
     }
 }

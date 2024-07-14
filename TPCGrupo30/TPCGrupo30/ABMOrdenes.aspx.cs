@@ -40,7 +40,6 @@ namespace TPCGrupo30
         protected void dgvOrdenes_SelectedIndexChanged(object sender, EventArgs e)
         {
             var id = dgvOrdenes.SelectedDataKey.Value.ToString();
-
             Response.Redirect("AltaOrden.aspx?ID=" + id);
         }
     }

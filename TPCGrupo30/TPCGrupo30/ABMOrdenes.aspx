@@ -21,16 +21,18 @@
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary" />
             </div>
         </div>
-        <asp:GridView ID="dgvOrdenes" CssClass="table table-dark table-bordered table-striped" runat="server" AutoGenerateColumns="false" DataKeyNames="ID" OnPageIndexChanging="dgvOrdenes_PageIndexChanging" OnSelectedIndexChanged="dgvOrdenes_SelectedIndexChanged" AllowPaging="true" PageSize="15">
+    <asp:GridView ID="dgvOrdenes" CssClass="table table-dark table-bordered table-striped" runat="server" AutoGenerateColumns="false" DataKeyNames="ID" OnPageIndexChanging="dgvOrdenes_PageIndexChanging" OnSelectedIndexChanged="dgvOrdenes_SelectedIndexChanged" AllowPaging="true" PageSize="15">
             <Columns>
-                <asp:CommandField ButtonType="Button" ControlStyle-BackColor="green" ItemStyle-Width="5%"  ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Acción" />
-                 <asp:BoundField DataField="ID" HeaderText="NUMERO" />
+                <asp:CommandField ButtonType="Button" ControlStyle-CssClass="btn btn-outline-success" ItemStyle-Width="5%"  ShowSelectButton="true" SelectText="⚙️" HeaderText="Acción" />
+                <asp:BoundField DataField="ID" HeaderText="NUMERO" />
                 <asp:BoundField DataField="Cliente.Apellido" HeaderText="Cliente" />
                 <asp:BoundField DataField="Mecanico.Apellido" HeaderText="Mecanico" />
                 <asp:BoundField DataField="Vehiculo.NombreVehiculo" HeaderText="Vehiculo" />
                 <asp:BoundField DataField="Total" HeaderText="Total" />
                 <asp:BoundField DataField="Cobrado" HeaderText="Cobrado" />
                 <asp:BoundField DataField="Estado.NombreEstado" HeaderText="Estado" />
+                
+                <%--<asp:Button ID="btnHistorial" runat="server" CssClass="btn btn-outline-info" Text="Historial" OnClick="btnHistorial_Click" />--%>
             </Columns>
         </asp:GridView>
     </div>

@@ -168,6 +168,24 @@ namespace TPCGrupo30
         protected global::System.Web.UI.WebControls.TextBox tbObservaciones;
 
         /// <summary>
+        /// lblErrorObs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorObs;
+
+        /// <summary>
+        /// btnHistorial control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnHistorial;
+
+        /// <summary>
         /// txtFechaFin control.
         /// </summary>
         /// <remarks>

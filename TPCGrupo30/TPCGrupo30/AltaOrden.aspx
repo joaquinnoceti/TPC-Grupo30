@@ -52,7 +52,7 @@
                             {%>
                             <div class="form-group mb-3">
                                 <asp:Label ID="lblModifServicios" runat="server" Text="Label">Servicios</asp:Label>
-                                <asp:Button ID="btnModificarServicios" runat="server" Text="Modificar Servicios" OnClick="btnModificarServicios_Click" CssClass="btn btn-primary btn-lg" />
+                                <asp:Button ID="btnModificarServicios" runat="server" Text="Modificar Servicios" OnClick="btnModificarServicios_Click" CssClass="btn btn-primary btn-sm" />
                             </div>
                         <div class="form-group mb-3">
                             <asp:Label ID="lblServ" runat="server" Text="Label">Servicios</asp:Label>
@@ -73,8 +73,13 @@
                         </div>
                         <div class="form-group mb-3">
                             <label>Observaciones</label>
-                            <asp:TextBox ID="tbObservaciones" TextMode="MultiLine" CssClass="form-control" placeholder="Observaciones..." runat="server" required></asp:TextBox>
+                            <asp:TextBox ID="tbObservaciones" TextMode="MultiLine" CssClass="form-control" placeholder="Observaciones..." runat="server"></asp:TextBox>
                         </div>
+                        <asp:Label ID="lblErrorObs" runat="server" Text=""></asp:Label>
+                        <%if (Request.QueryString["ID"] != null)
+                            {%>
+                        <asp:Button ID="btnHistorial" CssClass="btn btn-outline-info btn-sm" Text="Ver Historial" runat="server" OnClick="btnHistorial_Click" />
+                        <%} %>
                     </div>
                     <div class="col-md-6 mt-3">
                         <div class="form-group mb-3">
@@ -113,7 +118,7 @@
                 <%if (Request.QueryString["ID"] != null)
                     {%>
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <asp:Button ID="btnModificar" CssClass="btn btn-primary btn-lg" Text="Modificar" OnClick="btnModificar_Click" runat="server" />
+                    <asp:Button ID="btnModificar" CssClass="btn btn-primary btn-sm" Text="Modificar" OnClick="btnModificar_Click" runat="server" />
                 </div>
                 <%}
                     else
