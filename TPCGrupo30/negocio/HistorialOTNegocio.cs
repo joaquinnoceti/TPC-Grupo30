@@ -99,7 +99,7 @@ namespace negocio
                     SELECT SCOPE_IDENTITY();");
                 datos.setearParametro("@IDOrdenDeTrabajo", historial.IDOrdenDeTrabajo);
                 datos.setearParametro("@FechaModificacion", historial.FechaModificacion);
-                datos.setearParametro("@ModificadoPor", historial.ModificadoPor);
+                datos.setearParametro("@ModificadoPor", historial.ModificadoPor.ID);
                 datos.setearParametro("@Observacion", historial.Observacion);
 
                 datos.ejecutarConsulta();
