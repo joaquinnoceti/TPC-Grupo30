@@ -32,7 +32,12 @@ namespace TPCGrupo30
 				throw ex;
 			}
         }
+        protected void btnHistorial_Click(object sender, EventArgs e)
+        {
+            int idOrden = int.Parse(Request.QueryString["ID"].ToString());
+            Response.Redirect("AltaOrden.aspx?ID=" + idOrden);
 
-		
+        }
+
     }
 }

@@ -11,6 +11,9 @@
         </Columns>
     </asp:GridView>
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <a href="Principal.aspx" class="btn btn-outline-danger">Inicio</a>
+        <a href="Principal.aspx" class="btn btn-success">Inicio</a>
+        <%--<div class="ml-auto">--%>
+            <asp:Button ID="btnHistorial" CssClass="btn btn-secondary" Text="Atrás" runat="server" OnClick="btnHistorial_Click" />
+        <%--</div>--%>
     </div>
 </asp:Content>
