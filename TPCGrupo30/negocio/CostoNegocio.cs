@@ -107,5 +107,38 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+        public List<Costo> ListarCostosMensuales()
+        {
+            List<Costo> lista = new List<Costo>();
+            AccesoDatos1 datos = new AccesoDatos1();
+            try
+            {
+                datos.setearConsulta("Select cuenta.DescripcionCuenta, sub.DescripcionSubCuenta, costo.Tipo, costo.Asignacion, costo.FechaCosto, costo.Importe From Costos costo Inner Join Cuentas cuenta On cuenta.CodCuenta = costo.CodigoCuenta Inner Join SubCuentas sub On sub.CodCuenta = cuenta.CodCuenta Where Month(costo.FechaCosto) = Month(getdate()) And Year(costo.FechaCosto) = Year(getdate())");
+                datos.ejecutarConsulta();
+                while (datos.Lector.Read())
+                {
+                    Costo aux = new Costo();
+                    aux.CodigoCuenta = new Cuenta();
+                    aux.CodigoCuenta.DescripcionCuenta = (string)datos.Lector["DescripcionCuenta"];
+                    aux.CodigoSubCuenta = new SubCuenta();
+                    aux.CodigoSubCuenta.DescripcionSubCuenta = (string)datos.Lector["DescripcionSubCuenta"];
+                    aux.Tipo = (string)datos.Lector["Tipo"];
+                    aux.Comentarios = (string)datos.Lector["Asignacion"];
+                    aux.FechaCosto = DateTime.Parse(datos.Lector["FechaCosto"].ToString());
+                    aux.Importe = (decimal)datos.Lector["Importe"];
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

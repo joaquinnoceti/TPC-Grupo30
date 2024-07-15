@@ -16,7 +16,7 @@
             <div class="links">
                 <a href="ABMServicios.aspx">ADMINISTRACION SERVICIOS</a>
                 <a href="ABMCostos.aspx">ADMINISTRACION COSTOS</a>
-                <a href="AnalisisMensual.aspx">REPORTERIA</a>
+                <a href="Reporteria.aspx">REPORTERIA</a>
             </div>
         </div>
     </div>

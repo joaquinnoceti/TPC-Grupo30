@@ -16,7 +16,6 @@ namespace TPCGrupo30
         {
 			HistorialModificacionesOT historial = new HistorialModificacionesOT();
 			HistorialOTNegocio negocio = new HistorialOTNegocio();
-            Usuario usuario = new Usuario();
             try
 			{
                 int id = int.Parse(Request.QueryString["id"]);
