@@ -24,6 +24,15 @@ namespace TPCGrupo30
         protected global::System.Web.UI.WebControls.GridView dgvCostos;
 
         /// <summary>
+        /// lblCosto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCosto;
+
+        /// <summary>
         /// dgvOrdenes control.
         /// </summary>
         /// <remarks>
@@ -31,5 +40,23 @@ namespace TPCGrupo30
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView dgvOrdenes;
+
+        /// <summary>
+        /// lblOT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOT;
+
+        /// <summary>
+        /// lblRentabilidad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRentabilidad;
     }
 }

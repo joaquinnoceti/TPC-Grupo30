@@ -363,7 +363,40 @@ namespace negocio
             }
 
         }
+        public List<OrdenDeTrabajo> ListarOrdenesMensuales()
+        {
+            List<OrdenDeTrabajo> lista = new List<OrdenDeTrabajo>();
+            AccesoDatos1 datos = new AccesoDatos1();
+            try
+            {
+                datos.setearConsulta("Select ot.FechaCreacion, cli.Apellido As Cliente, ve.NombreVehiculo As Vehiculo, ot.FechaFinalizacion, ot.Total, us.Apellido As Mecanico From OrdenDeTrabajo ot Inner Join Clientes cli On cli.ID = ot.IdCliente Inner Join Vehiculos ve On ve.IdCliente = cli.ID Inner Join Usuarios us On us.ID = ot.IdEmpleado Where Month(ot.FechaFinalizacion) = Month(getdate()) And Year(ot.FechaFinalizacion) = Year(getdate())");
+                datos.ejecutarConsulta();
+                while (datos.Lector.Read())
+                {
+                    OrdenDeTrabajo aux = new OrdenDeTrabajo();
+                    aux.FechaCreacion = DateTime.Parse(datos.Lector["FechaCreacion"].ToString());
+                    aux.Cliente = new Cliente();
+                    aux.Cliente.Apellido = (string)datos.Lector["Cliente"];
+                    aux.Vehiculo = new Vehiculo();
+                    aux.Vehiculo.NombreVehiculo = (string)datos.Lector["Vehiculo"];
+                    aux.FechaFinalizacion = DateTime.Parse(datos.Lector["FechaFinalizacion"].ToString());
+                    aux.Total = (decimal)datos.Lector["Total"];
+                    aux.Mecanico = new Usuario();
+                    aux.Mecanico.Apellido = (string)datos.Lector["Mecanico"];
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
 
