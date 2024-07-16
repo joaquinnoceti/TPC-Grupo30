@@ -106,9 +106,9 @@
                                 <label class="h4">Estado:</label>
                                 <asp:TextBox ID="txtEstado" CssClass="form-control" runat="server" ReadOnly="true"></asp:TextBox>
                                 <asp:Label Text="Avanzar Estado" ID="lblAvanzar" runat="server" />
-                                <%if(txtEstado.Text != "COMPLETADO") { %>
+                               <%-- <%if(txtEstado.Text != "COMPLETADO") { %>--%>
                                 <asp:Button ID="btnAvanzarEstado" CssClass="btn btn-outline-success btn-sm" Text="Avanzar" OnClick="btnAvanzarEstado_Click" runat="server" />
-                                <%}%>
+                               <%-- <%}%>--%>
                             </div>
                         <%}%>
                     </div>

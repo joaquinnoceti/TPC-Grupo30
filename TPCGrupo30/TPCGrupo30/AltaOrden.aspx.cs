@@ -39,6 +39,16 @@ namespace TPCGrupo30
                         int idOrden = int.Parse(Request.QueryString["ID"].ToString());
                         CargarDatosOrden(idOrden);
                     }
+                    Usuario usuario = new Usuario();
+                    usuario = Session["user"] as Usuario;
+                    if (usuario.Email == "admin@admin.com")
+                    {
+                        btnAvanzarEstado.Enabled = true;
+                    }
+                    else if (txtEstado.Text == "COMPLETADO")
+                    {
+                        btnAvanzarEstado.Enabled = false;
+                    }
                 }
             }
             catch (Exception ex)
